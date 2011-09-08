@@ -1,0 +1,5 @@
+= โครงสร้างข้อมูลและอัลกอริทึม =
+จิตร์ทัศน์ ฝักเจริญผล <jittat@gmail.com>
+:doctype: book
+
+include::recursion.txt[]
