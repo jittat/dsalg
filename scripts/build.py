@@ -6,7 +6,7 @@ import time
 
 def get_output_filename(filename):
     items = os.path.splitext(filename)
-    return items[0] + '.txt'
+    return items[0] + '.tex'
 
 def compile():
     os.system("make")

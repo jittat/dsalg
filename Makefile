@@ -1,14 +1,10 @@
-all: dsalg.html
+all: dsalg.dvi
 
 clean:
-	rm *.html recursion.txt intro.txt
+	rm *.tex
 
-dsalg.html: dsalg.txt intro.txt recursion.txt
-	asciidoc -a latexmath -a pygments dsalg.txt
+dsalg.dvi: dsalg.tex recursion.tex intro.tex
+	latex dsalg
 
-recursion.txt: recursion.tx
-	python scripts/compile-math.py recursion.tx
-
-intro.txt: intro.tx
-	python scripts/compile-math.py intro.tx
-
+%.tex : %.tx
+	./scripts/compile $<

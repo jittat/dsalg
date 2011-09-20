@@ -1,3 +1,7 @@
 *~
 *.pyc
-
+*.tx.tis
+*.tx.prep
+*.log
+*.dvi
+*.aux

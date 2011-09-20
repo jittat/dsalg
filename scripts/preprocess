@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+MACRO_START = '---'
+BASE_PATH = File.dirname(__FILE__)
+
+class String
+  def macro_starts?
+    self.start_with? MACRO_START
+  end
+end
+
+def extract_macro_name(line)
+  res = /^---(\w+)(|\[(.*)\])(|\s+(.*))$/.match line
+  name = res[1]
+  options = res[3] || ''
+  rest = (res[5] || '') + "\n"
+  return name,options,rest
+end
+
+def call_macro(name,options,data)
+  return []
+end
+
+def process_macro(lines)
+  name,options,rest = extract_macro_name lines[0]
+  if rest.chomp != ''
+    data = [rest] + lines[1..-1]
+  else
+    data = lines[1..-1]
+  end
+  call_macro(name,options,data)
+end
+
+def main
+  lines = readlines
+  output = []
+  lcount = lines.length
+
+  i = 0
+  while i<lcount
+    line = lines[i]
+
+    if line.macro_starts?
+      j = i+1
+      while j<lcount and (!lines[j].macro_starts?)
+        j+=1
+      end
+
+      last = j-1
+      output += process_macro(lines[i..last])
+
+      i = last + 2
+      next
+    end
+
+    output << lines[i]
+    i += 1
+  end
+
+  output.each do |line|
+    $stdout.write line
+  end
+end
+
+main
+
