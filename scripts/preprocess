@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'open3'
+
 MACRO_START = '---'
 BASE_PATH = File.dirname(__FILE__)
 
@@ -18,6 +20,16 @@ def extract_macro_name(line)
 end
 
 def call_macro(name,options,data)
+  script_name = File.join(BASE_PATH,'macros',name)
+  if File.exists? script_name
+    Open3.popen2(script_name) do |i,o,w|
+      data.each do |d|
+        i.write d
+      end
+      i.close
+      return o.readlines
+    end
+  end
   return []
 end
 

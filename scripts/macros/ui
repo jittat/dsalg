@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+
+def marker(level)
+  ('*' * level) + ' '
+end
+
+def marker_len(level)
+  level + 1
+end
+
+def remove_first_bullet(lines,level)
+  return lines if lines.empty?
+
+  if lines[0].start_with? marker(level)
+    lines[0] = lines[0][marker_len(level)..-1]
+  end
+  lines
+end
+
+def extract_groups(lines,level)
+  pre = []
+  current = []
+  groups = []
+  started = false
+  lines.each do |line|
+    if line.start_with? marker(level)
+      if !current.empty?
+        groups << current
+        current = []
+      end
+      started = true
+    end
+    if started
+      current << line
+    else
+      pre << line
+    end
+  end
+  groups << current if !current.empty?
+  return pre, groups
+end
+
+def print_lines(lines)
+  lines.each do |line|
+    $stdout.write(line)
+  end
+end
+
+def process_lines(lines,level)
+  pre, groups = extract_groups(lines,level)
+
+  print_lines(pre) if !pre.empty?
+
+  if !groups.empty?
+    $stdout.write "\\begin{itemize}\n"
+    groups.each do |g|
+      $stdout.write "\\item "
+      process_lines(remove_first_bullet(g,level),level+1)
+    end
+    $stdout.write "\\end{itemize}\n"
+  end
+end
+
+lines = readlines
+process_lines(lines,1)
