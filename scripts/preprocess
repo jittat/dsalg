@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 require 'open3'
 
@@ -8,6 +9,9 @@ BASE_PATH = File.dirname(__FILE__)
 class String
   def macro_starts?
     self.start_with? MACRO_START
+  end
+  def preprocessor_starts?
+    self.start_with? PREP_START
   end
 end
 
@@ -22,6 +26,7 @@ end
 def call_macro(name,options,data)
   script_name = File.join(BASE_PATH,'macros',name)
   if File.exists? script_name
+    cmd = "#{script_name} #{options}"
     Open3.popen2(script_name) do |i,o,w|
       data.each do |d|
         i.write d
@@ -44,7 +49,10 @@ def process_macro(lines)
 end
 
 def main
-  lines = readlines
+  input_filename, output_filename = ARGV[0..1]
+
+  fin = open(input_filename,"r:utf-8")
+  lines = fin.readlines
   output = []
   lcount = lines.length
 
@@ -69,8 +77,10 @@ def main
     i += 1
   end
 
-  output.each do |line|
-    $stdout.write line
+  open(output_filename,"w") do |fout|
+    output.each do |line|
+      fout.write line
+    end
   end
 end
 

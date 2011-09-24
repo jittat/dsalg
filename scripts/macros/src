@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+LANG_MAP = {"cpp" => "C++", "python" => "Python"}
+
+lang = ARGV[0] || "cpp"
+list_lang = LANG_MAP[lang]
+
+lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
+puts "\\begin{codelist}{#{list_lang}}"
+lines.each do |line|
+  $stdout.write(line)
+end
+puts "\\end{codelist}"
+

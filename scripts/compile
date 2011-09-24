@@ -3,6 +3,6 @@
 OUTPUT=`echo $1 | sed -e s/tx/tex/`
 BASE_PATH=`dirname $0`
 
-${BASE_PATH}/preprocess < $1 > $1.prep
+${BASE_PATH}/preprocess $1 $1.prep
 iconv -f UTF-8 -t TIS-620 $1.prep > $1.tis
 swath -f latex < $1.tis > $OUTPUT

@@ -29,6 +29,9 @@ $1$ เพื่อ{\wbr}ได้{\wbr}ผลบวก{\wbr}ของ $10$ กับ $3$ ตาม{\wbr}ต้องการ  (ดู{\wbr}ร
 จาก{\wbr}ขั้นตอน{\wbr}ด้าน{\wbr}บน ถ้า{\wbr}เรา{\wbr}ทราบ{\wbr}ว่า{\wbr}ผลบวก{\wbr}ของ $10$ กับ $2$ คือ $12$ เมื่อ{\wbr}เพิ่ม{\wbr}ค่า{\wbr}ขึ้น $1$
 เรา{\wbr}จะ{\wbr}ได้{\wbr}ผลลัพธ์{\wbr}ของ $10$ กับ $3$ ซึ่ง{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ $13$
 
+\begin{quiz}{10 + 2}
+เรา{\wbr}จะ{\wbr}หา{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}การ{\wbr}บวก $10$ กับ $2$ ได้{\wbr}อย่างไร?
+\end{quiz}
 
 เรา{\wbr}ก็{\wbr}จะ{\wbr}หา{\wbr}ผลลัพธ์{\wbr}ด้วย{\wbr}วิธี{\wbr}เดียวกัน ซึ่ง{\wbr}ใน{\wbr}การ{\wbr}ผลบวก เรา{\wbr}จะ{\wbr}ต้องหา{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}การ{\wbr}บวก $10$ กับ $1$ และ{\wbr}จะ{\wbr}เป็น{\wbr}เช่นนี้{\wbr}เป็น{\wbr}เรื่อย ๆ ดัง{\wbr}ตัวอย่าง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
 
@@ -51,12 +54,39 @@ $1$ เพื่อ{\wbr}ได้{\wbr}ผลบวก{\wbr}ของ $10$ กับ $3$ ตาม{\wbr}ต้องการ  (ดู{\wbr}ร
 รูป{\wbr}ด้าน{\wbr}ล่าง{\wbr}แสดง{\wbr}ลักษณะ{\wbr}การ{\wbr}คำนวณ สังเกต{\wbr}ว่า{\wbr}ผู้{\wbr}คำนวณ{\wbr}แต่ละ{\wbr}คน{\wbr}ทำงาน{\wbr}เป็น{\wbr}อิสระ{\wbr}ต่อ{\wbr}กัน{\wbr}
 ยก{\wbr}ตัวอย่าง{\wbr}เช่น แต่ละ{\wbr}คน{\wbr}จะ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ภายใน (เช่น{\wbr}ตัวแปร $C$ และ $D$) แยก{\wbr}จาก{\wbr}กัน{\wbr}
 
+\begin{quiz}{การ{\wbr}ลบ}
+เขียน{\wbr}ขั้นตอน{\wbr}การ{\wbr}ลบ{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ กับ $B$ ใน{\wbr}รูปแบบ{\wbr}เดียวกับ{\wbr}การ{\wbr}คำนวณ{\wbr}ผลบวก{\wbr}
+\end{quiz}
 
+\begin{quiz}{การ{\wbr}คูณ}
+เขียน{\wbr}ขั้นตอน{\wbr}การ{\wbr}คูณ{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ กับ $B$ ใน{\wbr}รูปแบบ{\wbr}เดียวกับ{\wbr}การ{\wbr}คำนวณ{\wbr}ผลบวก{\wbr}
+\end{quiz}
 
+\begin{quiz}{ศูนย์}
+ถ้า{\wbr}เรา{\wbr}ตัด{\wbr}บรรทัด{\wbr}แรก{\wbr}ที่{\wbr}ระบุ{\wbr}เงื่อนไข{\wbr}ที่ทำงาน{\wbr}เมื่อ $B=0$ ออก  เมื่อ{\wbr}เรา{\wbr}ดำเนินการ{\wbr}ตาม{\wbr}ขั้นตอนวิธี{\wbr}ดังกล่าว ผลลัพธ์{\wbr}จะ{\wbr}เป็น{\wbr}เช่น{\wbr}ใด{\wbr}
+\end{quiz}
 
 เรา{\wbr}สามารถ{\wbr}เขียน{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ดังกล่าว{\wbr}เป็น{\wbr}โปรแกรม{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}ดังนี้{\wbr}
 
+\begin{codelist}{C++}
+def add(a,b):
+    if b==0:
+        return a
+    else:
+        c = b-1
+        return 1 + add(a,c)
+\end{codelist}
 
+\begin{codelist}{C++}
+int add(int a, int b)
+{
+  if(b==0)
+    return a;
+
+  int c = b-1;
+  return 1 + add(a,c);
+}
+\end{codelist}
 
 \section{ค่าสูงสุด}
 
@@ -78,6 +108,13 @@ x_1,x_2,\ldots,x_{n-1}
 เรา{\wbr}จะ{\wbr}สมมติ{\wbr}ว่า{\wbr}เรา{\wbr}สามารถ{\wbr}หา{\wbr}คำตอบ{\wbr}ของ{\wbr}ปัญหา{\wbr}ได้ กล่าวคือ{\wbr}
 ให้ $M$ คือ{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}รายการ $x_1,x_2,\ldots,x_{n-1}$
 
+\begin{quiz}{ค่า{\wbr}สูง{\wbr}ที่สุด{\wbr}จาก $M$}
+สมมติ{\wbr}ว่า{\wbr}เรา{\wbr}ทราบ{\wbr}ว่า $M$ คือ{\wbr}ค่าสูงสุด{\wbr}จาก{\wbr}รายการ 
+$x_1,x_2,\ldots,x_{n-1}$
+เรา{\wbr}สามารถ{\wbr}คำนวณ{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}รายการ 
+$x_1,x_2,\ldots,x_n$ ได้{\wbr}อย่างไร?
+--hints ถ้า $M$ ไม่{\wbr}ใช่{\wbr}ข้อมูล{\wbr}ที่{\wbr}มี{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}รายการ ค่า{\wbr}อื่น{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}คือ{\wbr}ค่า{\wbr}ใด?
+\end{quiz}
 
 
 เมื่อ{\wbr}เรา{\wbr}พิจารณา{\wbr}ข้อมูล{\wbr}สูงสุด{\wbr}ของ{\wbr}รายการ $x_1,x_2,\ldots,x_n$
@@ -88,8 +125,39 @@ $x_n$ ซึ่ง{\wbr}เรา{\wbr}สามารถ{\wbr}เทียบ{\wbr}ข้อมูล{\wbr}ทั้ง{\wbr}สอง{\wbr}เ
 
 จาก{\wbr}แนว{\wbr}คิด{\wbr}ดังกล่าว เรา{\wbr}สามารถ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ที่{\wbr}คำนวณ{\wbr}ค่าสูงสุด{\wbr}ได้{\wbr}ดังนี้{\wbr}
 
+\begin{codelist}{C++}
+def listmax(ls):
+    if len(ls)==1:
+        return ls[0]
+    else:
+        m = listmax(ls[:-1])
+        xn = ls[-1]
+        if m > xn
+            return m
+        else:
+            return xn
+\end{codelist}
 
+\begin{codelist}{C++}
+int listmax(int ls[], int n)
+{
+  if(n==1)
+    return ls[0];
+  else {
+    int xn = ls[n-1];
+    int m = listmax(ls,n-1);
+    if(m > xn)
+      return m;
+    else
+      return xn;
+  }
+}
+\end{codelist}
 
+\begin{quiz}{ผลบวก{\wbr}ของ{\wbr}รายการ}
+ออกแบบ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}รับ{\wbr}รายการ{\wbr}ของ{\wbr}จำนวนเต็ม $n$ จำนวน{\wbr}คือ $x_1,x_2,\ldots,x_n$
+แล้ว{\wbr}คำนวณ{\wbr}ผลรวม{\wbr}ของ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}
+\end{quiz}
 
 \subsection{ฟังก์ชัน{\wbr}เรียก{\wbr}ตัวเอง}
 อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ดังกล่าว{\wbr}สามารถ{\wbr}พิจารณา{\wbr}ว่า{\wbr}เป็น{\wbr}การ{\wbr}คำนวณ{\wbr}ค่า{\wbr}ฟังก์ชัน $f$ ที่{\wbr}มี{\wbr}นิยาม{\wbr}ดังต่อไปนี้{\wbr}
@@ -105,7 +173,25 @@ x_1, &  \mbox{ถ้า } n=1 \\
 \section{การ{\wbr}ทำ{\wbr}ซ้ำ{\wbr}กับ{\wbr}การ{\wbr}เรียก{\wbr}ตัวเอง}
 การ{\wbr}คำนวณ{\wbr}ค่าสูงสุด{\wbr}ใน{\wbr}รายการ{\wbr}เป็น{\wbr}ปัญหา{\wbr}พื้นฐาน{\wbr}ที่{\wbr}เหมาะ{\wbr}กับ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}แบบ{\wbr}ทำ{\wbr}ซ้ำ ด้าน{\wbr}ล่าง{\wbr}แสดง{\wbr}ส่วน{\wbr}ของ{\wbr}โปรแกรม{\wbr}ดังกล่าว{\wbr}
 
+\begin{codelist}{C++}
+def listmax(ls):
+    m = ls[0]
+    for x in ls:
+        if x > m:
+            m = x
+    return m
+\end{codelist}
 
+\begin{codelist}{C++}
+int listmax(int ls[], int n)
+{
+  int m = ls[0];
+  for(int i=0; i<n; i++)
+    if(ls[i] > m)
+      m = ls[i];
+  return m;
+}
+\end{codelist}
 
 ผู้อ่าน{\wbr}ที่{\wbr}สนใจ{\wbr}อาจ{\wbr}เริ่ม{\wbr}สงสัย{\wbr}ว่า{\wbr}การ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}แบบ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}มี{\wbr}ประโยชน์{\wbr}อย่างไร 
 

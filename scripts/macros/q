@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
+title = lines.shift
+puts "\\begin{quiz}{#{title.strip}}"
+lines.each do |line|
+  $stdout.write(line)
+end
+puts "\\end{quiz}"
+

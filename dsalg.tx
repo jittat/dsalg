@@ -4,6 +4,13 @@
 \usepackage[thai]{babel}
 \usepackage{thswitch}
 \usepackage{epsfig}
+\usepackage{framed}
+\usepackage{listings}
+
+\newcounter{quiz}[chapter]
+\newenvironment{quiz}[1]{\framed\noindent{\bf คำถาม \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\endframed}
+
+\lstnewenvironment{codelist}[1]{\tt\lstset{language=#1}}{}
 
 \begin{document}
 
