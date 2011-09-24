@@ -15,6 +15,14 @@
 สมมติ{\wbr}ว่า{\wbr}เรา{\wbr}ทราบ{\wbr}วิธีการ{\wbr}เพิ่ม{\wbr}ค่า{\wbr}จำนวน{\wbr}ธรรมชาติ{\wbr}ขึ้น 1 และ{\wbr}ลด{\wbr}ค่า{\wbr}จำนวน{\wbr}ธรรมชาติ{\wbr}ลง 1
 พิจารณา{\wbr}วิธีการ{\wbr}บวก{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ เข้า{\wbr}กับ $B$ ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
 
+\begin{algt}
+\noindent {\bf บวก{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ กับ $B$}\\
+\hspace*{0.2in} ถ้า $B=0$ ตอบ $A$\\
+\hspace*{0.2in} ไม่{\wbr}เช่นนั้น \\
+\hspace*{0.2in}\hspace*{0.2in} คำนวณ{\wbr}ค่า $C\leftarrow B-1$\\
+\hspace*{0.2in}\hspace*{0.2in} บวก{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ กับ $C$ เก็บ{\wbr}ผลลัพธ์{\wbr}ไว้{\wbr}ที่{\wbr}ตัวแปร $D$\\
+\hspace*{0.2in}\hspace*{0.2in} คำนวณ{\wbr}ค่า $D+1$ แล้ว{\wbr}ตอบ{\wbr}ผลลัพธ์{\wbr}
+\end{algt}
 
 นิยาม{\wbr}ข้างต้น{\wbr}มี{\wbr}ลักษณะ{\wbr}เหมือน{\wbr}งู{\wbr}กิน{\wbr}หาง{\wbr}
 เพราะว่า{\wbr}เรา{\wbr}กำลัง{\wbr}นิยาม{\wbr}การ{\wbr}บวก{\wbr}จำนวน{\wbr}ธรรมชาติ{\wbr}ด้วย{\wbr}การ{\wbr}บวก{\wbr}จำนวน{\wbr}ธรรมชาติ อย่างไรก็ตาม{\wbr}
@@ -97,6 +105,19 @@ int add(int a, int b)
 กรณี{\wbr}ที่{\wbr}เรา{\wbr}สามารถ{\wbr}ตอบ{\wbr}คำถาม{\wbr}ได้{\wbr}ง่าย คือ{\wbr}กรณี{\wbr}ที่ $n=1$
 กล่าวคือ{\wbr}เรา{\wbr}สามารถ{\wbr}ตอบ{\wbr}ได้{\wbr}ทันที{\wbr}ว่า{\wbr}ค่าสูงสุด{\wbr}เท่า{\wbr}กับ $x_1$
 
+\begin{algt}
+\noindent {\bf การ{\wbr}คำ{\wbr}น{\wbr}วน{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}รายการ $x_1,x_2,\ldots,x_n$ (ขั้น{\wbr}ฐาน)}\\
+\hspace*{0.2in} ถ้า $n=1$ ตอบ $x_1$\\
+\hspace*{0.2in} ถ้า{\wbr}เป็น{\wbr}กรณี{\wbr}อื่น:\\
+\hspace*{0.2in}\hspace*{0.2in} {\em จะ{\wbr}ต้อง{\wbr}ออกแบบ{\wbr}ต่อไป}
+\end{algt}
+
+\noindent {\bf test}
+\hspace*{0.2in} test teat \\
+\hspace*{0.2in}\hspace*{0.2in} test teat \\
+\hspace*{0.2in} test teat \\
+
+
 
 สำหรับ{\wbr}กรณี{\wbr}ทั่วไป เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}โดย{\wbr}พิจารณา{\wbr}ปัญหา{\wbr}เมื่อ{\wbr}ข้อมูล{\wbr}นำเข้า{\wbr}มี{\wbr}ขนาด{\wbr}เล็ก{\wbr}ลง คือ{\wbr}
 \[
@@ -122,6 +143,14 @@ $x_1,x_2,\ldots,x_n$ ได้{\wbr}อย่างไร?
 ใน{\wbr}อีก{\wbr}กรณี{\wbr}หนึ่ง{\wbr}คือ{\wbr}ข้อมูล{\wbr}สูง{\wbr}ที่สุด{\wbr}คือ $x_n$ ถ้า{\wbr}เป็น{\wbr}ใน{\wbr}กรณี{\wbr}แรก{\wbr}ค่าสูงสุด{\wbr}คือ $M$ ใน{\wbr}อีก{\wbr}กรณี{\wbr}หนึ่ง{\wbr}คือ{\wbr}
 $x_n$ ซึ่ง{\wbr}เรา{\wbr}สามารถ{\wbr}เทียบ{\wbr}ข้อมูล{\wbr}ทั้ง{\wbr}สอง{\wbr}เพื่อ{\wbr}หา{\wbr}ค่า{\wbr}สูง{\wbr}ที่สุด{\wbr}ได้ ดัง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
 
+\begin{algt}
+\noindent {\bf การ{\wbr}คำ{\wbr}น{\wbr}วน{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}รายการ $x_1,x_2,\ldots,x_n$}\\
+\hspace*{0.2in} ถ้า $n=1$ ตอบ $x_1$\\
+\hspace*{0.2in} ใน{\wbr}กรณี{\wbr}อื่น\\
+\hspace*{0.2in}\hspace*{0.2in} ให้ $M$ คือ{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}รายการ $x_1,x_2,\ldots,x_{n-1}$\\
+\hspace*{0.2in}\hspace*{0.2in} ถ้า $x_n > M$ ตอบ $x_n$\\
+\hspace*{0.2in}\hspace*{0.2in} ใน{\wbr}กรณี{\wbr}อื่น ตอบ $M$
+\end{algt}
 
 จาก{\wbr}แนว{\wbr}คิด{\wbr}ดังกล่าว เรา{\wbr}สามารถ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ที่{\wbr}คำนวณ{\wbr}ค่าสูงสุด{\wbr}ได้{\wbr}ดังนี้{\wbr}
 

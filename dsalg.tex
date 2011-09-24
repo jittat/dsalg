@@ -10,7 +10,9 @@
 \newcounter{quiz}[chapter]
 \newenvironment{quiz}[1]{\framed\noindent{\bf คำถาม \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\endframed}
 
-\lstnewenvironment{codelist}[1]{\tt\lstset{language=#1}}{}
+\newenvironment{algt}{\framed}{\endframed}
+\lstnewenvironment{codelist}[1]{\tt\framed\lstset{language=#1}}{\endframed}
+
 
 \begin{document}
 
