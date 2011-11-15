@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+def parse_line(line)
+  c = 0
+  while line[c]=='*'
+    c += 1
+  end
+  return c, line[(c+1)..-1]
+end
+
+lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
+title = lines.shift
+$stdout.write "\\begin{algt}\n"
+$stdout.write "\\noindent {\\bf #{title.strip}}"
+lines.each do |line|
+  $stdout.write "\\\\\n"
+  indent, rest = parse_line(line.chomp)
+  indent_str = "\\hspace*{0.2in}" * indent
+  $stdout.write "#{indent_str} #{rest}"
+end
+$stdout.write "\n"
+$stdout.write "\\end{algt}\n"

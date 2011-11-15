@@ -12,6 +12,25 @@
 
 \section{การ{\wbr}คำนวณ{\wbr}ทาง{\wbr}พีชคณิต}
 
+เรา{\wbr}จะ{\wbr}เขียน{\wbr}โปรแกรมย่อย{\wbr}ที่{\wbr}บวก{\wbr}จำนวน{\wbr}ธรรมชาติ{\wbr}สอง{\wbr}จำนวน ตัวอย่าง{\wbr}ของ{\wbr}โปรแกรมย่อย{\wbr}นี้{\wbr}แสดง{\wbr}ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\begin{algt}
+\noindent {\bf บวก{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ กับ $B$}\\
+\hspace*{0.2in} คำนวณ{\wbr}ค่า $A+B$ แล้ว{\wbr}คืน{\wbr}ผลลัพธ์{\wbr}
+\end{algt}
+
+เมื่อ{\wbr}เรา{\wbr}เรียก{\wbr}ใช้{\wbr}โปรแกรมย่อย{\wbr}ดังกล่าว{\wbr}ให้{\wbr}บวก 10 กับ 3 เรา{\wbr}จะ{\wbr}ได้{\wbr}ผลลัพธ์{\wbr}เป็น 13
+ลักษณะ{\wbr}ของ{\wbr}การ{\wbr}เรียก{\wbr}ใช้ แสดง{\wbr}ใน{\wbr}รูป~\ref{rec:add-call}
+
+\begin{figure}
+\begin{center}
+\epsfig{file=figures/recursion/add-call.eps, height=1in}
+\end{center}
+\caption{ตัวอย่าง{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}โปรแกรมย่อย}
+\label{rec:add-call}
+\end{figure}
+
+เรา{\wbr}จะ{\wbr}ปรับ{\wbr}โปรแกรมย่อย{\wbr}ดังกล่าว ให้{\wbr}เป็น{\wbr}โปรแกรมย่อย{\wbr}แบบ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}
 สมมติ{\wbr}ว่า{\wbr}เรา{\wbr}ทราบ{\wbr}วิธีการ{\wbr}เพิ่ม{\wbr}ค่า{\wbr}จำนวน{\wbr}ธรรมชาติ{\wbr}ขึ้น 1 และ{\wbr}ลด{\wbr}ค่า{\wbr}จำนวน{\wbr}ธรรมชาติ{\wbr}ลง 1
 พิจารณา{\wbr}วิธีการ{\wbr}บวก{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ เข้า{\wbr}กับ $B$ ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
 
@@ -31,17 +50,31 @@
 \begin{itemize}
 \item เนื่องจาก $3$ ไม่{\wbr}เท่า{\wbr}กับ $0$ เรา{\wbr}จึง{\wbr}คำนวณ{\wbr}ค่า $3-1 = 2$
 จากนั้น{\wbr}เรา{\wbr}ต้องการ{\wbr}คำนวณ{\wbr}หา{\wbr}ผลบวก{\wbr}ของ $10$ กับ $2$ เมื่อ{\wbr}ได้{\wbr}ผลบวก{\wbr}แล้ว เรา{\wbr}จะ{\wbr}เพิ่ม{\wbr}ค่า{\wbr}ขึ้น{\wbr}
-$1$ เพื่อ{\wbr}ได้{\wbr}ผลบวก{\wbr}ของ $10$ กับ $3$ ตาม{\wbr}ต้องการ  (ดู{\wbr}รูป{\wbr}ด้าน{\wbr}ล่าง)
+$1$ เพื่อ{\wbr}ได้{\wbr}ผลบวก{\wbr}ของ $10$ กับ $3$ ตาม{\wbr}ต้องการ{\wbr}
 \end{itemize}
 
+\begin{figure}
+\begin{center}
+\epsfig{file=figures/recursion/add-2-calls.eps, height=1in}
+\end{center}
+\caption{ตัวอย่าง{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}โปรแกรมย่อย{\wbr}ที่{\wbr}เรียก{\wbr}ใช้{\wbr}โปรแกรมย่อย{\wbr}เพื่อ{\wbr}คำนวณ{\wbr}ผลบวก{\wbr}ของ 10 กับ 2}
+\label{rec:add-2-calls}
+\end{figure}
+
+
 จาก{\wbr}ขั้นตอน{\wbr}ด้าน{\wbr}บน ถ้า{\wbr}เรา{\wbr}ทราบ{\wbr}ว่า{\wbr}ผลบวก{\wbr}ของ $10$ กับ $2$ คือ $12$ เมื่อ{\wbr}เพิ่ม{\wbr}ค่า{\wbr}ขึ้น $1$
-เรา{\wbr}จะ{\wbr}ได้{\wbr}ผลลัพธ์{\wbr}ของ $10$ กับ $3$ ซึ่ง{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ $13$
+เรา{\wbr}จะ{\wbr}ได้{\wbr}ผลลัพธ์{\wbr}ของ $10$ กับ $3$ ซึ่ง{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ $13$ \ \ \
+รูป~\ref{rec:add-2-calls} แสดง{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}โปรแกรมย่อย{\wbr}ดังกล่าว{\wbr}
+
 
 \begin{quiz}{10 + 2}
 เรา{\wbr}จะ{\wbr}หา{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}การ{\wbr}บวก $10$ กับ $2$ ได้{\wbr}อย่างไร?
 \end{quiz}
 
-เรา{\wbr}ก็{\wbr}จะ{\wbr}หา{\wbr}ผลลัพธ์{\wbr}ด้วย{\wbr}วิธี{\wbr}เดียวกัน ซึ่ง{\wbr}ใน{\wbr}การ{\wbr}ผลบวก เรา{\wbr}จะ{\wbr}ต้องหา{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}การ{\wbr}บวก $10$ กับ $1$ และ{\wbr}จะ{\wbr}เป็น{\wbr}เช่นนี้{\wbr}เป็น{\wbr}เรื่อย ๆ ดัง{\wbr}ตัวอย่าง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+เรา{\wbr}ก็{\wbr}จะ{\wbr}หา{\wbr}ผลลัพธ์{\wbr}ด้วย{\wbr}วิธี{\wbr}เดียวกัน ซึ่ง{\wbr}ใน{\wbr}การ{\wbr}ผลบวก เรา{\wbr}จะ{\wbr}ต้องหา{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}การ{\wbr}บวก $10$ กับ{\wbr}
+$1$ และ{\wbr}จะ{\wbr}เป็น{\wbr}เช่นนี้{\wbr}เป็น{\wbr}เรื่อย ๆ ดัง{\wbr}ตัวอย่าง{\wbr}ด้าน{\wbr}ล่าง (รูป{\wbr}ที่~\ref{rec:add-rec-calls}
+แสดง{\wbr}ลักษณะ{\wbr}การ{\wbr}คำนวณ)
+
 
 \begin{itemize}
 \item เนื่องจาก $3$ ไม่{\wbr}เท่า{\wbr}กับ $0$ เรา{\wbr}จึง{\wbr}คำนวณ{\wbr}ค่า $3-1 = 2$ จากนั้น{\wbr}เรา{\wbr}ต้องการ{\wbr}คำนวณ{\wbr}หา{\wbr}ผลบวก{\wbr}ของ $10$ กับ $2$ ใน{\wbr}การ{\wbr}คำนวณ{\wbr}ผลบวก{\wbr}ดังกล่าว เรา{\wbr}จะ{\wbr}ใช้{\wbr}วิธีการ{\wbr}เดิม{\wbr}
@@ -59,8 +92,15 @@ $1$ เพื่อ{\wbr}ได้{\wbr}ผลบวก{\wbr}ของ $10$ กับ $3$ ตาม{\wbr}ต้องการ  (ดู{\wbr}ร
 \item เมื่อ{\wbr}เรา{\wbr}ได้{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}การ{\wbr}บวก $10$ กับ $2$ แล้ว (คือ $12$) เรา{\wbr}คำนวณ $12+1$ ได้{\wbr}ผลลัพธ์ $13$ ซึ่ง{\wbr}เป็น{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}การ{\wbr}บวก $10$ กับ $3$
 \end{itemize}
 
-รูป{\wbr}ด้าน{\wbr}ล่าง{\wbr}แสดง{\wbr}ลักษณะ{\wbr}การ{\wbr}คำนวณ สังเกต{\wbr}ว่า{\wbr}ผู้{\wbr}คำนวณ{\wbr}แต่ละ{\wbr}คน{\wbr}ทำงาน{\wbr}เป็น{\wbr}อิสระ{\wbr}ต่อ{\wbr}กัน{\wbr}
-ยก{\wbr}ตัวอย่าง{\wbr}เช่น แต่ละ{\wbr}คน{\wbr}จะ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ภายใน (เช่น{\wbr}ตัวแปร $C$ และ $D$) แยก{\wbr}จาก{\wbr}กัน{\wbr}
+
+\begin{figure}
+\begin{center}
+\epsfig{file=figures/recursion/add-rec-calls.eps, width=6in}
+\end{center}
+\caption{ตัวอย่าง{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}โปรแกรมย่อย{\wbr}ที่{\wbr}เรียก{\wbr}ตัวเอง}
+\label{rec:add-rec-calls}
+\end{figure}
+
 
 \begin{quiz}{การ{\wbr}ลบ}
 เขียน{\wbr}ขั้นตอน{\wbr}การ{\wbr}ลบ{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ กับ $B$ ใน{\wbr}รูปแบบ{\wbr}เดียวกับ{\wbr}การ{\wbr}คำนวณ{\wbr}ผลบวก{\wbr}
