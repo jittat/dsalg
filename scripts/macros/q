@@ -2,10 +2,42 @@
 # encoding: utf-8
 
 lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
-title = lines.shift
-puts "\\begin{quiz}{#{title.strip}}"
+
+if lines[0].strip == '*'
+  title = ""
+  lines.shift
+else
+  title = lines.shift
+end
+
+body = []
+answer = []
+
+ANSWER_SEP = '==='
+
+sep_found = false
 lines.each do |line|
+  if !sep_found
+    if line.strip == ANSWER_SEP
+      sep_found = true
+    else
+      body << line
+    end
+  else
+    answer << line
+  end
+end
+
+puts "\\begin{quiz}{#{title.strip}}"
+body.each do |line|
   $stdout.write(line)
 end
 puts "\\end{quiz}"
 
+if answer.length != 0
+  puts "\\begin{quizans}"
+  answer.each do |line|
+    $stdout.write(line)
+  end
+  puts "\\end{quizans}"
+end

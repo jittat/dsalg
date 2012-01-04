@@ -10,11 +10,17 @@ def parse_line(line)
 end
 
 lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
-title = lines.shift
 $stdout.write "\\begin{algt}\n"
-$stdout.write "\\noindent {\\bf #{title.strip}}"
+title = lines.shift.strip
+if title != "*"
+  $stdout.write "\\noindent {\\bf #{title}}\\\\\n"
+else
+  $stdout.write "\\noindent "
+end
+first = true
 lines.each do |line|
-  $stdout.write "\\\\\n"
+  $stdout.write "\\\\\n" if !first
+  first = false
   indent, rest = parse_line(line.chomp)
   indent_str = "\\hspace*{0.2in}" * indent
   $stdout.write "#{indent_str} #{rest}"

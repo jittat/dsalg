@@ -1,21 +1,34 @@
-\documentclass[11pt,a4]{book}
+\documentclass[11pt,a4,oneside]{book}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 \usepackage{fullpage}
 \usepackage[thai]{babel}
 \usepackage{thswitch}
+
 \usepackage{epsfig}
 \usepackage{framed}
 \usepackage{listings}
+%\usepackage{courier}
+\usepackage[utf8x]{inputenc}
+
+\lstset{basicstyle=\ttfamily,frame=tlrb}
+
+\newcommand{\ttt}{\latintext\tt}
 
 \newcounter{quiz}[chapter]
-\newenvironment{quiz}[1]{\framed\noindent{\bf �Ӷ�� \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\endframed}
+\newenvironment{quiz}[1]{\framed\noindent{\bf คำถาม \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\endframed}
+\newenvironment{quizans}[0]{\framed\noindent{\bf เฉลย:}\\}{\endframed}
 
 \newenvironment{algt}{\framed}{\endframed}
-\lstnewenvironment{codelist}[1]{\tt\framed\lstset{language=#1}}{\endframed}
-
+\lstnewenvironment{codelist}[1]{\lstset{language=#1}}{}
 
 \begin{document}
 
-\include{recursion}
+\include{array-complexity}
+%\include{recursion}
+%\include{induction}
+%\include{recursion2}
 
 \end{document}

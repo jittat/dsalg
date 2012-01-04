@@ -10,9 +10,6 @@ class String
   def macro_starts?
     self.start_with? MACRO_START
   end
-  def preprocessor_starts?
-    self.start_with? PREP_START
-  end
 end
 
 def extract_macro_name(line)
