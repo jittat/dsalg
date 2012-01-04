@@ -3,13 +3,24 @@
 
 LANG_MAP = {"cpp" => "C++", "python" => "Python"}
 
-lang = ARGV[0] || "cpp"
+options = (ARGV[0] || "").split(",")
+
+lang = options[0] || "cpp"
 list_lang = LANG_MAP[lang]
 
+if options.length == 3
+  listingoptions = "caption={\\thaitext #{options[1]}\\latintext},label=#{options[2]}"
+else
+  listingoptions = ""
+end
+
 lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
-puts "\\latintext\n\\begin{codelist}{#{list_lang}}"
+puts "\\latintext\n\\begin{codelist}{#{list_lang}}{#{listingoptions}}"
+#puts "\\begin{codelist}{#{list_lang}}{#{listingoptions}}"
+
 lines.each do |line|
   $stdout.write(line)
 end
 puts "\\end{codelist}\n\\thaitext"
+#puts "\\end{codelist}\n"
 

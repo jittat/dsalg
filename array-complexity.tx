@@ -311,5 +311,13 @@ int a[100];
 char buf[1000];
 ---
 
+---src[cpp,ทดสอบ,code:array-def]
+int a[100];
+char buf[1000];
+---
+
+ดูตัวอย่างที่~\ref{code:array-def}
+
 \section{อาร์เรย์และพอยน์เตอร์ในภาษา C/C++}
 \label{sect:array-pointer-c}
+

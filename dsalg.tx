@@ -13,6 +13,8 @@
 %\usepackage{courier}
 \usepackage[utf8x]{inputenc}
 
+\usepackage{wrapfig}
+
 \lstset{basicstyle=\ttfamily,frame=tlrb}
 
 \newcommand{\ttt}{\latintext\tt}
@@ -21,14 +23,22 @@
 \newenvironment{quiz}[1]{\framed\noindent{\bf คำถาม \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\endframed}
 \newenvironment{quizans}[0]{\framed\noindent{\bf เฉลย:}\\}{\endframed}
 
-\newenvironment{algt}{\framed}{\endframed}
-\lstnewenvironment{codelist}[1]{\lstset{language=#1}}{}
+\newcounter{algtctr}[chapter] \setcounter{algtctr}{0}
+\newenvironment{algt}{
+  \refstepcounter{algtctr}
+  \renewcommand\thealgtctr{ALG-\arabic{chapter}.\arabic{algtctr}}
+  \setlength{\intextsep}{0pt}
+  \framed\begin{wrapfigure}{r}{0in}(\thealgtctr)\end{wrapfigure}
+}{\endframed}
+
+\renewcommand{\lstlistingname}{\thaitext โปรแกรมที่\latintext}
+\lstnewenvironment{codelist}[2]{\lstset{language=#1,#2}}{}
 
 \begin{document}
 
 \include{array-complexity}
-%\include{recursion}
-%\include{induction}
-%\include{recursion2}
+\include{recursion}
+\include{induction}
+\include{recursion2}
 
 \end{document}
