@@ -9,8 +9,11 @@ def parse_line(line)
   return c, line[(c+1)..-1]
 end
 
+label = ARGV[0] || ""
+
 lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
 $stdout.write "\\begin{algt}\n"
+$stdout.write "\\label{#{label}}\n" if label != ""
 title = lines.shift.strip
 if title != "*"
   $stdout.write "\\noindent {\\bf #{title}}\\\\\n"

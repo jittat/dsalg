@@ -40,7 +40,8 @@ $A[0]$ & $A[1]$ & $A[2]$ & $A[3]$ & $A[4]$ & $A[5]$ & $A[6]$ & $A[7]$ & $A[8]$ \
 
 
 \begin{quiz}{การ{\wbr}คำนวณ{\wbr}ค่า}
-จง{\wbr}หา{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}นิพจน์{\wbr}เหล่านี้ (1) $A[4]$, (2) $A[7]$, (3) $A[A[0]]$, (4) $A[A[A[0]]]$, (5) $A[200]$
+จง{\wbr}หา{\wbr}ผลลัพธ์{\wbr}ของ{\wbr}นิพจน์{\wbr}เหล่านี้ (1) $A[4]$, (2) $A[7]$, (3) $A[A[0]]$, 
+(4) $A[A[A[0]]]$, (5) $A[200]$
 \end{quiz}
 \begin{quizans}
 (1) 11, (2) 19, (3) 5, (4) 13, (5) ไม่{\wbr}มี{\wbr}ค่า (ดู{\wbr}อธิบาย{\wbr}เพิ่มเติม)
@@ -78,6 +79,7 @@ TODO: ใส่{\wbr}รูป{\wbr}
 ความ{\wbr}สามารถ{\wbr}นี้{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}สามารถ{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ที่{\wbr}มี{\wbr}ลักษณะ{\wbr}ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}ได้{\wbr}
 
 \begin{algt}
+\label{alg:array-sum1}
 \noindent \hspace*{0.2in} ให้ $x\leftarrow 0$\\
 \hspace*{0.2in} พิจารณา ตัวแปร $i\leftarrow 0,1,\ldots,8$\\
 \hspace*{0.2in}\hspace*{0.2in} ให้ $x \leftarrow x + A[i]$
@@ -90,12 +92,13 @@ TODO: ใส่{\wbr}รูป{\wbr}
 ผลรวม{\wbr}ของ{\wbr}ข้อมูล{\wbr}ทั้งหมด{\wbr}ใน{\wbr}อาร์เรย์ $A$
 \end{quizans}
 
-สังเกต{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ข้างต้น{\wbr}เขียน{\wbr}ให้{\wbr}ทำงาน{\wbr}กับ{\wbr}อาร์เรย์ $A$ ที่{\wbr}มี{\wbr}ดัชนี{\wbr}มาก{\wbr}ที่สุด{\wbr}คือ 8 เท่านั้น{\wbr}
-ใน{\wbr}การ{\wbr}พัฒนา{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทั่วไป{\wbr}เรา{\wbr}มัก{\wbr}เขียน{\wbr}ให้{\wbr}ทำงาน{\wbr}ได้{\wbr}กับ{\wbr}ข้อมูล{\wbr}ทั่วไป ซึ่ง{\wbr}ใน{\wbr}กรณี{\wbr}นี้{\wbr}
-การ{\wbr}จะ{\wbr}ปรับ{\wbr}ให้{\wbr}ทำงาน{\wbr}ได้{\wbr}กับ{\wbr}อาร์เรย์{\wbr}ใด ๆ เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ระบุ{\wbr}ขนาด{\wbr}ของ{\wbr}อาร์เรย์{\wbr}ด้วย{\wbr}
+สังเกต{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{alg:array-sum1} เขียน{\wbr}ให้{\wbr}ทำงาน{\wbr}กับ{\wbr}อาร์เรย์ $A$
+ที่{\wbr}มี{\wbr}ดัชนี{\wbr}มาก{\wbr}ที่สุด{\wbr}คือ 8 เท่านั้น ใน{\wbr}การ{\wbr}พัฒนา{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทั่วไป{\wbr}เรา{\wbr}มัก{\wbr}เขียน{\wbr}ให้{\wbr}ทำงาน{\wbr}ได้{\wbr}กับ{\wbr}ข้อมูล{\wbr}ทั่วไป{\wbr}
+ซึ่ง{\wbr}ใน{\wbr}กรณี{\wbr}นี้ การ{\wbr}จะ{\wbr}ปรับ{\wbr}ให้{\wbr}ทำงาน{\wbr}ได้{\wbr}กับ{\wbr}อาร์เรย์{\wbr}ใด ๆ เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ระบุ{\wbr}ขนาด{\wbr}ของ{\wbr}อาร์เรย์{\wbr}ด้วย{\wbr}
 เรา{\wbr}สามารถ{\wbr}เขียน{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ดังกล่าว{\wbr}โดย{\wbr}ระบุ{\wbr}พารามิเตอร์{\wbr}ให้{\wbr}ชัดเจน{\wbr}ขึ้น{\wbr}ได้{\wbr}ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
 
 \begin{algt}
+\label{alg:array-sum2}
 \noindent {\bf คำนวณ{\wbr}ค่า{\wbr}บาง{\wbr}อย่าง{\wbr}ของ{\wbr}อาร์เรย์ $A$ ที่{\wbr}มี{\wbr}ข้อมูล{\wbr}จำนวน $n$ ตัว}\\
 \hspace*{0.2in} ให้ $x\leftarrow 0$\\
 \hspace*{0.2in} พิจารณา ตัวแปร $i\leftarrow 0,1,\ldots,n-1$\\
@@ -144,8 +147,8 @@ TODO: ใส่{\wbr}รูป{\wbr}
 หรือ{\wbr}เป็น{\wbr}คอมพิวเตอร์{\wbr}ที่{\wbr}มี{\wbr}หน่วย{\wbr}ประมวลผล{\wbr}หลาย{\wbr}ตัว{\wbr}ทำงาน{\wbr}พร้อมกัน\footnote{TODO:
   ระบุ{\wbr}ว่า{\wbr}ถึง{\wbr}จะ{\wbr}เป็น{\wbr}กรณี{\wbr}ดังกล่าว การ{\wbr}วิเคราะห์{\wbr}ก็{\wbr}ยัง{\wbr}เป็น{\wbr}ไป{\wbr}ได้}
 
-ถ้า{\wbr}พิจารณา{\wbr}ต่อไป{\wbr}
-เรา{\wbr}จะ{\wbr}พบ{\wbr}ว่า{\wbr}โปรแกรม{\wbr}ดังกล่าว{\wbr}ทำงาน{\wbr}จะ{\wbr}ใช้เวลา{\wbr}ใน{\wbr}การ{\wbr}ทำงาน{\wbr}ที่{\wbr}แปรผัน{\wbr}ตาม{\wbr}ค่า{\wbr}พารามิเตอร์ $n$
+ถ้า{\wbr}พิจารณา{\wbr}ต่อไป เรา{\wbr}จะ{\wbr}พบ{\wbr}ว่า{\wbr}โปรแกรมย่อย~\ref{alg:array-sum2}
+ทำงาน{\wbr}โดย{\wbr}ใช้เวลา{\wbr}ใน{\wbr}การ{\wbr}ทำงาน{\wbr}ที่{\wbr}แปรผัน{\wbr}ตาม{\wbr}ค่า{\wbr}พารามิเตอร์ $n$
 เพื่อ{\wbr}จะ{\wbr}ให้{\wbr}เรา{\wbr}สามารถ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ออก{\wbr}มา{\wbr}ได้{\wbr}
 เรา{\wbr}จะ{\wbr}สมมติ{\wbr}ว่า{\wbr}คอมพิวเตอร์{\wbr}เมื่อ{\wbr}ทำงาน{\wbr}ตาม{\wbr}โปรแกรม{\wbr}ดังกล่าว ใช้เวลา 1
 หน่วย{\wbr}ใน{\wbr}การ{\wbr}ประมวลผล{\wbr}คำสั่ง{\wbr}แต่ละ{\wbr}บรรทัด{\wbr}

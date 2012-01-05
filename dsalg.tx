@@ -24,11 +24,11 @@
 \newenvironment{quizans}[0]{\framed\noindent{\bf เฉลย:}\\}{\endframed}
 
 \newcounter{algtctr}[chapter] \setcounter{algtctr}{0}
+\renewcommand\thealgtctr{{\latintext\sf A\arabic{chapter}.\arabic{algtctr}}}
 \newenvironment{algt}{
   \refstepcounter{algtctr}
-  \renewcommand\thealgtctr{ALG-\arabic{chapter}.\arabic{algtctr}}
   \setlength{\intextsep}{0pt}
-  \framed\begin{wrapfigure}{r}{0in}(\thealgtctr)\end{wrapfigure}
+  \framed\begin{wrapfigure}{r}{0in}{\latintext (\thealgtctr)}\end{wrapfigure}
 }{\endframed}
 
 \renewcommand{\lstlistingname}{\thaitext โปรแกรมที่\latintext}
