@@ -8,7 +8,7 @@ LANG=cpp
 clean:
 	rm *.tex dsalg.dvi
 
-dsalg.dvi: dsalg.tex intro.tex array-complexity.tex recursion.tex\
+dsalg.dvi: dsalg.tex intro.tex arrays-pointers.tex asymptotic-analysis.tex recursion.tex\
 	induction.tex recursion2.tex 
 	latex dsalg
 

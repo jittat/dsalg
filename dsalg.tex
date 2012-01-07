@@ -17,7 +17,7 @@
 
 \lstset{basicstyle=\ttfamily,frame=tlrb}
 
-\newcommand{\ttt}{\latintext\tt}
+\newcommand{\ct}{\latintext\tt}
 
 \newcounter{quiz}[chapter]
 \newenvironment{quiz}[1]{\framed\noindent{\bf คำถาม \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\endframed}
@@ -36,7 +36,8 @@
 
 \begin{document}
 
-\include{array-complexity}
+\include{arrays-pointers}
+\include{asymptotic-analysis}
 %\include{recursion}
 %\include{induction}
 %\include{recursion2}
