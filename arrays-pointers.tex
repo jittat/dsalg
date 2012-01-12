@@ -452,6 +452,48 @@ int x[m * 2];
 ใน{\wbr}บท{\wbr}ที่~\ref{chapter:analysis} นอกจากนี้ การ{\wbr}ใช้{\wbr}งาน{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}แบบ {\ct
   vector} ก็{\wbr}สามารถ{\wbr}แก้{\wbr}ปัญหา{\wbr}นี้{\wbr}ได้{\wbr}เช่นกัน{\wbr}
 
+เรา{\wbr}สามารถ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}อาร์เรย์{\wbr}เมื่อ{\wbr}ต่อ{\wbr}ประกาศ{\wbr}ได้ ดัง{\wbr}ตัวอย่าง{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้{\wbr}
+\latintext
+\begin{codelist}{C++}{}
+  int A[9] = {2,3,5,7,11,13,19,23,29};
+  int b[] = {1,10,100,1000};
+  int c[100] = {1,2,3,4};
+\end{codelist}
+\thaitext
+
+สังเกต{\wbr}ตัวแปร {\ct B} และ {\ct c}
+ที่{\wbr}แสดง{\wbr}ตัวอย่าง{\wbr}ที่{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}จะ{\wbr}จอง{\wbr}ข้อมูล{\wbr}ตาม{\wbr}จำนวน{\wbr}ที่{\wbr}ระบุ{\wbr}เมื่อ{\wbr}ประกาศ ({\ct B})
+และ{\wbr}การ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}ข้อมูล{\wbr}บาง{\wbr}ตัว{\wbr}
+
+เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}โดย{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct unknown} จาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{alg:array-sum2}
+
+\latintext
+\begin{codelist}{C++}{}
+int unknown(int A[], int n)
+{
+  int x = 0;
+  for(int i = 0; i < n; i++)
+    x += A[i];
+  return x;
+}
+\end{codelist}
+\thaitext
+
+ตัวอย่าง{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ฟังก์ชัน{\wbr}ดังกล่าว{\wbr}แสดง{\wbr}ใน{\wbr}ส่วน{\wbr}ของ{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+ซึ่ง{\wbr}โปรแกรม{\wbr}จะ{\wbr}พิมพ์{\wbr}ค่า {\ct 28} ออก{\wbr}มา{\wbr}เป็น{\wbr}ผลลัพธ์{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+  int t[] = {1,2,3,4,5,6,7};
+  cout << unknown(t,7);
+\end{codelist}
+\thaitext
+ 
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}ส่ง{\wbr}ตัวแปร{\wbr}แบบ{\wbr}อาร์เรย์{\wbr}โดย{\wbr}ไม่{\wbr}ระบุ{\wbr}ขนาด{\wbr}ของ{\wbr}อาร์เรย์ (ประกาศ {\ct int A[]}
+เป็น{\wbr}พารามิเตอร์{\wbr}ของ{\wbr}ฟังก์ชัน) แต่{\wbr}เรา{\wbr}สามารถ{\wbr}ใช้{\wbr}งาน{\wbr}ได้{\wbr}เหมือน{\wbr}ตัวแปร{\wbr}อาร์เรย์{\wbr}ปกติ{\wbr}
+
+\subsubsection{การ{\wbr}ประมวลผล{\wbr}รายการ}
+
 เรา{\wbr}จะ{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ที่{\wbr}เกี่ยวข้อง{\wbr}กับ{\wbr}การ{\wbr}เก็บ{\wbr}รายการ{\wbr}ใน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}ได้{\wbr}กล่าว{\wbr}ถึง{\wbr}ใน{\wbr}ส่วน{\wbr}ก่อนหน้า{\wbr}ของ{\wbr}บท{\wbr}นี้{\wbr}
 สำหรับ{\wbr}ตัวอย่าง{\wbr}นี้ เรา{\wbr}จะ{\wbr}เก็บ{\wbr}รายการ{\wbr}ของ{\wbr}จำนวนเต็ม (ข้อมูล{\wbr}ประเภท {\ct int})
 
@@ -491,26 +533,180 @@ int list_size;
 สังเกต{\wbr}ว่า โครงสร้าง{\wbr}ข้อมูล{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}ใช้{\wbr}เก็บ{\wbr}รายการ{\wbr}นั้น ต้อง{\wbr}มี{\wbr}การ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ก่อน{\wbr}
 เพราะว่า{\wbr}เมื่อ{\wbr}ประกาศ ตัวแปร {\ct list\_size}
 อาจ{\wbr}จะ{\wbr}มี{\wbr}ค่า{\wbr}เป็น{\wbr}อะไร{\wbr}ก็ได้\footnote{อย่างไรก็ตาม ถ้า{\wbr}เรา{\wbr}ประกาศ{\wbr}ตัวแปร{\wbr}แบบ{\wbr}โก{\wbr}ลบ{\wbr}อล
-  ตัวแปร{\wbr}จะ{\wbr}ถูก{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}โดย{\wbr}อัตโนมัติ{\wbr}ตาม{\wbr}กฎ{\wbr}ของ C++}
+  ตัวแปร{\wbr}จะ{\wbr}ถูก{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}โดย{\wbr}อัตโนมัติ{\wbr}ตาม{\wbr}กฎ{\wbr}ของ C++ (TODO: ใส่ reference??)}
 ด้าน{\wbr}ล่าง{\wbr}เป็น{\wbr}ฟังก์ชัน{\wbr}สำหรับ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ของ{\wbr}เรา{\wbr}
 
 \latintext
-\begin{codelist}{C++}{}
-void init_list(int list[], int& size)
+\begin{codelist}{C++}{caption={\thaitext การ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}รายการ\latintext},label=code:array-list-init}
+void list_init(int list[], int& size)
 {
   size = 0;
 }
 \end{codelist}
 \thaitext
 
-การ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}รายการ{\wbr}ลง{\wbr}
+ใน{\wbr}ฟังก์ชัน{\wbr}ข้างต้น{\wbr}เรา{\wbr}ใช้{\wbr}ตัวแปร{\wbr}ประเภท {\em reference} ใน{\wbr}การ{\wbr}ประกาศ{\wbr}พารามิเตอร์ {\ct
+size} ตัวแปร{\wbr}ประเภท{\wbr}นี้{\wbr}ใช้{\wbr}สำหรับ{\wbr}อ้าง{\wbr}ถึง{\wbr}ตัวแปร{\wbr}อื่น{\wbr}และ{\wbr}มี{\wbr}ประโยชน์{\wbr}มาก{\wbr}ใน{\wbr}การ{\wbr}ส่ง{\wbr}ค่า{\wbr}ให้{\wbr}กับ{\wbr}ฟังก์ชัน{\wbr}
+
+การ{\wbr}ส่ง{\wbr}ค่า{\wbr}ให้{\wbr}กับ{\wbr}ฟังก์ชัน{\wbr}จะ{\wbr}กระทำ{\wbr}โดย{\wbr}การ{\wbr}คัดลอก{\wbr}ค่า{\wbr}ของ{\wbr}อาร์กิวเมนท์{\wbr}จาก{\wbr}ฝั่ง{\wbr}ที่{\wbr}เรียก{\wbr}ฟังก์ชัน{\wbr}
+มา{\wbr}ยัง{\wbr}พารามิเตอร์{\wbr}ใน{\wbr}ฟังก์ชัน ทำ{\wbr}ให้การ{\wbr}แก้ไข{\wbr}ค่า{\wbr}ของ{\wbr}พารามิเตอร์{\wbr}ไม่{\wbr}มี{\wbr}ผล{\wbr}กับ{\wbr}อาร์กิวเมนท์{\wbr}ต้นทาง{\wbr}
+อย่างไรก็ตาม{\wbr}ใน{\wbr}กรณี{\wbr}นี้ เรา{\wbr}ต้องการ{\wbr}ปรับ{\wbr}ค่า {\ct size} ให้{\wbr}เป็น{\wbr}ศูนย์ การ{\wbr}ใช้{\wbr}ตัวแปร{\wbr}ประเภท{\wbr}
+reference ทำ{\wbr}ให้{\wbr}ตัวแปร {\ct size} อ้าง{\wbr}ถึง{\wbr}ตัวแปร{\wbr}ที่{\wbr}เป็น{\wbr}อาร์กิวเมนท์
+การ{\wbr}อ้าง{\wbr}ถึง{\wbr}พารามิเตอร์ {\ct size}
+ใน{\wbr}ฟังก์ชัน{\wbr}ก็{\wbr}จะ{\wbr}เป็น{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}ตัวแปร{\wbr}ที่{\wbr}ส่ง{\wbr}มา{\wbr}เป็น{\wbr}อาร์กิวเมนท์{\wbr}ของ{\wbr}ฟังก์ชัน{\wbr}ด้วย{\wbr}
+
+เพื่อ{\wbr}ความ{\wbr}เข้าใจ{\wbr}ที่{\wbr}ชัดเจน{\wbr}ขึ้น{\wbr}
+ลอง{\wbr}พิจารณา{\wbr}ตัวอย่าง{\wbr}ฟังก์ชัน{\wbr}ใน{\wbr}โปรแกรม~\ref{code:array-ref-example}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ตัวอย่าง{\wbr}การ{\wbr}ใช้{\wbr}ตัวแปร{\wbr}แบบ reference ใน{\wbr}การ{\wbr}ส่ง{\wbr}ค่า{\wbr}ไป{\wbr}ยัง{\wbr}ฟังก์ชัน\latintext},label=code:array-ref-example}
+void m1(int a, int b)
+{
+  b += a;
+}
+void m2(int a, int& b)
+{
+  b += a;
+}
+\end{codelist}
+\thaitext
+\end{figure}
+
+ถ้า{\wbr}เรา{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน{\wbr}ทั้ง{\wbr}สอง{\wbr}ดัง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int x = 10;
+int y = 100;
+m1(x,y);            // (3)
+m2(x,y);            // (4)
+\end{codelist}
+\thaitext
+
+เมื่อ{\wbr}บรรทัด{\wbr}ที่ 3 ทำ{\wbr}เงา{\wbr}น{\wbr}เสร็จ ตัวแปร {\ct y} จะ{\wbr}มี{\wbr}ค่า 100 เท่า{\wbr}เดิม แม้ว่า{\wbr}ภายใน{\wbr}ฟังก์ชัน{\wbr}
+{\ct m1} ตัวแปร b จะ{\wbr}มี{\wbr}ค่า{\wbr}เป็น 110 ก็ตาม อย่างไรก็ตาม{\wbr}ใน{\wbr}การ{\wbr}เรียก{\wbr}ฟังก์ชัน {\ct m2}
+พารามิเตอร์ {\ct b} จะ{\wbr}อ้าง{\wbr}ถึง{\wbr}ตัวแปร {\ct y} ทำ{\wbr}ให้{\wbr}เมื่อ{\wbr}มี{\wbr}การ{\wbr}เปลี่ยนแปลง{\wbr}ค่าตัวแปร{\wbr}
+{\ct b} แล้ว ก็{\wbr}เป็น{\wbr}การ{\wbr}เปลี่ยนแปลง{\wbr}ค่า{\wbr}ใน{\wbr}ตัวแปร {\ct y} ไป{\wbr}ด้วย{\wbr}
+
+การ{\wbr}ใช้ reference ลด{\wbr}ความ{\wbr}ซับซ้อน{\wbr}ใน{\wbr}การ{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}ที่{\wbr}ต้องการ{\wbr}ส่ง{\wbr}ผลลัพธ์{\wbr}กลับ{\wbr}ทาง{\wbr}พารามิเตอร์{\wbr}
+ตัวแปร{\wbr}แบบ reference มี{\wbr}ความ{\wbr}สัมพันธ์{\wbr}กับ{\wbr}ตัวแปร{\wbr}แบบ{\wbr}พอยน์เตอร์{\wbr}มาก{\wbr}
+เรา{\wbr}จะ{\wbr}อธิบาย{\wbr}ความ{\wbr}สัมพันธ์{\wbr}นี้{\wbr}เพิ่มเติม{\wbr}ใน{\wbr}ส่วน~\ref{sect:array-pointer-c}
+
+ส่วน{\wbr}ของ{\wbr}โปรแกรม~\ref{code:array-list-find} แสดง{\wbr}ฟังก์ชัน {\ct list\_find}
+ที่{\wbr}ค้นหา{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}และ{\wbr}ฟังก์ชัน {\ct list\_append}
+ที่{\wbr}เพิ่ม{\wbr}ข้อมูล{\wbr}เข้า{\wbr}ไป{\wbr}ตอน{\wbr}ท้าย{\wbr}ของ{\wbr}รายการ{\wbr}
+
+ถ้า{\wbr}สังเกต{\wbr}บรรทัด{\wbr}ที่ 12 จะ{\wbr}พบ{\wbr}ว่า{\wbr}เรา{\wbr}แจ้งความ{\wbr}ผิดพลาด{\wbr}ระหว่าง{\wbr}การ{\wbr}ทำงาน{\wbr}
+เมื่อ{\wbr}อาร์เรย์{\wbr}มี{\wbr}ขนาด{\wbr}ไม่{\wbr}พอ โดย{\wbr}การ{\wbr}ใช้ exception (ใช้{\wbr}คำสั่ง {\ct throw})
 
 
-\subsection{การ{\wbr}เก็บ{\wbr}รายการ{\wbr}ด้วย{\wbr}อาร์เรย์}
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ฟังก์ชัน {\ct list\_find} และ {\ct list\_append}\latintext},label=code:array-list-find}
+int list_find(int list[], int size, int q)
+{
+  for(int i = 0; i < size; i++)
+    if(list[i] == q)
+      return i;
+  return -1;
+}
 
+void list_append(int list[], int& size, int val)
+{
+  if(size >= max_size)
+    throw "List overflow";      // Line 12
+  list[size] = val;
+  size++;
+}
+\end{codelist}
+\thaitext
+\end{figure}
 
+\begin{quiz}{ฟังก์ชัน{\wbr}หา{\wbr}ค่า{\wbr}มาก{\wbr}ที่สุด}
+จง{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_max} ที่{\wbr}รับ{\wbr}รายการ{\wbr}และ{\wbr}คืน{\wbr}ค่า{\wbr}ดัชนี{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}มาก{\wbr}ที่สุด{\wbr}ใน{\wbr}รายการ{\wbr}
+\end{quiz}
+
+เรา{\wbr}จะ{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete} ที่{\wbr}ลบ{\wbr}ข้อมูล{\wbr}ดัชนี $i$ ออก{\wbr}จาก{\wbr}อาร์เรย์  
+
+\begin{quiz}{ฟังก์ชัน {\ct list\_delete}}
+จง{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete(int list[], int\& size, int i)}
+ที่{\wbr}รับ{\wbr}รายการ{\wbr}และ{\wbr}ดัชนี {\ct i} ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}ต้องการ{\wbr}ลบ{\wbr}
+และ{\wbr}ลบ{\wbr}ข้อมูล{\wbr}นั้น{\wbr}ออก{\wbr}จาก{\wbr}รายการ{\wbr}โดย{\wbr}ยัง{\wbr}รักษา{\wbr}ให้{\wbr}ของ{\wbr}ข้อมูล{\wbr}ต่าง ๆ ยัง{\wbr}เรียงลำดับ{\wbr}กัน{\wbr}เหมือน{\wbr}เดิม{\wbr}
+\end{quiz}
+\begin{quizans}
+แสดง{\wbr}ใน{\wbr}โปรแกรม~\ref{code:array-list-delete}
+\end{quizans}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ฟังก์ชัน {\ct list\_delete}\latintext},label=code:array-list-delete}
+void list_delete(int list[], int& size, int i)
+{
+  if((i < 0) || (i >= size))
+    throw "Invalid index";
+  for(int j = i; j < n-1; j++)
+    list[j] = list[j+1];
+  size--;
+}
+\end{codelist}
+\thaitext
+\end{figure}
+
+\begin{quiz}{เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ {\ct list\_delete}}
+สมมติ{\wbr}ให้{\wbr}คำสั่ง{\wbr}ทุก{\wbr}บรรทัด{\wbr}ทำงาน{\wbr}โดย{\wbr}ใช้เวลา 1 หน่วย{\wbr}เท่า{\wbr}กัน จง{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}
+{\ct list\_delete} 
+\end{quiz}
+
+\begin{quiz}{ฟังก์ชัน {\ct list\_delete} ที่{\wbr}ไม่{\wbr}รักษา{\wbr}ลำดับ}
+ถ้า{\wbr}เรา{\wbr}ไม่{\wbr}จำเป็น{\wbr}ต้อง{\wbr}รักษา{\wbr}ลำดับ{\wbr}ของ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}ที่{\wbr}เหลือ{\wbr}ให้{\wbr}เรียง{\wbr}กัน{\wbr}เหมือน{\wbr}เดิม{\wbr}
+เรา{\wbr}สามารถ{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete} ขึ้น{\wbr}ใหม่{\wbr}
+ให้{\wbr}ทำงาน{\wbr}โดย{\wbr}ใช้เวลา{\wbr}ที่{\wbr}ไม่{\wbr}ขึ้น{\wbr}กับ{\wbr}ขนาด{\wbr}ของ{\wbr}รายการ{\wbr}ใน{\wbr}พารามิเตอร์ {\ct size} ได้{\wbr}
+จง{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}ดังกล่าว{\wbr}
+\end{quiz}
+
+ตัวอย่าง{\wbr}ฟังก์ชัน{\wbr}ด้าน{\wbr}ต้น นำ{\wbr}ไป{\wbr}พัฒนา{\wbr}ฟังก์ชัน{\wbr}สำหรับ{\wbr}ลบ{\wbr}ข้อมูล{\wbr}ใน{\wbr}กรณี{\wbr}ทั่วไป{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}นัก{\wbr}
+
+\begin{quiz}{}
+จง{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete\_data(int list[], int\& size, int x)}
+ที่{\wbr}รับ{\wbr}รายการ{\wbr}และ{\wbr}ข้อมูล {\ct x} แล้ว{\wbr}ลบ{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ตัว{\wbr}แรก{\wbr}ออก{\wbr}จาก{\wbr}รายการ{\wbr}
+(ลบ{\wbr}เฉพาะ{\wbr}การ{\wbr}ปรากฏ{\wbr}ครั้ง{\wbr}แรก{\wbr}ใน{\wbr}รายการ)
+
+ให้{\wbr}เขียน{\wbr}โดย{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน{\wbr}ด้าน{\wbr}บน แทน{\wbr}ที่{\wbr}จะ{\wbr}เขียน{\wbr}ใหม่{\wbr}ทั้งหมด{\wbr}
+\end{quiz}
+
+\begin{quiz}{}
+จง{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete\_all\_data(int list[], int\& size, int
+  x)} ที่{\wbr}รับ{\wbr}รายการ{\wbr}และ{\wbr}ข้อมูล {\ct x} แล้ว{\wbr}ลบ{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ทั้งหมด{\wbr}ออก{\wbr}จาก{\wbr}รายการ{\wbr}
+
+สำหรับ{\wbr}ข้อ{\wbr}นี้ เพื่อ{\wbr}ประสิทธิภาพ{\wbr}สามารถ{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}ขึ้น{\wbr}มา{\wbr}ใหม่{\wbr}ได้{\wbr}
+\end{quiz}
+
+สำหรับ{\wbr}คำถาม{\wbr}ด้าน{\wbr}บน ผู้อ่าน{\wbr}อาจ{\wbr}จะ{\wbr}สังเกต{\wbr}ได้{\wbr}ว่า แทน{\wbr}ที่{\wbr}จะ{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct
+  list\_delete\_all\_data} ขึ้น{\wbr}มา{\wbr}ใหม่{\wbr}ทั้งหมด เรา{\wbr}สามารถ{\wbr}เขียน{\wbr}โดย{\wbr}เรียก{\wbr}ฟังก์ชัน {\ct
+  list\_delete\_data} ได้{\wbr}
+ดัง{\wbr}โปรแกรม~\ref{code:array-delete-all-from-delete-data}
+ใน{\wbr}บท{\wbr}ที่~\ref{chapter:analysis}
+เรา{\wbr}จะ{\wbr}วิเคราะห์{\wbr}เปรียบเทียบ{\wbr}ประสิทธิภาพ{\wbr}วิธีการ{\wbr}เขียน{\wbr}ทั้ง{\wbr}สอง{\wbr}แบบ{\wbr}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ตัวอย่าง{\wbr}การ{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete\_all\_data} แบบ{\wbr}หนึ่ง\latintext},label=code:array-delete-all-from-delete-data}
+void list_delete_all_data(int list[], int& size, int x)
+{
+  int os;
+  do {
+    os = size;
+    list_delete_data(list, size, x);
+  } while(os != size);
+}
+\end{codelist}
+\thaitext
+\end{figure}
 
 \subsection{อาร์เรย์หลาย{\wbr}มิติ}
+
+TODO: เขียน{\wbr}ส่วน{\wbr}นี้{\wbr}
 
 \section{พอยน์เตอร์และ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ใน{\wbr}ภาษา C++}
 \label{sect:array-pointer-c}
@@ -545,13 +741,13 @@ binary digit) ซึ่ง{\wbr}เป็น{\wbr}ข้อมูล{\wbr}ที
 \hline
 $\vdots$ & $\vdots$ & $\vdots$ \\
 \hline
-1000000 & 1001 0010 & 146 \\
+100 & 1001 0010 & 146 \\
 \hline
-1000001 & 1111 1111 & 255 \\
+101 & 1111 1111 & 255 \\
 \hline
-1000002 & 0001 0000 & 16 \\
+102 & 0001 0000 & 16 \\
 \hline
-1000003 & 1010 1010 & 170 \\
+103 & 0110 0100 & 100 \\
 \hline
 $\vdots$ & $\vdots$ & $\vdots$ \\
 \hline
@@ -570,16 +766,21 @@ $\vdots$ & $\vdots$ & $\vdots$ \\
 เพื่อ{\wbr}ใช้{\wbr}อ้าง{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ที่อยู่{\wbr}ใน{\wbr}ตำแหน่ง{\wbr}ดังกล่าว ใน{\wbr}บาง{\wbr}ภาษา{\wbr}เช่น Java หรือ C\#
 ก็{\wbr}มี{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}นี้{\wbr}ใน{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ที่{\wbr}เป็น{\wbr}วัตถุ{\wbr}แต่{\wbr}เรียก{\wbr}ว่า{\wbr}เป็น{\wbr}การ{\wbr}อ้าง{\wbr}ถึง (reference)
 
-วิธีการ{\wbr}ประกาศ{\wbr}และ{\wbr}ใช้{\wbr}ข้อมูล{\wbr}ประเภท{\wbr}นี้{\wbr}ขึ้น{\wbr}กับ{\wbr}ภาษา{\wbr}โปรแกรม{\wbr}ที่{\wbr}ใช้{\wbr}
-สำหรับ{\wbr}การ{\wbr}ทำ{\wbr}ความ{\wbr}เข้าใจ{\wbr}ทั่วไป ข้อมูล{\wbr}ประเภท{\wbr}นี้{\wbr}มัก{\wbr}เขียน{\wbr}แทน{\wbr}ด้วย{\wbr}ช่อง{\wbr}ที่{\wbr}มี{\wbr}ลูกศร{\wbr}
-เพื่อ{\wbr}แสดง{\wbr}การ{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ข้อมูล{\wbr}อื่น ๆ
+สมมติ{\wbr}ว่า{\wbr}ตัวแปร {\ct x} ใช้เนื้อ{\wbr}ที่{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}ตำแหน่ง 100 และ{\wbr}เก็บ{\wbr}ค่า 146
+ถ้า{\wbr}ตัวแปร{\wbr}แบบ{\wbr}พอยน์เตอร์ {\ct p} ใช้เนื้อ{\wbr}ที่{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}ตำแหน่ง 103 และ {\em ชี้}
+ไป{\wbr}ที่{\wbr}ตัวแปร {\ct x} ตัวแปร {\ct p} จะ{\wbr}เก็บ{\wbr}ค่า 100 สำหรับ{\wbr}การ{\wbr}ทำ{\wbr}ความ{\wbr}เข้าใจ{\wbr}ทั่วไป{\wbr}
+ข้อมูล{\wbr}ประเภท{\wbr}นี้{\wbr}มัก{\wbr}เขียน{\wbr}แทน{\wbr}ด้วย{\wbr}ช่อง{\wbr}ที่{\wbr}มี{\wbr}ลูกศร เพื่อ{\wbr}แสดง{\wbr}การ{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ข้อมูล{\wbr}อื่น ๆ
 ดัง{\wbr}ตัวอย่าง{\wbr}ใน{\wbr}รูป~\ref{fig:array-example-pointer}
 
 \begin{figure}
-TODO: เพิ่ม{\wbr}รูป{\wbr}นี้{\wbr}
-\caption{ตัวอย่าง{\wbr}การ{\wbr}เขียน{\wbr}พอยน์เตอร์}
+\begin{center}
+\epsfig{file=figures/arrays/pointers1.eps, height=0.75in}
+\end{center}
+\caption{แผนภาพ{\wbr}แสดง{\wbr}พอยน์เตอร์ {\ct p}}
 \label{fig:array-example-pointer}
 \end{figure}
+
+วิธีการ{\wbr}ประกาศ{\wbr}และ{\wbr}ใช้{\wbr}ข้อมูล{\wbr}ประเภท{\wbr}นี้{\wbr}ขึ้น{\wbr}กับ{\wbr}ภาษา{\wbr}โปรแกรม{\wbr}ที่{\wbr}ใช้{\wbr}
 
 \section{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
 \label{sect:array-array-pointer-c}

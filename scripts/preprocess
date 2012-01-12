@@ -23,7 +23,7 @@ end
 def call_macro(name,options,data)
   script_name = File.join(BASE_PATH,'macros',name)
   if File.exists? script_name
-    cmd = "#{script_name} #{options}"
+    cmd = "#{script_name} \"#{options}\""
     Open3.popen2(cmd) do |i,o,w|
       data.each do |d|
         i.write d

@@ -29,6 +29,24 @@ void list_append(int list[], int& size, int val)
   size++;
 }
 
+void list_delete(int list[], int& size, int i)
+{
+  if((i < 0) || i >= size)
+    throe "Index not valid";
+  for(int j = i; j < n-1; j++)
+    list[j] = list[j+1];
+  size--;
+}
+
+void list_delete_all_data(int list[], int& size, int x)
+{
+  int os;
+  do {
+    os = size;
+    list_delete_data(list, size, x);
+  } while(os != size);
+}
+
 void print_list(int list[], int& size)
 {
   for(int i=0; i<size; i++)
