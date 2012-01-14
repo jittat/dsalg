@@ -1,11 +1,12 @@
-\chapter{อาร์เรย์ พอยน์เตอร์ และ{\wbr}การ{\wbr}วิเคราะห์{\wbr}ความ{\wbr}ซับซ้อน}
+\chapter{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์}
 
 ใน{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}พิจารณา{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}พื้นฐาน{\wbr}สำหรับ{\wbr}จัด{\wbr}เก็บ{\wbr}และ{\wbr}ประมวลผล{\wbr}ข้อมูล{\wbr}จำนวน{\wbr}มาก{\wbr}ที่{\wbr}เรียก{\wbr}ว่า{\em
-อาร์เรย์} (array) รวม{\wbr}ไป{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ประเภท{\em พอยน์เตอร์} (pointer)
+  อาร์เรย์} (array) รวม{\wbr}ไป{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ประเภท{\em พอยน์เตอร์} (pointer)
 ซึ่ง{\wbr}เก็บ{\wbr}ตำแหน่ง{\wbr}ภายใน{\wbr}หน่วยความจำ{\wbr}
 โดย{\wbr}เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}พิจารณา{\wbr}แนว{\wbr}คิด{\wbr}ของ{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}และ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}โดย{\wbr}ไม่{\wbr}ขึ้น{\wbr}กับ{\wbr}ภาษา{\wbr}โปรแกรม{\wbr}ที่{\wbr}ใช้{\wbr}
 จากนั้น{\wbr}เรา{\wbr}จะ{\wbr}ศึกษา{\wbr}วิธีการ{\wbr}เขียน{\wbr}ใน{\wbr}ภาษา C++
-และ{\wbr}ศึกษา{\wbr}ความ{\wbr}สัมพันธ์{\wbr}ระหว่าง{\wbr}พอยน์เตอร์{\wbr}และ{\wbr}อาร์เรย์{\wbr}ซึ่ง{\wbr}เป็นคุณ{\wbr}ลักษณะ{\wbr}เฉพาะที่{\wbr}มี{\wbr}ใน{\wbr}ภาษา{\wbr}ตระกูล C และ C++
+และ{\wbr}ศึกษา{\wbr}ความ{\wbr}สัมพันธ์{\wbr}ระหว่าง{\wbr}พอยน์เตอร์{\wbr}และ{\wbr}อาร์เรย์{\wbr}ซึ่ง{\wbr}เป็นคุณ{\wbr}ลักษณะ{\wbr}เฉพาะที่{\wbr}มี{\wbr}ใน{\wbr}ภาษา{\wbr}ตระกูล{\wbr}
+C และ C++
 
 ใน{\wbr}บท{\wbr}นี้ เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}ศึกษา{\wbr}การ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}อย่าง{\wbr}ง่าย ก่อน{\wbr}ที่{\wbr}จะ{\wbr}ไป{\wbr}พิจารณา{\wbr}อย่าง{\wbr}เป็นทางการ{\wbr}ใน{\wbr}บท{\wbr}ที่~\ref{chapter:analysis}
 
@@ -670,15 +671,12 @@ void list_delete(int list[], int& size, int i)
 \begin{quiz}{}
 จง{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete\_data(int list[], int\& size, int x)}
 ที่{\wbr}รับ{\wbr}รายการ{\wbr}และ{\wbr}ข้อมูล {\ct x} แล้ว{\wbr}ลบ{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ตัว{\wbr}แรก{\wbr}ออก{\wbr}จาก{\wbr}รายการ{\wbr}
-(ลบ{\wbr}เฉพาะ{\wbr}การ{\wbr}ปรากฏ{\wbr}ครั้ง{\wbr}แรก{\wbr}ใน{\wbr}รายการ)
-
-ให้{\wbr}เขียน{\wbr}โดย{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน{\wbr}ด้าน{\wbr}บน แทน{\wbr}ที่{\wbr}จะ{\wbr}เขียน{\wbr}ใหม่{\wbr}ทั้งหมด{\wbr}
+(ลบ{\wbr}เฉพาะ{\wbr}การ{\wbr}ปรากฏ{\wbr}ครั้ง{\wbr}แรก{\wbr}ใน{\wbr}รายการ)  ให้{\wbr}เขียน{\wbr}โดย{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน{\wbr}ด้าน{\wbr}บน แทน{\wbr}ที่{\wbr}จะ{\wbr}เขียน{\wbr}ใหม่{\wbr}ทั้งหมด{\wbr}
 \end{quiz}
 
 \begin{quiz}{}
 จง{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct list\_delete\_all\_data(int list[], int\& size, int
   x)} ที่{\wbr}รับ{\wbr}รายการ{\wbr}และ{\wbr}ข้อมูล {\ct x} แล้ว{\wbr}ลบ{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ทั้งหมด{\wbr}ออก{\wbr}จาก{\wbr}รายการ{\wbr}
-
 สำหรับ{\wbr}ข้อ{\wbr}นี้ เพื่อ{\wbr}ประสิทธิภาพ{\wbr}สามารถ{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}ขึ้น{\wbr}มา{\wbr}ใหม่{\wbr}ได้{\wbr}
 \end{quiz}
 
@@ -780,9 +778,89 @@ $\vdots$ & $\vdots$ & $\vdots$ \\
 \label{fig:array-example-pointer}
 \end{figure}
 
-วิธีการ{\wbr}ประกาศ{\wbr}และ{\wbr}ใช้{\wbr}ข้อมูล{\wbr}ประเภท{\wbr}นี้{\wbr}ขึ้น{\wbr}กับ{\wbr}ภาษา{\wbr}โปรแกรม{\wbr}ที่{\wbr}ใช้{\wbr}
+\subsection{การ{\wbr}ประกาศ{\wbr}ชนิด{\wbr}ข้อมูล โอ{\wbr}เปอเรเตอร์ {\ct *} และ {\ct \&}}
+วิธีการ{\wbr}ประกาศ{\wbr}และ{\wbr}ใช้{\wbr}ข้อมูล{\wbr}ประเภท{\wbr}นี้{\wbr}ขึ้น{\wbr}กับ{\wbr}ภาษา{\wbr}โปรแกรม{\wbr}ที่{\wbr}ใช้ สำหรับ{\wbr}ภาษา C++
+เรา{\wbr}ใช้{\wbr}เครื่องหมาย {\ct *} ใน{\wbr}การ{\wbr}ระบุ{\wbr}ชนิด{\wbr}ข้อมูล กล่าวคือ{\wbr}เรา{\wbr}จะ{\wbr}เขียน{\wbr}
 
-\section{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
+\begin{center}
+ชนิด{\wbr}ข้อมูล{\ct *}
+\end{center}
+
+เพื่อ{\wbr}ระบุ{\wbr}ว่า{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ยัง{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ดังกล่าว  ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}
+
+\begin{center}
+{\ct int* p;}
+\end{center}
+
+เป็น{\wbr}การ{\wbr}ประกาศ{\wbr}ตัวแปร {\ct p} ที่{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ยัง{\wbr}ข้อมูล{\wbr}ชนิด {\ct int}
+ตัวแปร{\wbr}ประเภท{\wbr}พอยน์เตอร์{\wbr}จะ{\wbr}ต้อง{\wbr}อ้าง{\wbr}ถึง{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}
+เรา{\wbr}จะ{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์{\wbr}แบบ{\wbr}นำหน้า {\ct \&}
+ใน{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ{\wbr}ตัวแปร{\wbr}หรือ{\wbr}ข้อมูล  ดัง{\wbr}แสดง{\wbr}ใน{\wbr}ตัวอย่าง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int x = 146;
+int* p = &x;   // Line 2
+\end{codelist}
+\thaitext
+
+หลัง{\wbr}การ{\wbr}ทำงาน{\wbr}ใน{\wbr}บรรทัด{\wbr}ที่ 2 ตัวแปร {\ct p} จะ{\wbr}เก็บ{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ{\wbr}ตัวแปร{\wbr}
+{\ct x} หรือ{\wbr}เรา{\wbr}จะ{\wbr}กล่าว{\wbr}ว่า {\ct p} ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตัวแปร {\ct x}
+
+ต่อไป{\wbr}ถ้า{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง{\wbr}ตัวแปร {\ct p} เรา{\wbr}จะ{\wbr}หมายถึง ``ตำแหน่ง'' ของ{\wbr}ข้อมูล{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}
+ถ้า{\wbr}เรา{\wbr}ต้องการ{\wbr}อ้าง{\wbr}ถึง ``ข้อมูล'' ใน{\wbr}หน่วยความจำ{\wbr}ตำแหน่ง{\wbr}นั้น เรา{\wbr}จะ{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์{\wbr}นำหน้า{\wbr}
+{\ct *} ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}ใน{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+cout << *p;       // Line 1
+*p = 1000;        // Line 2
+cout << x;        // Line 3
+\end{codelist}
+\thaitext
+
+โปรแกรม{\wbr}ใน{\wbr}บรรทัด{\wbr}ที่ 1 จะ{\wbr}พิมพ์{\wbr}ค่า 146 เนื่องจาก{\wbr}ตัวแปร {\ct p} ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ตัวแปร{\wbr}
+{\ct x} ที่{\wbr}มี{\wbr}ค่า 146 เมื่อ{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง ``ข้อมูล'' ที่{\wbr}ตำแหน่ง{\wbr}ที่ {\ct p} เก็บ{\wbr}อยู่{\wbr}
+เรา{\wbr}จึง{\wbr}ได้{\wbr}ค่า{\wbr}เป็น 146
+
+การ{\wbr}อ้าง {\ct *p} หมายถึง{\wbr}ข้อมูล{\wbr}ใน{\wbr}ตำแหน่ง{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}ตัวแปร {\ct p} ชี้{\wbr}อยู่{\wbr}
+ดังนั้น{\wbr}โปรแกรม{\wbr}ใน{\wbr}บรรทัด{\wbr}ที่ 2 ก็{\wbr}จะ{\wbr}เป็น{\wbr}การ{\wbr}กำหนด{\wbr}ค่า{\wbr}ให้{\wbr}กับ{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}เดียวกับ{\wbr}ตัวแปร {\ct
+  x} ทำ{\wbr}ให้{\wbr}โปรแกรม{\wbr}ใน{\wbr}บรรทัด{\wbr}ที่ 3 พิมพ์{\wbr}ค่า 1000 ออก{\wbr}มา{\wbr}
+
+สังเกต{\wbr}ว่า{\wbr}เครื่องหมาย {\ct *} ใน{\wbr}คำสั่ง {\ct int* p = \&x;} กับ {\ct *p =
+  1000;} มี{\wbr}ความหมาย{\wbr}ต่าง{\wbr}กัน ใน{\wbr}ตัวอย่าง{\wbr}แรก{\wbr}เป็น{\wbr}การ{\wbr}ขยาย{\wbr}ชนิด{\wbr}ข้อมูล {\ct int}
+เพื่อ{\wbr}ระบุ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ว่า{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ยัง{\wbr}จำนวนเต็ม{\wbr}
+โดย{\wbr}มี{\wbr}การ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ด้วย{\wbr}เครื่องหมาย{\wbr}เท่า{\wbr}กับ ใน{\wbr}ตัวอย่าง{\wbr}ที่{\wbr}สอง เครื่องหมาย {\ct *}
+เป็น{\wbr}โอ{\wbr}เปอเรเตอร์{\wbr}แบบ{\wbr}นำหน้า ที่{\wbr}กระทำ{\wbr}กับ{\wbr}ตัวแปร {\ct p}  ใน{\wbr}ตัวอย่าง{\wbr}แรก ถ้า{\wbr}เรา{\wbr}ไม่{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}พอยน์เตอร์ {\ct p} ทันที{\wbr}เมื่อ{\wbr}ประกาศ โปรแกรม{\wbr}จะ{\wbr}เขียน{\wbr}ได้{\wbr}ดังนี้{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int* p;
+p = &x;
+\end{codelist}
+\thaitext
+
+โอ{\wbr}เปอเรเตอร์ {\ct *} กับ {\ct \&} เป็น{\wbr}โอ{\wbr}เปอเรเตอร์{\wbr}ที่{\wbr}ทำ{\wbr}หน้าที่{\wbr}ตรงข้าม{\wbr}กัน{\wbr}
+ถ้า{\wbr}พิจารณา{\wbr}ตาม{\wbr}แผนภาพ{\wbr}ใน{\wbr}รูป{\wbr}ที่~\ref{fig:array-example-pointer} โอ{\wbr}เปอเรเตอร์
+{\ct *} จะ{\wbr}พา{\wbr}เรา{\wbr}ไป{\wbr}ตาม{\wbr}ลูกศร ส่วน {\ct \&} จะ{\wbr}พา{\wbr}เรา{\wbr}ย้อน{\wbr}กลับ{\wbr}
+
+\begin{quiz}{}
+นิพจน์ {\ct *(\&x) = 1234;} มี{\wbr}ความหมาย{\wbr}อย่างไร?
+\end{quiz}
+
+\begin{quiz}{}
+สำหรับ{\wbr}ตัวแปร {\ct x} ที่{\wbr}ประกาศ{\wbr}และ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ด้วย{\wbr}คำสั่ง {\ct int x = 146;}
+นิพจน์ {\ct \&x} หมายถึง{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ {\ct x} นิพจน์ {\ct \&(\&x)} หมายถึง{\wbr}อะไร?
+\end{quiz}
+\begin{quizans}
+นิพจน์{\wbr}ดังกล่าว{\wbr}ไม่{\wbr}มี{\wbr}ความหมาย และ{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}เกิด{\wbr}ความผิด{\wbr}พลาด{\wbr}ระหว่าง{\wbr}การ{\wbr}คอมไพล์ TODO: อธิบาย{\wbr}เพิ่มเติม{\wbr}
+\end{quizans}
+
+\subsubsection{แนว{\wbr}คิด{\wbr}เกี่ยวกับ L-value และ R-value $\star$}
+
+TODO: เขียน{\wbr}ส่วน{\wbr}นี้{\wbr}
+
+\subsection{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
 \label{sect:array-array-pointer-c}
 
 \section{แบบฝึกหัด}

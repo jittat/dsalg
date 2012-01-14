@@ -20,7 +20,7 @@
 \newcommand{\ct}{\latintext\tt}
 
 \newcounter{quiz}[chapter]
-\newenvironment{quiz}[1]{\vspace{0.1in}\noindent$\vartriangleright$ {\bf คำถาม \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\vspace{0.15in}}
+\newenvironment{quiz}[1]{\vspace{0.1in}\noindent$\vartriangleright$ {\bf คำถาม \stepcounter{quiz}\arabic{chapter}.\arabic{quiz}} \ \ #1\\}{\hfill$\triangleleft$\vspace{0.15in}}
 \newenvironment{quizans}[0]{\framed\noindent{\bf เฉลย:}\\}{\endframed}
 
 \newcounter{algtctr}[chapter] \setcounter{algtctr}{0}
