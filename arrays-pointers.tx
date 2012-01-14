@@ -452,7 +452,7 @@ int x[m * 2];
 int unknown(int A[], int n)
 {
   int x = 0;
-  for(int i = 0; i < n; i++)
+  for(int i = 0; i < n; ++i)
     x += A[i];
   return x;
 }
@@ -572,7 +572,7 @@ m2(x,y);            // (4)
 ---src[cpp,ฟังก์ชัน {\ct list\_find} และ {\ct list\_append},code:array-list-find]
 int list_find(int list[], int size, int q)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < size; ++i)
     if(list[i] == q)
       return i;
   return -1;
@@ -583,7 +583,7 @@ void list_append(int list[], int& size, int val)
   if(size >= max_size)
     throw "List overflow";      // Line 12
   list[size] = val;
-  size++;
+  ++size;
 }
 ---
 \end{figure}
@@ -608,7 +608,7 @@ void list_delete(int list[], int& size, int i)
 {
   if((i < 0) || (i >= size))
     throw "Invalid index";
-  for(int j = i; j < n-1; j++)
+  for(int j = i; j < n-1; ++j)
     list[j] = list[j+1];
   size--;
 }
