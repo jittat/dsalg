@@ -473,7 +473,7 @@ int x[m * 2];
 int unknown(int A[], int n)
 {
   int x = 0;
-  for(int i = 0; i < n; i++)
+  for(int i = 0; i < n; ++i)
     x += A[i];
   return x;
 }
@@ -607,7 +607,7 @@ m2(x,y);            // (4)
 \begin{codelist}{C++}{caption={\thaitext ฟังก์ชัน {\ct list\_find} และ {\ct list\_append}\latintext},label=code:array-list-find}
 int list_find(int list[], int size, int q)
 {
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < size; ++i)
     if(list[i] == q)
       return i;
   return -1;
@@ -618,7 +618,7 @@ void list_append(int list[], int& size, int val)
   if(size >= max_size)
     throw "List overflow";      // Line 12
   list[size] = val;
-  size++;
+  ++size;
 }
 \end{codelist}
 \thaitext
@@ -646,7 +646,7 @@ void list_delete(int list[], int& size, int i)
 {
   if((i < 0) || (i >= size))
     throw "Invalid index";
-  for(int j = i; j < n-1; j++)
+  for(int j = i; j < n-1; ++j)
     list[j] = list[j+1];
   size--;
 }
@@ -853,12 +853,31 @@ p = &x;
 นิพจน์ {\ct \&x} หมายถึง{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ {\ct x} นิพจน์ {\ct \&(\&x)} หมายถึง{\wbr}อะไร?
 \end{quiz}
 \begin{quizans}
-นิพจน์{\wbr}ดังกล่าว{\wbr}ไม่{\wbr}มี{\wbr}ความหมาย และ{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}เกิด{\wbr}ความผิด{\wbr}พลาด{\wbr}ระหว่าง{\wbr}การ{\wbr}คอมไพล์ TODO: อธิบาย{\wbr}เพิ่มเติม{\wbr}
+นิพจน์{\wbr}ดังกล่าว{\wbr}ไม่{\wbr}มี{\wbr}ความหมาย และ{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}เกิด{\wbr}ความผิด{\wbr}พลาด{\wbr}ระหว่าง{\wbr}การ{\wbr}คอมไพล์{\wbr}
+เพื่อ{\wbr}ความ{\wbr}เข้าใจ{\wbr}ที่{\wbr}ชัดเจน{\wbr}ยิ่ง{\wbr}ขึ้น กรุณา{\wbr}ดู{\wbr}ส่วน~\ref{sect:array-lval-rval}
 \end{quizans}
 
 \subsubsection{แนว{\wbr}คิด{\wbr}เกี่ยวกับ L-value และ R-value $\star$}
+\label{sect:array-lval-rval}
 
-TODO: เขียน{\wbr}ส่วน{\wbr}นี้{\wbr}
+พิจารณา{\wbr}คำสั่ง{\wbr}กำหนด{\wbr}ค่า{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+x = x + 1;
+\end{codelist}
+\thaitext
+
+ใน{\wbr}คำสั่ง{\wbr}ดังกล่าว{\wbr}เรา{\wbr}กล่าว{\wbr}ถึง{\wbr}ตัวแปร {\ct x} สอง{\wbr}ครั้ง{\wbr}
+ถ้า{\wbr}พิจารณา{\wbr}ให้{\wbr}ดี{\wbr}เรา{\wbr}จะ{\wbr}พบ{\wbr}ว่าความ{\wbr}หมาย{\wbr}ของ{\wbr}การ{\wbr}กล่าว{\wbr}ถึง{\wbr}ทั้ง{\wbr}สอง{\wbr}ครั้งนั้น{\wbr}แตกต่าง{\wbr}กัน{\wbr}
+
+\begin{itemize}
+\item เมื่อ{\wbr}เรา{\wbr}กล่าว{\wbr}ถึง {\ct x} ใน{\wbr}ด้าน{\wbr}ซ้าย{\wbr}ของ{\wbr}เครื่องหมาย{\wbr}กำหนด{\wbr}ค่า{\wbr}
+  สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}จาก{\wbr}ตัวแปร {\ct x} คือ{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}
+  เพื่อให้{\wbr}ระบบ{\wbr}สามารถ{\wbr}เก็บ{\wbr}ผลลัพธ์{\wbr}ได้{\wbr}
+\item สำหรับ{\wbr}การ{\wbr}กล่าว{\wbr}ถึง{\wbr}ตัวแปร {\ct x} ใน{\wbr}ด้าน{\wbr}ขวา{\wbr}ของ{\wbr}เครื่องหมาย{\wbr}กำหนด{\wbr}ค่า{\wbr}นั้น{\wbr}
+  สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}ได้{\wbr}คือ{\wbr}ค่า{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}เก็บ{\wbr}ใน{\wbr}ตัวแปร {\ct x}
+\end{itemize}
 
 \subsection{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
 \label{sect:array-array-pointer-c}

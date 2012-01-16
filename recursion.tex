@@ -213,7 +213,7 @@ x_1, &  \mbox{ถ้า } n=1 \\
 int listmax(int ls[], int n)
 {
   int m = ls[0];
-  for(int i=0; i<n; i++)
+  for(int i=0; i<n; ++i)
     if(ls[i] > m)
       m = ls[i];
   return m;
