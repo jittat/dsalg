@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for f in *.tex; do echo $f; grep -o "wbr" $f | wc -l; done
+echo "TOTAL:"
+grep -o "wbr" *.tex | wc -l
