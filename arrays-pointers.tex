@@ -854,8 +854,118 @@ p = &x;
 \end{quiz}
 \begin{quizans}
 นิพจน์{\wbr}ดังกล่าว{\wbr}ไม่{\wbr}มี{\wbr}ความหมาย และ{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}เกิด{\wbr}ความผิด{\wbr}พลาด{\wbr}ระหว่าง{\wbr}การ{\wbr}คอมไพล์{\wbr}
-เพื่อ{\wbr}ความ{\wbr}เข้าใจ{\wbr}ที่{\wbr}ชัดเจน{\wbr}ยิ่ง{\wbr}ขึ้น กรุณา{\wbr}ดู{\wbr}ส่วน~\ref{sect:array-lval-rval}
+เพื่อ{\wbr}ความ{\wbr}เข้าใจ{\wbr}ที่{\wbr}ชัดเจน{\wbr}ยิ่ง{\wbr}ขึ้น กรุณา{\wbr}อ่าน{\wbr}ส่วน~\ref{sect:array-lval-rval}
 \end{quizans}
+
+\subsection{พอยน์เตอร์{\wbr}ว่าง}
+นอกจาก{\wbr}เรา{\wbr}จะ{\wbr}กำหนด{\wbr}ค่า{\wbr}ใหัตัว{\wbr}แปร{\wbr}พอยน์เตอร์{\wbr}ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ต่าง ๆ
+ใน{\wbr}หน่วยความจำ{\wbr}โดย{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct\&} แล้ว{\wbr}
+เรา{\wbr}ยัง{\wbr}สามารถ{\wbr}กำหนด{\wbr}ให้{\wbr}ตัวแปร{\wbr}พอยน์เตอร์{\wbr}มี{\wbr}สถานะ{\wbr}เป็น ``ไม่{\wbr}ได้{\wbr}ชี้{\wbr}ไป{\wbr}ที่ไหน''
+ได้{\wbr}โดย{\wbr}การ{\wbr}กำหนด{\wbr}ค่า {\ct 0} ให้{\wbr}กับ{\wbr}ตัวแปร{\wbr}พอยน์เตอร์{\wbr}นั้น\footnote{ใน{\wbr}มาตรฐาน C++11
+  มี{\wbr}การ{\wbr}นิยาม{\wbr}ค่าคงที่ {\ct nullptr}
+  เพื่อ{\wbr}ใช้{\wbr}แทน{\wbr}พอยน์เตอร์{\wbr}ว่าง{\wbr}เพื่อ{\wbr}แก้{\wbr}ปัญหา{\wbr}การ{\wbr}ใช้{\wbr}ค่าคงที่{\wbr}ซ้ำซ้อน อย่างไรก็ตาม{\wbr}
+  เพื่อให้{\wbr}หนังสือ{\wbr}นี้{\wbr}ใช้{\wbr}งาน{\wbr}ได้{\wbr}กับ{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}ที่{\wbr}ยัง{\wbr}ไม่{\wbr}ปรับ{\wbr}รุ่น{\wbr}ให้{\wbr}ทัน{\wbr}มาตรฐาน{\wbr}ใหม่{\wbr}นี้{\wbr}
+  เรา{\wbr}จะ{\wbr}ยัง{\wbr}ใช้{\wbr}ค่าคงที่ {\ct 0} เพื่อ{\wbr}แทน{\wbr}พอยน์เตอร์{\wbr}ว่าง{\wbr}อยู่ ถ้า{\wbr}ผู้อ่าน{\wbr}ใช้{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}รุ่น{\wbr}ใหม่{\wbr}แล้ว{\wbr}
+  ขอ{\wbr}แนะนำ{\wbr}ให้{\wbr}ใช้ {\ct nullptr} แทน {\ct 0}}\footnote{ใน{\wbr}ภาษา C นิยม{\wbr}ใช้{\wbr}ค่าคงที่{\wbr}
+  {\ct NULL} ที่{\wbr}นิยาม{\wbr}ไว้{\wbr}ใน{\wbr}ไฟล์{\wbr}หัว{\wbr}มาตรฐาน อย่างไรก็ตาม เรา{\wbr}สามารถ{\wbr}ใช้{\wbr}ค่าคงที่ 0 ใน{\wbr}
+  C++ ได้{\wbr}เลย} พอยน์เตอร์ดังกล่าว{\wbr}เรียก{\wbr}ว่า{\wbr}เป็น{\em พอยน์เตอร์ว่าง} ({\em null
+  pointer})
+
+พอยน์เตอร์ที่{\wbr}มี{\wbr}ค่า{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ว่าง{\wbr}นี้ ใน{\wbr}ภาษา C++
+ไม่{\wbr}ได้{\wbr}ทำงาน{\wbr}แตกต่าง{\wbr}จาก{\wbr}พอยน์เตอร์{\wbr}ธรรมดา{\wbr}เท่าใด{\wbr}นัก นั่น{\wbr}คือ{\wbr}
+โปรแกรม{\wbr}สามารถ{\wbr}เรียกหา{\wbr}ค่า{\wbr}ที่{\wbr}ชี้{\wbr}โดย{\wbr}พอยน์เตอร์{\wbr}ดังกล่าว{\wbr}ได้{\wbr}
+ผลลัพธ์{\wbr}ที่{\wbr}ได้{\wbr}ขึ้น{\wbr}กับ{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}และ{\wbr}ระบบปฏิบัติการ{\wbr}ที่{\wbr}ใช้ แต่{\wbr}โดย{\wbr}ทั่วไป{\wbr}การ{\wbr}เรียก{\wbr}อ่าน{\wbr}ค่า{\wbr}ตำแหน่ง{\wbr}ที่ 0
+มักจะ{\wbr}ถูก{\wbr}ป้องกัน{\wbr}ไว้{\wbr}ด้วย{\wbr}ระบบปฏิบัติการ ทำ{\wbr}ให้{\wbr}โปรแกรม{\wbr}ที่{\wbr}เรียก{\wbr}ใช้{\wbr}ดังกล่าว crash ได้{\wbr}เป็นต้น{\wbr}
+อย่างไรก็ตาม ภาษา C/C++ รับประกัน{\wbr}ว่า{\wbr}พอยน์เตอร์{\wbr}ว่าง{\wbr}สอง{\wbr}ตัว{\wbr}จะ{\wbr}เปรียบเทียบ{\wbr}ได้{\wbr}เท่า{\wbr}กัน{\wbr}
+ถึงแม้{\wbr}จะ{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}คน{\wbr}ละ{\wbr}ชนิด{\wbr}ก็ตาม{\wbr}
+
+\subsection{พอยน์เตอร์กับ{\wbr}การ{\wbr}ส่ง{\wbr}พารามิเตอร์}
+เรา{\wbr}สามารถ{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}เพื่อ{\wbr}ส่ง{\wbr}ค่า{\wbr}ผ่าน{\wbr}พารามิเตอร์{\wbr}ใน{\wbr}ลักษณะ{\wbr}เดียวกับ{\wbr}การ{\wbr}ส่ง{\wbr}แบบ pass by
+reference ได้ พิจารณา{\wbr}ฟังก์ชัน{\wbr}ด้าน{\wbr}ล่าง{\wbr}ที่{\wbr}สลับ{\wbr}ค่า{\wbr}ใน{\wbr}ตัวแปร{\wbr}สอง{\wbr}ตัว{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+void swap1(int& a, int& b)
+{
+  int t = a;
+  a = b;
+  b = t;
+}
+\end{codelist}
+\thaitext
+
+ฟังก์ชัน{\wbr}นี้{\wbr}ทำงาน{\wbr}ได้{\wbr}ตาม{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ เนื่องจาก{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ของ{\wbr}พารามิเตอร์ {\ct a} และ {\ct
+  b} คือ {\ct int\&} ฟังก์ชัน{\wbr}ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}จะ{\wbr}ไม่{\wbr}สามารถ{\wbr}สลับ{\wbr}ค่า{\wbr}ใน{\wbr}ตัวแปร{\wbr}ที่{\wbr}ส่ง{\wbr}มา{\wbr}ได้{\wbr}
+แม้ว่า{\wbr}ค่า{\wbr}ใน{\wbr}ตัวแปร {\ct a} และ {\ct b} จะ{\wbr}เปลี่ยน{\wbr}ใน{\wbr}ฟังก์ชัน{\wbr}ก็ตาม{\wbr}
+เพราะว่า{\wbr}การ{\wbr}ส่ง{\wbr}ค่า{\wbr}โดย{\wbr}ปกติ{\wbr}จะ{\wbr}เป็น{\wbr}การ{\wbr}ส่ง{\wbr}แบบ pass by value
+
+\latintext
+\begin{codelist}{C++}{}
+void swap2(int a, int b)    // broken
+{
+  int t = a;
+  a = b;
+  b = t;
+}
+\end{codelist}
+\thaitext
+
+อย่างไรก็ตาม เนื่องจาก{\wbr}เรา{\wbr}ต้องการ{\wbr}เปลี่ยนแปลง{\wbr}ค่า{\wbr}ของ{\wbr}อาร์กิวเมนท์{\wbr}ที่{\wbr}ส่ง{\wbr}มา{\wbr}ให้{\wbr}กับ{\wbr}ฟังก์ชัน{\wbr}
+เรา{\wbr}จำเป็น{\wbr}ต้อง{\wbr}อ้าง{\wbr}ถึง{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}อาร์กิวเมนท์{\wbr}นั้น ด้าน{\wbr}ล่าง{\wbr}เป็น{\wbr}ฟังก์ชัน {\ct swap3}
+ที่{\wbr}เขียน{\wbr}โดย{\wbr}ใช้{\wbr}พอยน์เตอร์
+
+\latintext
+\begin{codelist}{C++}{}
+void swap3(int* a, int* b)
+{
+  int t = *a;
+  *a = *b;
+  *b = t;
+}
+\end{codelist}
+\thaitext
+
+เนื่องจาก{\wbr}ฟังก์ชัน {\ct swap3} รับ{\wbr}อาร์กิวเมนท์{\wbr}เป็น{\wbr}พอยน์เตอร์
+การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ก็{\wbr}จะ{\wbr}ยุ่งยาก{\wbr}ขึ้น{\wbr}เล็กน้อย ดัง{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int x = 100;
+int y = 1000;
+swap3(&x, &y);
+\end{codelist}
+\thaitext
+
+รูป~\ref{fig:array-swap} แสดง{\wbr}การ{\wbr}ชี้{\wbr}ของ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ฟังก์ชัน {\ct swap3}
+
+\begin{figure}
+TODO: make this
+\caption{พอยน์เตอร์{\wbr}ต่าง ๆ ใน{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน {\ct swap3}}
+\label{fig:array-swap}
+\end{figure}
+
+
+\begin{quiz}{}
+ฟังก์ชัน {\ct swap1} และ {\ct swap3} แม้{\wbr}มี{\wbr}การ{\wbr}ทำงาน{\wbr}ที่{\wbr}เหมือน{\wbr}กัน การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}
+{\ct swap3} นั้น{\wbr}ดู{\wbr}ยุ่งยาก{\wbr}กว่า อย่างไรก็ตาม{\wbr}
+มี{\wbr}บาง{\wbr}กรณี{\wbr}ที่{\wbr}การ{\wbr}ประกาศ{\wbr}พารามิเตอร์{\wbr}ที่{\wbr}ต้องการ{\wbr}แก้ไข{\wbr}ด้วย{\wbr}พอยน์เตอร์{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}มี{\wbr}อิสระ{\wbr}ใน{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}มาก{\wbr}กว่า กรณี{\wbr}นั้น{\wbr}คือ{\wbr}อะไร?
+\end{quiz}
+\begin{quizans}
+ใน{\wbr}กรณี{\wbr}ของ{\wbr}การ{\wbr}ส่ง{\wbr}ตัวแปร{\wbr}แบบ pass by reference
+ทาง{\wbr}ฝั่ง{\wbr}ผู้{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน{\wbr}จำเป็น{\wbr}ต้อง{\wbr}มี{\wbr}ตัวแปร{\wbr}เพื่อ{\wbr}ส่ง{\wbr}มา{\wbr}ยัง{\wbr}พารามิเตอร์{\wbr}นี้{\wbr}
+แต่{\wbr}ใน{\wbr}กรณี{\wbr}ของ{\wbr}การ{\wbr}ส่ง{\wbr}แบบ{\wbr}พอยน์เตอร์
+พารามิเตอร์{\wbr}ดังกล่าว{\wbr}จะ{\wbr}เป็น{\wbr}พารามิเตอร์{\wbr}ที่{\wbr}สามารถ{\wbr}ละ{\wbr}เอา{\wbr}ไว้{\wbr}ได้{\wbr}โดย{\wbr}ส่ง พอยน์เตอร์ว่าง {\ct 0}
+มา{\wbr}แทน ดังนั้น ใน{\wbr}การ{\wbr}ประกาศ{\wbr}พารามิเตอร์ ถ้า{\wbr}พารามิเตอร์{\wbr}ใด จำเป็น{\wbr}ต้อง{\wbr}มี{\wbr}ตัวแปร{\wbr}มา{\wbr}รับ{\wbr}ค่า{\wbr}
+เรา{\wbr}ควร{\wbr}จะ{\wbr}ใช้{\wbr}การ{\wbr}ประกาศ{\wbr}แบบ pass by reference
+ถ้า{\wbr}พารามิเตอร์{\wbr}นั้น{\wbr}ไม่{\wbr}จำเป็น{\wbr}ต้อง{\wbr}มี{\wbr}อยู่จริง{\wbr}ใน{\wbr}บาง{\wbr}กรณี{\wbr}
+เรา{\wbr}ก็{\wbr}ควร{\wbr}จะ{\wbr}ประกาศ{\wbr}รับ{\wbr}พารามิเตอร์{\wbr}ด้วย{\wbr}พอยน์เตอร์{\wbr}แทน{\wbr}
+\end{quizans}
+
+\subsection{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
+\label{sect:array-array-pointer-c}
+
+การ{\wbr}ใช้{\wbr}งาน{\wbr}พอยน์เตอร์{\wbr}นอกจาก{\wbr}
+
 
 \subsubsection{แนว{\wbr}คิด{\wbr}เกี่ยวกับ L-value และ R-value $\star$}
 \label{sect:array-lval-rval}
@@ -878,9 +988,6 @@ x = x + 1;
 \item สำหรับ{\wbr}การ{\wbr}กล่าว{\wbr}ถึง{\wbr}ตัวแปร {\ct x} ใน{\wbr}ด้าน{\wbr}ขวา{\wbr}ของ{\wbr}เครื่องหมาย{\wbr}กำหนด{\wbr}ค่า{\wbr}นั้น{\wbr}
   สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}ได้{\wbr}คือ{\wbr}ค่า{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}เก็บ{\wbr}ใน{\wbr}ตัวแปร {\ct x}
 \end{itemize}
-
-\subsection{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
-\label{sect:array-array-pointer-c}
 
 \section{แบบฝึกหัด}
 
