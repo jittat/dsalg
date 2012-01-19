@@ -857,6 +857,50 @@ p = &x;
 เพื่อ{\wbr}ความ{\wbr}เข้าใจ{\wbr}ที่{\wbr}ชัดเจน{\wbr}ยิ่ง{\wbr}ขึ้น กรุณา{\wbr}อ่าน{\wbr}ส่วน~\ref{sect:array-lval-rval}
 \end{quizans}
 
+ผู้{\wbr}ที่{\wbr}ใช้{\wbr}งาน{\wbr}พอยน์เตอร์{\wbr}นั้น{\wbr}จะ{\wbr}ต้อง{\wbr}ระวัง{\wbr}เป็นพิเศษ{\wbr}ใน{\wbr}การ{\wbr}จัดการ{\wbr}หน่วยความจำ{\wbr}
+โดยเฉพาะ{\wbr}เกี่ยวกับ{\wbr}สถานะ{\wbr}ของ{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}พอยน์เตอร์{\wbr}นั้น{\wbr}ชี้{\wbr}ไป{\wbr}
+พิจารณา{\wbr}ตัวอย่าง{\wbr}ใน{\wbr}โปรแกรมย่อย{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int* crazy(int x)
+{
+  int y = x + 10;  int* z = &y;
+  return z;
+}
+\end{codelist}
+\thaitext
+
+ฟังก์ชัน{\wbr}ดังกล่าว{\wbr}คืน{\wbr}ค่า{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ยัง{\wbr}ตัวแปร {\ct y} ซึ่ง{\wbr}เป็น{\wbr}ตัวแปร{\wbr}ภายใน{\wbr}ของ{\wbr}ฟังก์ชัน {\ct
+  crazy}
+ตัวแปร{\wbr}ประเภท{\wbr}นี้{\wbr}โดย{\wbr}ทั่วไป{\wbr}จะ{\wbr}ถูก{\wbr}เก็บ{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}กัน{\wbr}เนื้อที่{\wbr}ไว้{\wbr}แค่{\wbr}ช่วง{\wbr}ที่{\wbr}ฟังก์ชัน{\wbr}ทำงาน{\wbr}เท่านั้น{\wbr}
+เมื่อ{\wbr}ฟังก์ชัน{\wbr}จบ{\wbr}การ{\wbr}ทำงาน{\wbr}ลง หน่วยความจำ{\wbr}ส่วน{\wbr}นี้{\wbr}ก็{\wbr}อาจ{\wbr}จะ{\wbr}ถูก{\wbr}ใช้{\wbr}โดย{\wbr}ตัวแปร{\wbr}อื่น ๆ อย่างไรก็ตาม{\wbr}
+พอยน์เตอร์ที่{\wbr}คืน{\wbr}มา{\wbr}ก็{\wbr}ยัง{\wbr}ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}เดิม{\wbr}ของ{\wbr}ตัวแปร {\ct y} อยู่{\wbr}
+ทำ{\wbr}ให้{\wbr}เมื่อ{\wbr}อ่าน{\wbr}เขียน{\wbr}ข้อมูล{\wbr}ใน{\wbr}ตำแหน่ง{\wbr}นั้น{\wbr}
+อาจ{\wbr}จะ{\wbr}เกิด{\wbr}ปัญหา{\wbr}ไป{\wbr}เขียน{\wbr}ทับ{\wbr}ข้อมูล{\wbr}ของ{\wbr}ส่วน{\wbr}อื่น{\wbr}ของ{\wbr}โปรแกรม{\wbr}ได้{\wbr}
+
+\subsection{การ{\wbr}จอง{\wbr}หน่วยความจำ: โอ{\wbr}เปอเรเตอร์ {\ct new} และ{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct delete}}
+นอกจาก{\wbr}ที่{\wbr}จะ{\wbr}ให้{\wbr}พอยน์เตอร์{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตัวแปร{\wbr}ต่าง ๆ แล้ว{\wbr}
+เรา{\wbr}ยัง{\wbr}สามารถ{\wbr}จอง{\wbr}หน่วยความจำ{\wbr}เพื่อ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}โดยเฉพาะ{\wbr}ได้{\wbr}ด้วย{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct new}
+หน่วยความจำ{\wbr}ที่{\wbr}ขอ{\wbr}จอง{\wbr}มา{\wbr}ได้{\wbr}นี้{\wbr}จะ{\wbr}เป็น{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}ระบบ{\wbr}เชื่อ{\wbr}ว่า{\wbr}ยัง{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}ใช้{\wbr}
+ทำ{\wbr}ให้{\wbr}เรา{\wbr}สามารถ{\wbr}ใช้เนื้อ{\wbr}ที่{\wbr}เหล่านี้{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ได้{\wbr}ตาม{\wbr}ต้องการ{\wbr}
+
+หน่วยความจำ{\wbr}ที่{\wbr}จอง{\wbr}มา{\wbr}นี้ เมื่อ{\wbr}ไม่{\wbr}ใช้{\wbr}แล้ว{\wbr}จะ{\wbr}ต้อง{\wbr}ถูก{\wbr}ปล่อย{\wbr}คืน{\wbr}ให้{\wbr}กับ{\wbr}ระบบ{\wbr}ด้วย{\wbr}โอ{\wbr}เป{\wbr}อร{\wbr}เรเตอร์ {\ct
+  delete} เพื่อ{\wbr}เก็บ{\wbr}ไว้{\wbr}จัดสรร{\wbr}ใน{\wbr}ครั้ง{\wbr}ต่อ ๆ ไป  พิจารณา{\wbr}ตัวอย่าง{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ดังนี้{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int* p = new int;
+int* q = p;
+p = new int;
+// ...
+delete p;
+delete q;
+\end{codelist}
+\thaitext
+
+*********************************
+
 \subsection{พอยน์เตอร์{\wbr}ว่าง}
 นอกจาก{\wbr}เรา{\wbr}จะ{\wbr}กำหนด{\wbr}ค่า{\wbr}ใหัตัว{\wbr}แปร{\wbr}พอยน์เตอร์{\wbr}ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ต่าง ๆ
 ใน{\wbr}หน่วยความจำ{\wbr}โดย{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct\&} แล้ว{\wbr}
@@ -878,6 +922,19 @@ p = &x;
 มักจะ{\wbr}ถูก{\wbr}ป้องกัน{\wbr}ไว้{\wbr}ด้วย{\wbr}ระบบปฏิบัติการ ทำ{\wbr}ให้{\wbr}โปรแกรม{\wbr}ที่{\wbr}เรียก{\wbr}ใช้{\wbr}ดังกล่าว crash ได้{\wbr}เป็นต้น{\wbr}
 อย่างไรก็ตาม ภาษา C/C++ รับประกัน{\wbr}ว่า{\wbr}พอยน์เตอร์{\wbr}ว่าง{\wbr}สอง{\wbr}ตัว{\wbr}จะ{\wbr}เปรียบเทียบ{\wbr}ได้{\wbr}เท่า{\wbr}กัน{\wbr}
 ถึงแม้{\wbr}จะ{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}คน{\wbr}ละ{\wbr}ชนิด{\wbr}ก็ตาม{\wbr}
+
+\subsection{ชนิด{\wbr}ข้อมูล{\wbr}แบบ {\ct void} และ{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ยัง {\ct void}}
+
+ชนิด{\wbr}ข้อมูล {\ct void} เป็น{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}พิเศษ{\wbr}ที่{\wbr}ไม่{\wbr}มี{\wbr}ข้อมูล{\wbr}ใด{\wbr}เป็น{\wbr}สมาชิก{\wbr}
+การ{\wbr}ประกาศ{\wbr}ว่า{\wbr}ฟังก์ชัน{\wbr}คืน{\wbr}ค่า{\wbr}เป็น{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}นี้{\wbr}คือ{\wbr}การ{\wbr}ประกาศ{\wbr}ว่า{\wbr}ฟังก์ชัน{\wbr}ดังกล่าว{\wbr}ไม่{\wbr}คืน{\wbr}ค่า{\wbr}
+นอกจาก{\wbr}เรา{\wbr}จะ{\wbr}ใช้ {\ct void} เพื่อ{\wbr}ระบุ{\wbr}ฟังก์ชัน{\wbr}แล้ว พอยน์เตอร์ไป{\wbr}ยัง {\ct void}
+(ชนิด{\wbr}ข้อมูล {\ct void*})
+แทน{\wbr}พอยน์เตอร์{\wbr}ที่{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}เรา{\wbr}ไม่{\wbr}สนใจ{\wbr}ว่า{\wbr}จะ{\wbr}เป็น{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}ใด{\wbr}
+เรา{\wbr}สามารถ{\wbr}กำหนด{\wbr}ค่า{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ยัง{\wbr}ข้อมูล{\wbr}ใด ๆ ให้{\wbr}กับ{\wbr}พอยน์เตอร์{\wbr}ประเภท {\ct void*} ได้{\wbr}
+และ{\wbr}พอยน์เตอร์{\wbr}ประเภท {\ct void*} ก็{\wbr}สามารถ{\wbr}ถูก{\wbr}แปลง (cast) เป็น{\wbr}พอยน์เตอร์{\wbr}ประเภท{\wbr}อื่น{\wbr}
+ๆ ได้ อย่างไรก็ตาม{\wbr}การ{\wbr}แปลง{\wbr}ใน{\wbr}ลักษณะ{\wbr}นี้{\wbr}
+ถ้า{\wbr}ไม่{\wbr}ระวัง{\wbr}อาจ{\wbr}ก่อ{\wbr}ให้{\wbr}เกิด{\wbr}ข้อผิดพลาด{\wbr}ระหว่าง{\wbr}การ{\wbr}ทำงาน{\wbr}ได้{\wbr}
+
 
 \subsection{พอยน์เตอร์กับ{\wbr}การ{\wbr}ส่ง{\wbr}พารามิเตอร์}
 เรา{\wbr}สามารถ{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}เพื่อ{\wbr}ส่ง{\wbr}ค่า{\wbr}ผ่าน{\wbr}พารามิเตอร์{\wbr}ใน{\wbr}ลักษณะ{\wbr}เดียวกับ{\wbr}การ{\wbr}ส่ง{\wbr}แบบ pass by
@@ -939,7 +996,9 @@ swap3(&x, &y);
 รูป~\ref{fig:array-swap} แสดง{\wbr}การ{\wbr}ชี้{\wbr}ของ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ฟังก์ชัน {\ct swap3}
 
 \begin{figure}
-TODO: make this
+\begin{center}
+\epsfig{file=figures/arrays/swap3.eps, height=1.2in}
+\end{center}
 \caption{พอยน์เตอร์{\wbr}ต่าง ๆ ใน{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน {\ct swap3}}
 \label{fig:array-swap}
 \end{figure}
@@ -961,13 +1020,50 @@ TODO: make this
 เรา{\wbr}ก็{\wbr}ควร{\wbr}จะ{\wbr}ประกาศ{\wbr}รับ{\wbr}พารามิเตอร์{\wbr}ด้วย{\wbr}พอยน์เตอร์{\wbr}แทน{\wbr}
 \end{quizans}
 
+\subsection{การ{\wbr}คำนวณ{\wbr}กับ{\wbr}พอยน์เตอร์}
+
+เรา{\wbr}สามารถ{\wbr}ดำเนินการ{\wbr}เชิง{\wbr}ตัวเลข{\wbr}กับ{\wbr}พอยน์เตอร์{\wbr}ได้ ปกติ{\wbr}พอยน์เตอร์{\wbr}สำหรับ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ใด ๆ
+ก็{\wbr}จะ{\wbr}ใช้{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}นั้น พิจารณา{\wbr}ตัวอย่าง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int a[5];
+char b[10];
+int* p = &a[3];
+char* q = &b[0];
+\end{codelist}
+\thaitext
+
+ถ้า{\wbr}เรา{\wbr}สมมติ{\wbr}ว่า{\wbr}ข้อมูล{\wbr}ประเภท {\ct int} ใช้เนื้อ{\wbr}ที่ 4 ไบท์ใน{\wbr}การ{\wbr}จัด{\wbr}เก็บ{\wbr}ใน{\wbr}หน่วยความจำ และ{\wbr}
+{\ct char} ใช้เนื้อ{\wbr}ที่ 1 ไบท์ใน{\wbr}การ{\wbr}จัด{\wbr}เก็บ ตัวแปร{\wbr}ต่าง ๆ
+จะ{\wbr}อยู่{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ดัง{\wbr}ใน{\wbr}รูป{\wbr}ที่~\ref{fig:array-array-pointer-arith}
+
+\begin{figure}
+\begin{center}
+\epsfig{file=figures/arrays/pointer-arith.eps, height=1.2in}
+\end{center}
+\caption{พอยน์เตอร์ที่{\wbr}ชี้{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ต่าง ๆ ใน{\wbr}อาร์เรย์}
+\label{fig:array-array-pointer-arith}
+\end{figure}
+
+เนื่องจาก{\wbr}พอยน์เตอร์{\wbr}ถูก{\wbr}นิยาม{\wbr}เทียบ{\wbr}กับ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ที่{\wbr}ชี้{\wbr}ไป{\wbr}
+ดังนั้น{\wbr}จึง{\wbr}ไม่{\wbr}แปลก{\wbr}อะไร{\wbr}ถ้า{\wbr}เมื่อ{\wbr}เรา{\wbr}เพิ่ม{\wbr}หรือ{\wbr}ลด{\wbr}ค่า{\wbr}ของ{\wbr}พอยน์เตอร์{\wbr}นั้น{\wbr}ด้วย{\wbr}จำนวนเต็ม{\wbr}
+เรา{\wbr}จะ{\wbr}หมายถึง{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}นั้น{\wbr}ตัว{\wbr}ถัด ๆ ไป หรือ{\wbr}ตัว{\wbr}ก่อน ๆ หน้า ยก{\wbr}ตัวอย่าง{\wbr}เช่น {\ct
+  p+1} เป็น{\wbr}พอยน์เตอร์{\wbr}ที่{\wbr}ชี้{\wbr}ไป{\wbr}ที่ {\ct a[4]} และ {\ct q+1} เป็น{\wbr}พอยน์เตอร์{\wbr}ที่{\wbr}ชี้{\wbr}ไป{\wbr}ที่{\wbr}
+{\ct b[1]}
+
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}บวก 1 เข้า{\wbr}กับ {\ct p} เพื่อ{\wbr}เลื่อน{\wbr}จาก {\ct a[3]} ไป{\wbr}ยัง {\ct a[4]}
+ถึงแม้ว่า{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ {\ct a[3]} และ {\ct a[4]} จะ{\wbr}ต่าง{\wbr}กัน 4
+ตำแหน่ง{\wbr}ก็ตาม{\wbr}
+
 \subsection{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
 \label{sect:array-array-pointer-c}
 
-การ{\wbr}ใช้{\wbr}งาน{\wbr}พอยน์เตอร์{\wbr}นอกจาก{\wbr}
+ใน{\wbr}ภาษา C++ พอยน์เตอร์{\wbr}และ{\wbr}อาร์เรย์{\wbr}มี{\wbr}ความ{\wbr}เกี่ยวข้อง{\wbr}กัน{\wbr}มาก สำหรับ{\wbr}อาร์เรย์{\wbr}ใด ๆ
+ถ้า{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง{\wbr}อาร์เรย์{\wbr}โดย{\wbr}ไม่{\wbr}ระบุ{\wbr}ดัชนี เรา{\wbr}จะ{\wbr}ได้{\wbr}ค่า{\wbr}เป็น{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ข้อมูล{\wbr}ตัว{\wbr}แรก{\wbr}ใน{\wbr}อาร์เรย์
+ใน{\wbr}ทาง{\wbr}กลับ{\wbr}กัน พิจารณา{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้{\wbr}
 
-
-\subsubsection{แนว{\wbr}คิด{\wbr}เกี่ยวกับ L-value และ R-value $\star$}
+\subsection{แนว{\wbr}คิด{\wbr}เกี่ยวกับ L-value และ R-value $\star$}
 \label{sect:array-lval-rval}
 
 พิจารณา{\wbr}คำสั่ง{\wbr}กำหนด{\wbr}ค่า{\wbr}ด้าน{\wbr}ล่าง{\wbr}
