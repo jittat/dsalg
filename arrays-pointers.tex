@@ -648,7 +648,7 @@ void list_delete(int list[], int& size, int i)
     throw "Invalid index";
   for(int j = i; j < n-1; ++j)
     list[j] = list[j+1];
-  size--;
+  --size;
 }
 \end{codelist}
 \thaitext
@@ -885,6 +885,9 @@ int* crazy(int x)
 หน่วยความจำ{\wbr}ที่{\wbr}ขอ{\wbr}จอง{\wbr}มา{\wbr}ได้{\wbr}นี้{\wbr}จะ{\wbr}เป็น{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}ระบบ{\wbr}เชื่อ{\wbr}ว่า{\wbr}ยัง{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}ใช้{\wbr}
 ทำ{\wbr}ให้{\wbr}เรา{\wbr}สามารถ{\wbr}ใช้เนื้อ{\wbr}ที่{\wbr}เหล่านี้{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ได้{\wbr}ตาม{\wbr}ต้องการ{\wbr}
 
+โอ{\wbr}เปอเรเตอร์ {\ct new} นอกจาก{\wbr}จะ{\wbr}จอง{\wbr}หน่วยความจำ{\wbr}สำหรับ{\wbr}ข้อมูล{\wbr}แล้ว{\wbr}
+ยัง{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ก่อน{\wbr}ที่{\wbr}จะ{\wbr}คืน{\wbr}พอยน์เตอร์{\wbr}กลับ{\wbr}มา{\wbr}
+
 หน่วยความจำ{\wbr}ที่{\wbr}จอง{\wbr}มา{\wbr}นี้ เมื่อ{\wbr}ไม่{\wbr}ใช้{\wbr}แล้ว{\wbr}จะ{\wbr}ต้อง{\wbr}ถูก{\wbr}ปล่อย{\wbr}คืน{\wbr}ให้{\wbr}กับ{\wbr}ระบบ{\wbr}ด้วย{\wbr}โอ{\wbr}เป{\wbr}อร{\wbr}เรเตอร์ {\ct
   delete} เพื่อ{\wbr}เก็บ{\wbr}ไว้{\wbr}จัดสรร{\wbr}ใน{\wbr}ครั้ง{\wbr}ต่อ ๆ ไป  พิจารณา{\wbr}ตัวอย่าง{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ดังนี้{\wbr}
 
@@ -1092,7 +1095,7 @@ char* q = &b[0];
 เรา{\wbr}ยัง{\wbr}สามารถ{\wbr}นำ{\wbr}พอยน์เตอร์{\wbr}ที่{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}เดียวกัน{\wbr}มา{\wbr}ลบ{\wbr}กัน{\wbr}ได้{\wbr}ด้วย{\wbr}
 
 \begin{quiz}{}
-พิจารณา{\wbr}ตัวแปร {\ct int* r = \&a[1]} และ {\ct int* s =\&a[4]} นิพจน์ {\ct s
+พิจารณา{\wbr}ตัวแปร {\ct int* r = \&a[1]} และ {\ct int* s = \&a[4]} นิพจน์ {\ct s
   - r} มี{\wbr}ค่า{\wbr}เป็น{\wbr}เท่าใด?
 \end{quiz}
 
@@ -1106,7 +1109,7 @@ char* q = &b[0];
 
 \latintext
 \begin{codelist}{C++}{caption={\thaitext ฟังก์ชัน{\wbr}ที่{\wbr}หา{\wbr}ผลรวม{\wbr}ของ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}โดย{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}อาร์เรย์\latintext},label=code:array-sum-using-pointer}
-int sum1(int list[], int size)
+int sum1(int list[], int size)            
 {
   int s = 0;
   int* p = &list[0];
@@ -1169,10 +1172,10 @@ int sum2(int list[], int size)
 \thaitext
 
 อย่างไรก็ตาม ถึงแม้ว่า{\wbr}เรา{\wbr}จะ{\wbr}อ้าง{\wbr}ตัวแปร{\wbr}อาร์เรย์{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ได้{\wbr}
-เรา{\wbr}จะ{\wbr}ไม่{\wbr}สามารถ{\wbr}กำหนด{\wbr}ค่า{\wbr}ให้{\wbr}กับ{\wbr}มัน{\wbr}ได้ โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}จะ{\wbr}คอมไพล์{\wbr}ไม่{\wbr}ผ่าน ถ้า{\wbr}ตัวแปร {\ct
+เรา{\wbr}จะ{\wbr}ไม่{\wbr}สามารถ{\wbr}กำหนด{\wbr}ค่า{\wbr}ให้{\wbr}กับ{\wbr}มัน{\wbr}ได้ โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}จะ{\wbr}คอมไพล์{\wbr}ไม่{\wbr}ผ่าน{\wbr}ถ้า{\wbr}ตัวแปร {\ct
   list} เป็น{\wbr}อาร์เรย์ แต่{\wbr}ถ้า {\ct list} เป็น{\wbr}พอยน์เตอร์{\wbr}จะ{\wbr}สามารถ{\wbr}ทำ{\wbr}ได้{\wbr}
-(ใน{\wbr}ภาษา{\wbr}เชิง{\wbr}เทคนิค เรา{\wbr}จะ{\wbr}กล่าว{\wbr}ว่า{\wbr}นิพจน์ {\ct list} ไม่{\wbr}มี L-value
- ผู้{\wbr}ที่{\wbr}สนใจ{\wbr}สามารถ อ่าน{\wbr}เพิ่มเติม{\wbr}ได้{\wbr}ใน{\wbr}ส่วน~\ref{sect:array-lval-rval})
+(ใน{\wbr}ภาษา{\wbr}เชิง{\wbr}เทคนิค เรา{\wbr}จะ{\wbr}กล่าว{\wbr}ว่า{\wbr}นิพจน์ {\ct list} ไม่{\wbr}มี L-value ผู้{\wbr}ที่{\wbr}สนใจ{\wbr}สามารถ{\wbr}
+อ่าน{\wbr}เพิ่มเติม{\wbr}ได้{\wbr}ใน{\wbr}ส่วน~\ref{sect:array-lval-rval})
 
 \latintext
 \begin{codelist}{C++}{}
@@ -1183,6 +1186,62 @@ int sum2(int list[], int size)
 \begin{quiz}{}
 โปรแกรมเมอร์{\wbr}ที่{\wbr}เขียน{\wbr}คำสั่ง {\ct list = list + 1; }  ใน{\wbr}ตัวอย่าง{\wbr}ข้างต้น ต้องการ{\wbr}จะ{\wbr}ทำ{\wbr}อะไร?
 \end{quiz}
+
+ใน{\wbr}กรณี{\wbr}ของ{\wbr}อาร์เรย์{\wbr}หลาย{\wbr}มิติ การ{\wbr}อ้าง{\wbr}ถึง{\wbr}อาร์เรย์{\wbr}ด้วย{\wbr}ชื่อ{\wbr}ก็{\wbr}จะ{\wbr}ได้{\wbr}ผลลัพธ์{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}เช่นกัน{\wbr}
+โดย{\wbr}พอยน์เตอร์{\wbr}ที่{\wbr}ได้{\wbr}จะ{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ข้อมูล{\wbr}ตัว{\wbr}แรก{\wbr}ที่{\wbr}สอดคล้อง{\wbr}กับ{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}ขณะนั้น{\wbr}
+และ{\wbr}มี{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}สอดคล้อง{\wbr}กับ{\wbr}ระดับ{\wbr}ของ{\wbr}การ{\wbr}อ้าง{\wbr}ถึง ยก{\wbr}ตัวอย่าง{\wbr}เช่น ถ้า{\wbr}เรา{\wbr}ประกาศ{\wbr}อาร์เรย์ {\ct
+  int a[100][200];} การ{\wbr}อ้าง{\wbr}ถึง {\ct a} จะ{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ของ {\ct
+  a[0][0]} และ{\wbr}มี{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}เป็น {\ct int**} (พอยน์เตอร์ไป{\wbr}ยัง{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ยัง {\ct
+  int}) ส่วน {\ct a[10]} จะ{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ชนิด {\ct int*} ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ของ {\ct
+  a[10][0]} เป็นต้น{\wbr}
+
+เช่นเดียวกับ{\wbr}ใน{\wbr}ตัวอย่าง{\wbr}ข้างต้น ทั้ง {\ct a} และ {\ct a[10]} เป็น{\wbr}นิพจน์{\wbr}ที่{\wbr}มี{\wbr}ค่า{\wbr}
+แต่{\wbr}ไม่{\wbr}สามารถ{\wbr}กำหนด{\wbr}ค่า{\wbr}ให้{\wbr}ได้ เนื่องจาก{\wbr}เรา{\wbr}ไม่{\wbr}มี{\wbr}ตัวแปร{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}จริง ๆ ที่{\wbr}เก็บ{\wbr}ค่า{\wbr}เหล่านี้{\wbr}
+(นั่น{\wbr}คือ {\ct a} และ {\ct a[10]} ไม่{\wbr}มี L-value)
+
+ใน{\wbr}มุมกลับ{\wbr}กัน เรา{\wbr}สามารถ{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ลักษณะ{\wbr}เดียวกับ{\wbr}อาร์เรย์{\wbr}ได้ กล่าวคือ ถ้า {\ct p}
+เป็น{\wbr}พอยน์เตอร์ การ{\wbr}อ้าง {\ct p[0]} จะ{\wbr}มี{\wbr}ความหมาย{\wbr}เดียวกับ {\ct *p} และ{\wbr}การ{\wbr}อ้าง{\wbr}
+{\ct p[10]} จะ{\wbr}มี{\wbr}ความหมาย{\wbr}เดียวกับ {\ct *(p + 10)} ดังนั้น{\wbr}หลาย ๆ
+ครั้ง{\wbr}เรา{\wbr}จะ{\wbr}พบ{\wbr}ว่า{\wbr}ฟังก์ชัน{\wbr}ที่{\wbr}รับ{\wbr}ค่า{\wbr}เป็น{\wbr}อาร์เรย์
+แต่{\wbr}กลับ{\wbr}ประกาศ{\wbr}ว่า{\wbr}รับ{\wbr}พารามิเตอร์{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}เพื่อ{\wbr}ความ{\wbr}สะดวก{\wbr}ใน{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}
+
+\begin{quiz}{}
+ถ้า{\wbr}ใน{\wbr}โปรแกรม เรา{\wbr}มี{\wbr}ความ{\wbr}จะ{\wbr}เป็น{\wbr}ต้อง{\wbr}เลื่อน{\wbr}ดัชนี{\wbr}ทั้งหมด{\wbr}ของ{\wbr}อาร์เรย์ {\ct list} ลง{\wbr}หนึ่ง{\wbr}
+หลาย ๆ ครั้ง{\wbr}
+เรา{\wbr}จะ{\wbr}ความ{\wbr}สามารถ{\wbr}ใน{\wbr}การ{\wbr}สลับ{\wbr}เปลี่ยน{\wbr}ระหว่าง{\wbr}อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}เพื่อ{\wbr}ดำเนินการ{\wbr}ดังกล่าว{\wbr}ได้{\wbr}อย่างไร{\wbr}
+\end{quiz}
+
+การ{\wbr}ใช้{\wbr}งาน{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}รูปแบบ{\wbr}ของ{\wbr}อาร์เรย์{\wbr}เพิ่ม{\wbr}ความ{\wbr}สะดวก{\wbr}ใน{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เรา{\wbr}ต้อง{\wbr}จอง{\wbr}หน่วยความจำ{\wbr}เอง{\wbr}
+โดยมาก{\wbr}จะ{\wbr}เป็น{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เรา{\wbr}ไม่{\wbr}ทราบ{\wbr}ขนาด{\wbr}ก่อน{\wbr}ถึง{\wbr}เวลา{\wbr}ใช้{\wbr}งาน หรือ{\wbr}กระทั่ง{\wbr}เป็น{\wbr}อาร์เรย์{\wbr}ที่{\wbr}มี{\wbr}ขนาด{\wbr}เปลี่ยน{\wbr}ไป{\wbr}มา{\wbr}ได้{\wbr}
+
+โอ{\wbr}เปอเรเตอร์ {\ct new} และ {\ct delete}
+สามารถ{\wbr}ใช้{\wbr}เพื่อ{\wbr}จอง{\wbr}หน่วยความจำ{\wbr}แบบ{\wbr}อาร์เรย์{\wbr}ได้ โดย{\wbr}รูปแบบ{\wbr}ใน{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}เป็น{\wbr}ดังนี้{\wbr}
+
+\begin{center}
+{\ct new} ชนิด{\wbr}ข้อมูล[จำนวน{\wbr}ข้อมูล] \\
+{\ct delete []} ตัวแปร{\wbr}
+\end{center}
+
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}ระบุ{\wbr}จำนวน{\wbr}ช่อง{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}ต้องการ{\wbr}ใช้{\wbr}ใน{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct new}
+และ{\wbr}ใส่{\wbr}เครื่องหมาย {\ct []} เมื่อ{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct delete}
+เพื่อ{\wbr}ระบุ{\wbr}ว่า{\wbr}เป็น{\wbr}การ{\wbr}ทำลาย{\wbr}อาร์เรย์ ดัง{\wbr}ตัวอย่าง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+  int* a = new int[100];
+
+  for(int i = 0; i < 100; ++i) 
+    a[i] = i;
+  // ...
+
+  delete [] a;
+\end{codelist}
+\thaitext
+
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}ใช้{\wbr}งาน{\wbr}ตัวแปร{\wbr}พอยน์เตอร์ {\ct a} ใน{\wbr}ลักษณะ{\wbr}เดียวกับ{\wbr}อาร์เรย์ ข้อ{\wbr}ควร{\wbr}ระวัง{\wbr}ก็{\wbr}คือ{\wbr}
+ถ้า{\wbr}เรา{\wbr}เรียก{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct new} แบบ{\wbr}อาร์เรย์ เมื่อ{\wbr}เรา{\wbr}เรียก {\ct delete}
+เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ระบุ {\ct []} ด้วย{\wbr}ทุก{\wbr}ครั้ง ไม่{\wbr}เช่นนั้น{\wbr}โอ{\wbr}เปอเรเตอร์ delete
+อาจ{\wbr}ทำงาน{\wbr}ผิดพลาด{\wbr}ได้{\wbr}
 
 \subsection{แนว{\wbr}คิด{\wbr}เกี่ยวกับ L-value และ R-value $\star$}
 \label{sect:array-lval-rval}
@@ -1205,6 +1264,13 @@ x = x + 1;
 \item สำหรับ{\wbr}การ{\wbr}กล่าว{\wbr}ถึง{\wbr}ตัวแปร {\ct x} ใน{\wbr}ด้าน{\wbr}ขวา{\wbr}ของ{\wbr}เครื่องหมาย{\wbr}กำหนด{\wbr}ค่า{\wbr}นั้น{\wbr}
   สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}ได้{\wbr}คือ{\wbr}ค่า{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}เก็บ{\wbr}ใน{\wbr}ตัวแปร {\ct x}
 \end{itemize}
+
+เรา{\wbr}จะ{\wbr}เรียก ``ความหมาย'' ของ{\wbr}นิพจน์{\wbr}ใด ๆ เมื่อ{\wbr}อยู่{\wbr}ด้าน{\wbr}ขวา{\wbr}ของ{\wbr}เครื่องหมาย{\wbr}กำหนด{\wbr}ค่า{\wbr}
+ว่า{\wbr}เป็น R-value ของ{\wbr}นิพจน์{\wbr}นั้น ซึ่ง{\wbr}ความหมาย{\wbr}นี้ จะ{\wbr}สอดคล้อง{\wbr}กับ{\wbr}ค่า{\wbr}ของ{\wbr}นิพจน์{\wbr}นั้น ๆ
+ใน{\wbr}ทาง{\wbr}กลับ{\wbr}กัน L-value ก็{\wbr}เป็น ``ความหมาย'' ของ{\wbr}นิพจน์{\wbr}นั้น{\wbr}
+เมื่อ{\wbr}อยู่{\wbr}ด้าน{\wbr}ซ้าย{\wbr}ของ{\wbr}เครื่องหมาย{\wbr}กำหนด{\wbr}ค่า สังเกต{\wbr}ว่า{\wbr}บาง{\wbr}นิพจน์{\wbr}จะ{\wbr}ไม่{\wbr}มี{\wbr}ค่า L-value
+นั่น{\wbr}หมายความ{\wbr}ว่า{\wbr}เรา{\wbr}ไม่{\wbr}สามารถ{\wbr}ใช้{\wbr}นิพจน์{\wbr}นั้น{\wbr}ใน{\wbr}ด้าน{\wbr}ซ้าย{\wbr}ของ{\wbr}เครื่องหมาย{\wbr}กำหนด{\wbr}ค่า{\wbr}ได้ นั่น{\wbr}คือ{\wbr}
+กำหนด{\wbr}ค่า{\wbr}ไม่{\wbr}ได้{\wbr}นั่นเอง{\wbr}
 
 \section{แบบฝึกหัด}
 
