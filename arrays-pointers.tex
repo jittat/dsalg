@@ -891,15 +891,46 @@ int* crazy(int x)
 \latintext
 \begin{codelist}{C++}{}
 int* p = new int;
-int* q = p;
-p = new int;
-// ...
+int* q = p;           // Line 2
+p = new int;          // Line 3
+// ...                   Line 4
+// ... do something
 delete p;
 delete q;
 \end{codelist}
 \thaitext
 
-*********************************
+เมื่อ{\wbr}โปรแกรม{\wbr}ทำงาน{\wbr}ผ่าน{\wbr}บรรทัด{\wbr}ที่ 2 พอยน์เตอร์ {\ct p} และ {\ct q}
+จะ{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ที่{\wbr}จอง{\wbr}ไว้{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}เดียวกัน เมื่อ{\wbr}ถึง{\wbr}บรรทัด{\wbr}ที่ 4
+ตัวแปร{\wbr}ทั้ง{\wbr}สอง{\wbr}จะ{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}หน่วยความจำ{\wbr}คน{\wbr}ละ{\wbr}ที่ เนื่องจาก{\wbr}บรรทัด{\wbr}ที่ 3
+เรา{\wbr}ได้{\wbr}จอง{\wbr}หน่วยความจำ{\wbr}ใหม่{\wbr}ให้{\wbr}กับ {\ct p} เมื่อ{\wbr}โปรแกรม{\wbr}ทำงาน{\wbr}เสร็จ เรา{\wbr}ก็{\wbr}จะ{\wbr}สั่ง {\ct
+  delete} เพื่อให้{\wbr}ระบบ{\wbr}คืน{\wbr}ค่า{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}จอง{\wbr}ไว้{\wbr}ทั้ง{\wbr}สอง{\wbr}หน่วย{\wbr}
+
+พิจารณา{\wbr}ตัวอย่าง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int c = 0;
+for(int i = 0; i < N; ++i) {
+  int* p = new int;
+  p = c + i;
+  c = p;
+}
+\end{codelist}
+\thaitext
+
+\begin{quiz}{}
+โปรแกรม{\wbr}ข้างต้น{\wbr}ทำงาน{\wbr}อะไร  ถ้า{\wbr}ตัวแปร {\ct N} มี{\wbr}ค่า{\wbr}มาก ๆ โปรแกรม{\wbr}ดังกล่าว{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}เกิด{\wbr}อะไร{\wbr}ขึ้น{\wbr}
+\end{quiz}
+
+ความ{\wbr}สามารถ{\wbr}ใน{\wbr}การ{\wbr}จอง{\wbr}หน่วยความจำ{\wbr}เมื่อ{\wbr}โปรแกรม{\wbr}ทำงาน{\wbr}นี้{\wbr}เป็น{\wbr}สิ่ง{\wbr}ที่{\wbr}จำเป็น{\wbr}มาก{\wbr}ใน{\wbr}การ{\wbr}พัฒนา{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ที่{\wbr}ซับซ้อน{\wbr}ขึ้น{\wbr}ต่อไป{\wbr}
+อย่างไรก็ตาม ถ้า{\wbr}เรา{\wbr}ไม่{\wbr}ระมัดระวัง{\wbr}พอ{\wbr}และ{\wbr}ไม่{\wbr}คืน{\wbr}หน่วยความจำ{\wbr}ที่{\wbr}จอง{\wbr}ไว้{\wbr}เมื่อ{\wbr}เลิก{\wbr}อ้าง{\wbr}ถึง{\wbr}แล้ว{\wbr}
+เรา{\wbr}อาจ{\wbr}จะ{\wbr}พบ{\wbr}ปัญหา{\wbr}โปรแกรม{\wbr}ใช้{\wbr}หน่วยความจำ{\wbr}มาก{\wbr}เกิน{\wbr}ไป{\wbr}เนื่องจาก{\wbr}มี{\wbr}การ{\wbr}รั่วไหล{\wbr}ของ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}หน่วยความจำ{\wbr}ก็ได้{\wbr}
+(เรียก{\wbr}ว่า memory leak)
+
+ใน{\wbr}ภาษา C++
+เรา{\wbr}สามารถ{\wbr}ซ่อน{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}รวม{\wbr}ถึง{\wbr}การ{\wbr}จอง{\wbr}และ{\wbr}คืน{\wbr}หน่วยความจำ{\wbr}ไว้{\wbr}ภายใน{\wbr}ค{\wbr}ลา{\wbr}ส
+ถ้า{\wbr}พัฒนา{\wbr}อย่าง{\wbr}ถูก{\wbr}วิธี จะ{\wbr}ช่วย{\wbr}ลด{\wbr}ปัญหา{\wbr}หน่วยความจำ{\wbr}รั่วไหล{\wbr}ได้{\wbr}
 
 \subsection{พอยน์เตอร์{\wbr}ว่าง}
 นอกจาก{\wbr}เรา{\wbr}จะ{\wbr}กำหนด{\wbr}ค่า{\wbr}ใหัตัว{\wbr}แปร{\wbr}พอยน์เตอร์{\wbr}ชี้{\wbr}ไป{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ต่าง ๆ
@@ -1021,6 +1052,7 @@ swap3(&x, &y);
 \end{quizans}
 
 \subsection{การ{\wbr}คำนวณ{\wbr}กับ{\wbr}พอยน์เตอร์}
+\label{sect:array-pointer-arith}
 
 เรา{\wbr}สามารถ{\wbr}ดำเนินการ{\wbr}เชิง{\wbr}ตัวเลข{\wbr}กับ{\wbr}พอยน์เตอร์{\wbr}ได้ ปกติ{\wbr}พอยน์เตอร์{\wbr}สำหรับ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ใด ๆ
 ก็{\wbr}จะ{\wbr}ใช้{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}นั้น พิจารณา{\wbr}ตัวอย่าง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
@@ -1056,12 +1088,101 @@ char* q = &b[0];
 ถึงแม้ว่า{\wbr}ตำแหน่ง{\wbr}ใน{\wbr}หน่วยความจำ{\wbr}ของ {\ct a[3]} และ {\ct a[4]} จะ{\wbr}ต่าง{\wbr}กัน 4
 ตำแหน่ง{\wbr}ก็ตาม{\wbr}
 
+นอกจาก{\wbr}การ{\wbr}บวก{\wbr}และ{\wbr}ลบ{\wbr}ด้วย{\wbr}จำนวนเต็ม{\wbr}แล้ว{\wbr}
+เรา{\wbr}ยัง{\wbr}สามารถ{\wbr}นำ{\wbr}พอยน์เตอร์{\wbr}ที่{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}เดียวกัน{\wbr}มา{\wbr}ลบ{\wbr}กัน{\wbr}ได้{\wbr}ด้วย{\wbr}
+
+\begin{quiz}{}
+พิจารณา{\wbr}ตัวแปร {\ct int* r = \&a[1]} และ {\ct int* s =\&a[4]} นิพจน์ {\ct s
+  - r} มี{\wbr}ค่า{\wbr}เป็น{\wbr}เท่าใด?
+\end{quiz}
+
 \subsection{อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}ภาษา C/C++}
 \label{sect:array-array-pointer-c}
 
-ใน{\wbr}ภาษา C++ พอยน์เตอร์{\wbr}และ{\wbr}อาร์เรย์{\wbr}มี{\wbr}ความ{\wbr}เกี่ยวข้อง{\wbr}กัน{\wbr}มาก สำหรับ{\wbr}อาร์เรย์{\wbr}ใด ๆ
-ถ้า{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง{\wbr}อาร์เรย์{\wbr}โดย{\wbr}ไม่{\wbr}ระบุ{\wbr}ดัชนี เรา{\wbr}จะ{\wbr}ได้{\wbr}ค่า{\wbr}เป็น{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ข้อมูล{\wbr}ตัว{\wbr}แรก{\wbr}ใน{\wbr}อาร์เรย์
-ใน{\wbr}ทาง{\wbr}กลับ{\wbr}กัน พิจารณา{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้{\wbr}
+สังเกต{\wbr}ว่า{\wbr}จาก{\wbr}ส่วน{\wbr}ที่~\ref{sect:array-pointer-arith}
+เรา{\wbr}สามารถ{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}ใน{\wbr}การ{\wbr}ประมวลผล{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์{\wbr}ได้{\wbr}
+ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}ฟังก์ชัน{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:array-sum-using-pointer}
+ที่{\wbr}หา{\wbr}ผลรวม{\wbr}ของ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}
+
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ฟังก์ชัน{\wbr}ที่{\wbr}หา{\wbr}ผลรวม{\wbr}ของ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}โดย{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}อาร์เรย์\latintext},label=code:array-sum-using-pointer}
+int sum1(int list[], int size)
+{
+  int s = 0;
+  int* p = &list[0];
+  for(int i = 0; i < size; ++i) {
+    s += *p;
+    ++p;
+  }
+  return s;
+}
+\end{codelist}
+\thaitext
+
+\begin{quiz}{}
+โปรแกรม~\ref{code:array-sum-using-pointer} ปรับ{\wbr}ค่า{\wbr}พอยน์เตอร์ {\ct p}
+ให้{\wbr}ชี้{\wbr}ไป{\wbr}ยัง{\wbr}ข้อมูล{\wbr}ต่าง ๆ ใน{\wbr}อาร์เรย์ ให้{\wbr}แก้{\wbr}ฟังก์ชัน {\ct sum1} ให้{\wbr}ทำงาน{\wbr}ได้{\wbr}เหมือน{\wbr}เดิม{\wbr}
+โดย{\wbr}ให้{\wbr}พอยน์เตอร์ {\ct p} มี{\wbr}ค่าคงที่{\wbr}โดย{\wbr}ชี้{\wbr}อยู่{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}ของ {\ct list[0]} ตลอดเวลา{\wbr}
+\end{quiz}
+
+สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}โปรแกรม~\ref{code:array-sum-using-pointer} เรา{\wbr}ยัง{\wbr}ใช้{\wbr}ดัชนี {\ct i}
+ใน{\wbr}การ{\wbr}วน{\wbr}รอบ{\wbr}อยู่ อย่างไรก็ตาม ยัง{\wbr}มี{\wbr}อีก{\wbr}รูปแบบ{\wbr}ใน{\wbr}การ{\wbr}เขียน{\wbr}ที่{\wbr}อาจ{\wbr}จะ{\wbr}ดู{\wbr}กระ{\wbr}ทัด{\wbr}รัด{\wbr}กว่า{\wbr}
+ดัง{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม~\ref{code:array-sum-using-end-pointer}
+
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ฟังก์ชัน{\wbr}ที่{\wbr}หา{\wbr}ผลรวม{\wbr}ของ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}โดย{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}อาร์เรย์ อีก{\wbr}แบบ{\wbr}หนึ่ง\latintext},label=code:array-sum-using-end-pointer}
+int sum2(int list[], int size)
+{
+  int s = 0;
+  int* p = &list[0];             // Line 4
+  int* end = &list[size];        // Line 5
+  while(p != end) {
+    c += *p;
+    ++p;
+  }
+  return s;
+}
+\end{codelist}
+\thaitext
+
+สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}โปรแกรม~\ref{code:array-sum-using-end-pointer} ตัวแปร {\ct
+  end} อาจ{\wbr}จะ{\wbr}ชี้{\wbr}ออก{\wbr}ไป{\wbr}นอก{\wbr}ขอบเขต{\wbr}ของ{\wbr}อาร์เรย์{\wbr}ได้ ใน{\wbr}กรณี{\wbr}นี้ ภาษา C++
+รับประกัน{\wbr}ว่า{\wbr}พอยน์เตอร์{\wbr}ที่{\wbr}ชี้{\wbr}ไป{\wbr}ที่{\wbr}ข้อมูล{\wbr}ที่{\wbr}เกิน{\wbr}อาร์เรย์{\wbr}ไป 1 หน่วย จะ{\wbr}ยัง{\wbr}สามารถ{\wbr}ใช้{\wbr}งาน{\wbr}ได้{\wbr}
+เพื่อให้{\wbr}การ{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ใน{\wbr}ลักษณะ{\wbr}นี้{\wbr}ไม่{\wbr}เกิด{\wbr}ข้อผิดพลาด อย่างไรก็ตาม{\wbr}
+การ{\wbr}อ้าง{\wbr}พอยน์เตอร์{\wbr}ออก{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง{\wbr}ที่อยู่{\wbr}ก่อนหน้า{\wbr}ข้อมูล{\wbr}ตัวแปร{\wbr}ของ{\wbr}อาร์เรย์
+หรือ{\wbr}ตำแหน่ง{\wbr}ที่{\wbr}เกิน{\wbr}กว่า{\wbr}ข้อมูล{\wbr}ตัว{\wbr}สุดท้าย{\wbr}มาก{\wbr}กว่า 1 ตำแหน่ง{\wbr}นั้น{\wbr}
+ระบบ{\wbr}จะ{\wbr}ไม่{\wbr}รับประกัน{\wbr}ว่า{\wbr}จะ{\wbr}สามารถ{\wbr}ทำ{\wbr}ได้{\wbr}
+
+ใน{\wbr}ภาษา C++ นอกจาก{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}นำ{\wbr}พอยน์เตอร์{\wbr}ไป{\wbr}ชี้{\wbr}ที่{\wbr}อาร์เรย์{\wbr}เพื่อ{\wbr}ประมวลผล{\wbr}ได้{\wbr}แล้ว{\wbr}
+เรา{\wbr}ยัง{\wbr}สามารถ{\wbr}นำ{\wbr}อาร์เรย์{\wbr}และ{\wbr}พอยน์เตอร์{\wbr}มา{\wbr}ใช้{\wbr}สลับ{\wbr}กัน{\wbr}ไป{\wbr}มา{\wbr}ได้{\wbr}ใน{\wbr}อีก{\wbr}หลาย ๆ กรณี{\wbr}
+เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}จาก{\wbr}กรณี{\wbr}ที่{\wbr}ใช้{\wbr}อาร์เรย์{\wbr}ใน{\wbr}รูป{\wbr}ของ{\wbr}พอยน์เตอร์{\wbr}ก่อน{\wbr}
+
+สำหรับ{\wbr}อาร์เรย์{\wbr}ใด ๆ ถ้า{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง{\wbr}อาร์เรย์{\wbr}โดย{\wbr}ไม่{\wbr}ระบุ{\wbr}ดัชนี{\wbr}
+เรา{\wbr}จะ{\wbr}ได้{\wbr}ค่า{\wbr}เป็น{\wbr}ตำแหน่ง{\wbr}ของ{\wbr}ข้อมูล{\wbr}ตัว{\wbr}แรก{\wbr}ใน{\wbr}อาร์เรย์ ดังนั้น{\wbr}บรรทัด{\wbr}ที่ 4 และ 5
+ใน{\wbr}โปรแกรม~\ref{code:array-sum-using-end-pointer} สามารถ{\wbr}แก้{\wbr}เป็น{\wbr}ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}ได้{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+  int* p = list;                 // Line 4
+  int* end = list + size;        // Line 5
+\end{codelist}
+\thaitext
+
+อย่างไรก็ตาม ถึงแม้ว่า{\wbr}เรา{\wbr}จะ{\wbr}อ้าง{\wbr}ตัวแปร{\wbr}อาร์เรย์{\wbr}เป็น{\wbr}พอยน์เตอร์{\wbr}ได้{\wbr}
+เรา{\wbr}จะ{\wbr}ไม่{\wbr}สามารถ{\wbr}กำหนด{\wbr}ค่า{\wbr}ให้{\wbr}กับ{\wbr}มัน{\wbr}ได้ โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}จะ{\wbr}คอมไพล์{\wbr}ไม่{\wbr}ผ่าน ถ้า{\wbr}ตัวแปร {\ct
+  list} เป็น{\wbr}อาร์เรย์ แต่{\wbr}ถ้า {\ct list} เป็น{\wbr}พอยน์เตอร์{\wbr}จะ{\wbr}สามารถ{\wbr}ทำ{\wbr}ได้{\wbr}
+(ใน{\wbr}ภาษา{\wbr}เชิง{\wbr}เทคนิค เรา{\wbr}จะ{\wbr}กล่าว{\wbr}ว่า{\wbr}นิพจน์ {\ct list} ไม่{\wbr}มี L-value
+ ผู้{\wbr}ที่{\wbr}สนใจ{\wbr}สามารถ อ่าน{\wbr}เพิ่มเติม{\wbr}ได้{\wbr}ใน{\wbr}ส่วน~\ref{sect:array-lval-rval})
+
+\latintext
+\begin{codelist}{C++}{}
+  list = list + 1;              // does not compile
+\end{codelist}
+\thaitext
+
+\begin{quiz}{}
+โปรแกรมเมอร์{\wbr}ที่{\wbr}เขียน{\wbr}คำสั่ง {\ct list = list + 1; }  ใน{\wbr}ตัวอย่าง{\wbr}ข้างต้น ต้องการ{\wbr}จะ{\wbr}ทำ{\wbr}อะไร?
+\end{quiz}
 
 \subsection{แนว{\wbr}คิด{\wbr}เกี่ยวกับ L-value และ R-value $\star$}
 \label{sect:array-lval-rval}
