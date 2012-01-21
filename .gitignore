@@ -6,4 +6,5 @@
 *.dvi
 *.aux
 prog/testing
+a.out
 
