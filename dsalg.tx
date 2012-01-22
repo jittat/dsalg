@@ -34,6 +34,9 @@
 \renewcommand{\lstlistingname}{\thaitext โปรแกรมที่\latintext}
 \lstnewenvironment{codelist}[2]{\lstset{language=#1,#2}}{}
 
+\newtheorem{theorem}{ทฤษฎีบท}
+\newenvironment{proof}{{\bf บทพิสูจน์:}}{\hfill\rule{1.5mm}{3mm}\vspace{0.1in}}
+
 \begin{document}
 
 %\include{arrays-pointers}
