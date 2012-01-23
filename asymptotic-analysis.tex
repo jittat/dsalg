@@ -539,10 +539,74 @@ f(n) \leq f'(n) \leq c\cdot n^d,
 เมื่อ $n\geq n_0=0$, นั่น{\wbr}คือ $f(n)=O(n^d)$ ตาม{\wbr}ต้องการ{\wbr}
 \end{proof}
 
-\section{โครงสร้าง{\wbr}ข้อมูล{\wbr}นามธรรม}
+ใน{\wbr}ส่วน{\wbr}ถัด{\wbr}ไป{\wbr}ของ{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}หลาย{\wbr}แบบ{\wbr}ที่{\wbr}พัฒนา{\wbr}บน{\wbr}อาร์เรย์
+และ{\wbr}ใน{\wbr}ส่วน{\wbr}สุดท้าย{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}พิจารณา{\wbr}ตัวอย่าง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}มี{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}อื่น ๆ
 
-\subsection{รายการ}
+\section{แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}และ{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์}
+
+แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม (abstract data types)
+ระบุ{\wbr}วิธีการ{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}เข้าถึง{\wbr}และ{\wbr}จัดการ{\wbr}กับ{\wbr}ข้อมูล{\wbr}ผ่าน{\wbr}ทาง{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นั้น ๆ
+โดย{\wbr}ไม่{\wbr}จำเป็น{\wbr}ต้อง{\wbr}ระบุ{\wbr}ว่า{\wbr}ขั้นตอน{\wbr}ดำเนินการ{\wbr}จริง ๆ ของ{\wbr}วิธีการ{\wbr}เหล่านั้น{\wbr}เป็น{\wbr}อย่างไร{\wbr}
+
+ใน{\wbr}ส่วน{\wbr}ที่~\ref{sect:array-list-processing}
+เรา{\wbr}ได้{\wbr}ศึกษา{\wbr}วิธีการ{\wbr}นำ{\wbr}อาร์เรย์{\wbr}ไป{\wbr}ใช้{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ที่{\wbr}มี{\wbr}ลักษณะ{\wbr}เป็น{\wbr}รายการ ใน{\wbr}ที่นี้ เมื่อ{\wbr}เรา{\wbr}กล่าว{\wbr}ถึง{\wbr}
+`{\wbr}`{\wbr}รายการ'' เรา{\wbr}จะ{\wbr}มี{\wbr}ภาพ{\wbr}อยู่{\wbr}ว่า{\wbr}เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ดำเนินการ{\wbr}อะไร{\wbr}กับ{\wbr}รายการ{\wbr}ได้{\wbr}บ้าง{\wbr}
+นั่น{\wbr}คือ{\wbr}วิธีการ{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}เข้าถึง{\wbr}และ{\wbr}จัดการ{\wbr}กับ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ ซึ่ง{\wbr}จริง ๆ แล้ว{\wbr}
+เรา{\wbr}อาจ{\wbr}จะ{\wbr}ใช้{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}แบบ{\wbr}อื่น{\wbr}ใน{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ไม่{\wbr}จำเป็น{\wbr}ต้อง{\wbr}เป็น{\wbr}อาร์เรย์{\wbr}ก็ได้{\wbr}
+
+เรา{\wbr}จะ{\wbr}เรียก{\wbr}กระบวนการ{\wbr}ทั้งหมด{\wbr}ที่{\wbr}เรา{\wbr}สามารถ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}กับ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}ว่า{\wbr}อิน{\wbr}เทอร์เฟส
+(interface) ของ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นั้น สำหรับ{\wbr}ข้อมูล{\wbr}แบบ{\wbr}รายการ{\wbr}ที่{\wbr}เรา{\wbr}ได้{\wbr}พิจารณา{\wbr}มา{\wbr}แล้ว{\wbr}
+จะ{\wbr}มี{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}โดย{\wbr}ทั่วไป{\wbr}ดังนี้{\wbr}
+
+\begin{itemize}
+\item Find($L$,$x$) - ค้นหา{\wbr}ข้อมูล $x$ ใน $L$ แล้ว{\wbr}คืน{\wbr}ผลลัพธ์{\wbr}เป็น{\wbr}ข้อมูล{\wbr}ที่{\wbr}ทำ{\wbr}ให้{\wbr}อ้าง{\wbr}ถึง{\wbr}
+  $x$ ใน{\wbr}รายการ{\wbr}ได้ (ซึ่ง{\wbr}จะ{\wbr}ถูก{\wbr}ใช้{\wbr}ใน{\wbr}คำสั่ง Delete และ Insert ได้)
+\item Append($L$,$x$) - เพิ่ม{\wbr}ข้อมูล $x$ ท้าย{\wbr}รายการ $L$
+\item Delete($L$,$p$) - ลบ{\wbr}ข้อมูล{\wbr}ที่{\wbr}ถูก{\wbr}อ้าง{\wbr}ถึง{\wbr}โดย $p$
+\item InsertAfter($L$,$p$,$x$) - เพิ่ม{\wbr}ข้อมูล $x$ ต่อ{\wbr}จาก{\wbr}ข้อมูล{\wbr}ที่{\wbr}อ้าง{\wbr}ถึง{\wbr}โดย $p$
+\end{itemize}
+
+สังเกต{\wbr}ว่า อิน{\wbr}เทอร์เฟส{\wbr}ดังกล่าว{\wbr}
+มี{\wbr}ความ{\wbr}แตกต่าง{\wbr}จาก{\wbr}รูปแบบ{\wbr}ที่{\wbr}เรา{\wbr}ใช้{\wbr}ใน{\wbr}การ{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}ที่ทำงาน{\wbr}ดังกล่าว{\wbr}เล็กน้อย{\wbr}
+ความ{\wbr}แตกต่าง{\wbr}นี้{\wbr}ไม่{\wbr}ใช่{\wbr}สิ่ง{\wbr}สลักสำคัญ{\wbr}มาก{\wbr}นัก{\wbr}เมื่อ{\wbr}เรา{\wbr}ออกแบบ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
+และ{\wbr}การ{\wbr}นำ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ใป{\wbr}ใช้{\wbr}จริง{\wbr}ก็{\wbr}มักจะ{\wbr}ต้อง{\wbr}อ้างอิง{\wbr}กับ{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ตลอด{\wbr}อยู่{\wbr}ดี อย่างไรก็ตาม{\wbr}
+ถ้า{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}ของ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}นี้{\wbr}เหมือน{\wbr}กัน{\wbr}
+ไม่ว่า{\wbr}จะ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ใด{\wbr}
+ก็{\wbr}จะ{\wbr}ทำ{\wbr}ให้การ{\wbr}เปลี่ยน{\wbr}ประเภท{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ใน{\wbr}โปรแกรม{\wbr}ทำ{\wbr}ได้{\wbr}สะดวก{\wbr}
+ใน{\wbr}บท{\wbr}ที่~\ref{chapter:classes} เรา{\wbr}จะ{\wbr}ศึกษา{\wbr}วิธีการ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ภาษา C++
+เพื่อ{\wbr}ทำ{\wbr}ให้{\wbr}บรรลุ{\wbr}จุดประสงค์{\wbr}นี้{\wbr}
+
+ผู้อ่าน{\wbr}ที่{\wbr}สนใจ{\wbr}อาจ{\wbr}สงสัย{\wbr}ว่า{\wbr}เมื่อ{\wbr}มี InsertAfter ทำไม{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}ระบุ{\wbr}กระบวนการ{\wbr}
+\begin{itemize}
+\item InsertBefore($L$,$p$,$x$) - เพิ่ม{\wbr}ข้อมูล $x$ ก่อนหน้า{\wbr}ข้อมูล{\wbr}ที่{\wbr}อ้าง{\wbr}ถึง{\wbr}โดย $p$
+\end{itemize}
+อยู่{\wbr}ใน{\wbr}รายการ{\wbr}อิน{\wbr}เทอร์เฟส ใน{\wbr}บท{\wbr}ต่อ ๆ ไป เรา{\wbr}จะ{\wbr}พบ{\wbr}ว่า{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ที่{\wbr}จะ{\wbr}รองรับ{\wbr}ทั้ง{\wbr}
+InsertAfter และ InsertBefore ได้{\wbr}พร้อม ๆ
+กัน{\wbr}จะ{\wbr}ต้อง{\wbr}มี{\wbr}ภาระ{\wbr}มาก{\wbr}กว่า{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ที่{\wbr}รองรับ{\wbr}แค่{\wbr}รูปแบบ{\wbr}เดียว{\wbr}และ{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}พัฒนา{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ด้วย{\wbr}
+อย่างไรก็ตาม{\wbr}ใน{\wbr}บท{\wbr}นี้ เรา{\wbr}จะ{\wbr}ยัง{\wbr}ไม่{\wbr}พิจารณา{\wbr}กระบวนการ{\wbr}ดังกล่าว{\wbr}
+
+ตาราง{\wbr}ใน{\wbr}รูป{\wbr}ที่~\ref{fig:array-running-time-list-by-array}
+แสดง{\wbr}เวลา{\wbr}ที่{\wbr}เรา{\wbr}เคย{\wbr}ได้{\wbr}วิเคราะห์{\wbr}ไว้{\wbr}ใน{\wbr}รูป{\wbr}ของ{\wbr}อัตรา{\wbr}การ{\wbr}โต เมื่อ{\wbr}รายการ{\wbr}มี{\wbr}ข้อมูล $n$ จำนวน{\wbr}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{|l|c|}\hline
+กระบวนการ & เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}เมื่อ{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์ \\
+\hline
+Find & $O(n)$\\
+Append & $O(1)$\\
+Delete & $O(n)$\\
+InsertAfter & $O(n)$\\
+\hline
+\end{tabular}
+\end{center}
+\caption{เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}กระบวนการ{\wbr}ต่าง ๆ ของ{\wbr}รายการ ที่{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์}
+\label{fig:array-running-time-list-by-array}
+\end{figure}
+
+สำหรับ{\wbr}รายการ{\wbr}โดย{\wbr}ทั่วไป{\wbr}แล้ว เรา{\wbr}อาจ{\wbr}จะ{\wbr}มี{\wbr}กระบวนการ{\wbr}อื่น ๆ อีก เช่น{\wbr}
+นำ{\wbr}รายการ{\wbr}ที่{\wbr}สอง{\wbr}ไป{\wbr}ต่อท้าย{\wbr}รายการ{\wbr}แรก หรือ{\wbr}นำ{\wbr}รายการ{\wbr}หนึ่ง{\wbr}ไป{\wbr}แทรก{\wbr}ภายใน{\wbr}อีก{\wbr}รายการ{\wbr}หนึ่ง  กระบวนการ{\wbr}เหล่านี้{\wbr}สามารถ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}นัก และ{\wbr}โดยมาก{\wbr}จะ{\wbr}ใช้เวลา $O(n)$
 
 \subsection{พจนานุกรม}
 
-\section{การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}และ{\wbr}การ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน}
+\section{ตัวอย่าง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}มี{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}อื่น ๆ}
