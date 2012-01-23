@@ -559,6 +559,7 @@ f(n) \leq f'(n) \leq c\cdot n^d,
 จะ{\wbr}มี{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}โดย{\wbr}ทั่วไป{\wbr}ดังนี้{\wbr}
 
 \begin{itemize}
+\item IsEmpty($L$) ตรวจสอบ{\wbr}ว่า{\wbr}รายการ $L$ ว่างเปล่า{\wbr}หรือ{\wbr}ไม่{\wbr}
 \item Find($L$,$x$) - ค้นหา{\wbr}ข้อมูล $x$ ใน $L$ แล้ว{\wbr}คืน{\wbr}ผลลัพธ์{\wbr}เป็น{\wbr}ข้อมูล{\wbr}ที่{\wbr}ทำ{\wbr}ให้{\wbr}อ้าง{\wbr}ถึง{\wbr}
   $x$ ใน{\wbr}รายการ{\wbr}ได้ (ซึ่ง{\wbr}จะ{\wbr}ถูก{\wbr}ใช้{\wbr}ใน{\wbr}คำสั่ง Delete และ Insert ได้)
 \item Append($L$,$x$) - เพิ่ม{\wbr}ข้อมูล $x$ ท้าย{\wbr}รายการ $L$
@@ -593,6 +594,7 @@ InsertAfter และ InsertBefore ได้{\wbr}พร้อม ๆ
 \begin{tabular}{|l|c|}\hline
 กระบวนการ & เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}เมื่อ{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์ \\
 \hline
+IsEmpty & $O(1)$\\
 Find & $O(n)$\\
 Append & $O(1)$\\
 Delete & $O(n)$\\
@@ -608,5 +610,112 @@ InsertAfter & $O(n)$\\
 นำ{\wbr}รายการ{\wbr}ที่{\wbr}สอง{\wbr}ไป{\wbr}ต่อท้าย{\wbr}รายการ{\wbr}แรก หรือ{\wbr}นำ{\wbr}รายการ{\wbr}หนึ่ง{\wbr}ไป{\wbr}แทรก{\wbr}ภายใน{\wbr}อีก{\wbr}รายการ{\wbr}หนึ่ง  กระบวนการ{\wbr}เหล่านี้{\wbr}สามารถ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}นัก และ{\wbr}โดยมาก{\wbr}จะ{\wbr}ใช้เวลา $O(n)$
 
 \subsection{พจนานุกรม}
+ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ทำ{\wbr}ความ{\wbr}รู้จัก{\wbr}กับ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}ที่{\wbr}มี{\wbr}ประโยชน์{\wbr}มาก{\wbr}ที่{\wbr}เรียก{\wbr}ว่า {\em
+  พจนานุกรม} หรือ {\em dictionary}
+แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นี้{\wbr}รองรับ{\wbr}การ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ที่{\wbr}ประกอบ{\wbr}ด้วย{\wbr}ข้อมูล{\wbr}และ{\wbr}กุญแจ{\wbr}
+จากนั้น{\wbr}สามารถ{\wbr}ค้นหา{\wbr}ข้อมูล{\wbr}ได้{\wbr}ด้วย{\wbr}กุญแจ ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}
+เรา{\wbr}สามารถ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}เกี่ยวกับ{\wbr}พนักงาน{\wbr}บริษัท{\wbr}ไว้ โดย{\wbr}ใช้{\wbr}กุญแจ{\wbr}เป็น{\wbr}หมายเลข{\wbr}ประจำตัว{\wbr}พนักงาน{\wbr}
+เมื่อ{\wbr}เรา{\wbr}ต้องการ{\wbr}หา{\wbr}ข้อมูล เรา{\wbr}ก็{\wbr}จะ{\wbr}ระบุ{\wbr}หมายเลข{\wbr}ประจำตัว{\wbr}พนักงาน{\wbr}
+แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นี้{\wbr}ก็{\wbr}จะ{\wbr}คืน{\wbr}ข้อมูล{\wbr}ทั้งหมด{\wbr}ของ{\wbr}พนักงาน{\wbr}คน{\wbr}นั้น{\wbr}ให้{\wbr}
+
+ใน{\wbr}มุม{\wbr}หนึ่ง{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}แบบ{\wbr}อาร์เรย์ ก็{\wbr}เป็น{\wbr}รูปแบบ{\wbr}หนึ่ง{\wbr}ของ{\wbr}การ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}แบบ{\wbr}พจนานุกรม{\wbr}
+แต่{\wbr}กุญแจ{\wbr}ที่{\wbr}ใช้{\wbr}จะ{\wbr}ต้อง{\wbr}เป็น{\wbr}จำนวนเต็ม{\wbr}เท่านั้น{\wbr}
+นอกจากนี้{\wbr}ขนาด{\wbr}ของ{\wbr}อาร์เรย์{\wbr}ก็{\wbr}จะ{\wbr}ขึ้น{\wbr}กับ{\wbr}ค่า{\wbr}ที่{\wbr}มาก{\wbr}ที่สุด{\wbr}ของ{\wbr}กุญแจ{\wbr}
+ซึ่ง{\wbr}อาจ{\wbr}จะ{\wbr}มี{\wbr}ค่า{\wbr}มาก{\wbr}กว่า{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ที่{\wbr}ต้องการ{\wbr}เก็บ{\wbr}ลง{\wbr}ใน{\wbr}พจนานุกรม{\wbr}เป็น{\wbr}จำนวน{\wbr}มาก{\wbr}ก็ได้{\wbr}
+
+อิน{\wbr}เทอร์เฟส{\wbr}ของ{\wbr}พจนานุกรม{\wbr}มี{\wbr}รูปแบบ{\wbr}ทั่วไป{\wbr}ดังนี้{\wbr}
+\begin{itemize}
+\item IsEmpty($D$) - ตรวจสอบ{\wbr}ว่า{\wbr}พจนานุกรม $D$ ว่างเปล่า{\wbr}หรือ{\wbr}ไม่{\wbr}
+\item Insert($D$,$(k,v)$) - เพิ่ม{\wbr}ข้อมูล $v$ ลง{\wbr}ใน{\wbr}พจนานุกรม $D$ โดย{\wbr}ให้ $k$ เป้{\wbr}น{\wbr}กุญแจ{\wbr}
+\item Find($D$,$k$) - ค้นหา{\wbr}ข้อมูล{\wbr}ใน{\wbr}พจนานุกรม $D$ ที่{\wbr}มี{\wbr}กุญแจ{\wbr}เป็น $k$
+  แล้ว{\wbr}คือ{\wbr}ข้อมูล{\wbr}อ้างอิง{\wbr}ที่{\wbr}ใช้{\wbr}อ้าง{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ได้{\wbr}
+\item Delete($D$,$p$) - ลบ{\wbr}ข้อมูล{\wbr}ใน{\wbr}พจนานุกรม $D$ ที่{\wbr}ถูก{\wbr}อ้าง{\wbr}ถึง{\wbr}โดย $p$
+\end{itemize}
+
+พจนานุกรม{\wbr}ยัง{\wbr}มี{\wbr}ประเภท{\wbr}ย่อย ๆ อีก{\wbr}หลาย{\wbr}แบบ{\wbr}
+โดย{\wbr}ขึ้น{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ที่{\wbr}พจนานุกรม{\wbr}แบบ{\wbr}นั้น{\wbr}รองรับ{\wbr}การ{\wbr}ใช้{\wbr}งาน เช่น{\wbr}
+การ{\wbr}รองรับ{\wbr}กรณี{\wbr}ที่{\wbr}ข้อมูล{\wbr}หลาย{\wbr}ตัว{\wbr}มี{\wbr}กุญแจ{\wbr}ซ้ำ{\wbr}กัน เป็นต้น{\wbr}
+พจนานุกรม{\wbr}บาง{\wbr}ประเภท{\wbr}ยัง{\wbr}สามารถ{\wbr}ค้นหา{\wbr}ข้อมูล{\wbr}ที่{\wbr}มี{\wbr}กุญแจ{\wbr}น้อย{\wbr}ที่สุด (หรือ{\wbr}มาก{\wbr}ที่สุด{\wbr}ได้{\wbr}ด้วย)
+
+ใน{\wbr}ที่นี้ เพื่อ{\wbr}ความ{\wbr}ง่าย เรา{\wbr}จะ{\wbr}สมมติ{\wbr}ว่า{\wbr}ไม่{\wbr}มี{\wbr}กรณี{\wbr}ที่{\wbr}ข้อมูล{\wbr}สอง{\wbr}จำนวน{\wbr}ใช้{\wbr}กุญแจ{\wbr}เดียวกัน{\wbr}
+ถ้า{\wbr}มี{\wbr}การ{\wbr}จัด{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}สอง{\wbr}ชุด{\wbr}ด้วย{\wbr}กุญแจ{\wbr}เดียวกัน ผลลัพธ์{\wbr}ที่{\wbr}ได้{\wbr}จะ{\wbr}ขึ้น{\wbr}กับ{\wbr}รูปแบบ{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์
+
+\subsubsection{การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}แบบ{\wbr}แรก}
+
+เรา{\wbr}จะ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}กระบวนการ{\wbr}ต่าง ๆ โดย{\wbr}ใช้{\wbr}อาร์เรย์{\wbr}สำหรับ{\wbr}เก็บ{\wbr}รายการ{\wbr}สอง{\wbr}ชุด{\wbr}
+ชุด{\wbr}แรก{\wbr}เป็น{\wbr}กุญแจ อีก{\wbr}ชุด{\wbr}เป็น{\wbr}ข้อมูล{\wbr}
+เรา{\wbr}จะ{\wbr}สมมติ{\wbr}ว่า{\wbr}ทั้ง{\wbr}กุญแจ{\wbr}และ{\wbr}ข้อมูล{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}จะ{\wbr}เก็บ{\wbr}เป็น{\wbr}จำนวนเต็ม {\ct int}
+ใน{\wbr}บท{\wbr}ที่~\ref{chapter:classes}
+เรา{\wbr}จะ{\wbr}ศึกษา{\wbr}วิธี{\wbr}ที่{\wbr}ทำ{\wbr}ให้{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ที่{\wbr}เรา{\wbr}เขียน{\wbr}ทำงาน{\wbr}กับ{\wbr}ข้อมูล{\wbr}ประเภท{\wbr}ใด{\wbr}ก็ได้{\wbr}
+
+ใน{\wbr}ที่นี้{\wbr}เรา{\wbr}จะ{\wbr}ประกาศ{\wbr}อาร์เรย์{\wbr}สำหรับ{\wbr}รายการ{\wbr}ดังนี้{\wbr}
+\latintext
+\begin{codelist}{C++}{}
+int keys[max_size];
+int values[max_size];
+int dict_size;
+\end{codelist}
+\thaitext
+
+การ{\wbr}สร้าง{\wbr}พจนานุกรม{\wbr}เปล่า{\wbr}ทำ{\wbr}โดย{\wbr}กำหนด{\wbr}ให้{\wbr}ตัวแปร {\ct dict\_size} มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ{\wbr}ศูนย์{\wbr}
+การ{\wbr}ทดสอบ IsEmpty ทำ{\wbr}ได้{\wbr}โดย{\wbr}การ{\wbr}ตรวจสอบ{\wbr}ตัวแปร{\wbr}ดังกล่าว{\wbr}
+
+กระบวนการ Insert สามารถ{\wbr}จัดการ{\wbr}ได้{\wbr}โดย{\wbr}ใช้{\wbr}กระบวนการ Append ของ{\wbr}รายการ{\wbr}ที่{\wbr}เขียน{\wbr}โดย{\wbr}อาร์เรย์
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext โปรแกรม{\wbr}การ Insert ที่{\wbr}เรียก{\wbr}ใช้ {\ct list\_append} ที่ทำงาน{\wbr}ผิดพลาด\latintext},label=code:analysis-buggy-dict-insert}
+// BROKEN
+void dict_insert(int keys[], int values[], int& size, 
+                 int k, int v) 
+{
+  list_append(keys, size, k);
+  list_append(values, size, v);
+}
+\end{codelist}
+\thaitext
+\end{figure}
+
+\begin{quiz}{}
+พิจารณา{\wbr}ฟังก์ชัน{\wbr}เพิ่ม{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}ดัง{\wbr}โปรแกรม{\wbr}ที่~\ref{code:analysis-buggy-dict-insert}
+ฟังก์ชัน{\wbr}ดังกล่าว{\wbr}เรียก{\wbr}ใช้{\wbr}การ Append จาก{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}รายการ{\wbr}ที่{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์
+โปรแกรม{\wbr}ทำงาน{\wbr}ผิดพลาด{\wbr}เพราะว่า{\wbr}อะไร? 
+\end{quiz}
+
+ตัวอย่าง{\wbr}ข้างต้น{\wbr}แสดง{\wbr}ให้{\wbr}เห็น{\wbr}ความผิด{\wbr}พลาด{\wbr}ที่{\wbr}เกิด{\wbr}จาก{\wbr}การ{\wbr}ใช้{\wbr}รายการ{\wbr}เขียน{\wbr}พัฒนา{\wbr}บน{\wbr}อาร์เรย์{\wbr}สอง{\wbr}รายการ{\wbr}
+แต่{\wbr}มี{\wbr}การ{\wbr}เปิด{\wbr}ใช้{\wbr}ตัวแปร {\ct list\_size} ร่วม{\wbr}กัน{\wbr}
+การ{\wbr}เปิด{\wbr}ให้{\wbr}มี{\wbr}การ{\wbr}จัดการ{\wbr}ข้อมูล{\wbr}ภายใน{\wbr}โดย{\wbr}ตรง{\wbr}อาจ{\wbr}ส่ง{\wbr}ให้{\wbr}เกิด{\wbr}ผลข้างเคียง{\wbr}ได้{\wbr}
+ใน{\wbr}การ{\wbr}พัฒนา{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ด้วย{\wbr}ภาษา C++
+เรา{\wbr}สามารถ{\wbr}ป้องกัน{\wbr}ปัญหา{\wbr}ดังกล่าว{\wbr}ได้{\wbr}โดย{\wbr}การ{\wbr}กำหนด{\wbr}ขอบเขต{\wbr}การ{\wbr}เข้าถึง{\wbr}ข้อมูล{\wbr}
+(จะ{\wbr}ได้{\wbr}ศึกษา{\wbr}ใน{\wbr}บท{\wbr}ที่~\ref{chapter:classes})
+
+Find และ Delete ทำงาน{\wbr}ได้{\wbr}ไม่{\wbr}ต่าง{\wbr}จาก{\wbr}การ{\wbr}
+
+\begin{quiz}{}
+ถ้า{\wbr}มี{\wbr}การ{\wbr}สั่ง Insert ด้วย{\wbr}ข้อมูล{\wbr}สอง{\wbr}จำนวน{\wbr}ที่{\wbr}มี{\wbr}กุญแจ{\wbr}เดียวกัน{\wbr}
+จะ{\wbr}มี{\wbr}ผล{\wbr}ต่อ{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ที่{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}วิธี{\wbr}นี้{\wbr}อย่างไร{\wbr}
+\end{quiz}
+
+\subsubsection{การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}อีก{\wbr}รูปแบบ{\wbr}หนึ่ง}
+
+แทน{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}จัด{\wbr}เก็บ{\wbr}
+
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{|l|c|c|}\hline
+กระบวนการ & เก็บ{\wbr}ตาม{\wbr}ลำดับ{\wbr}การ{\wbr}ใส่{\wbr}ข้อมูล & เก็บ{\wbr}เรียง{\wbr}ตาม{\wbr}กุญแจ \\
+\hline
+IsEmpty & $O(1)$ & $O(1)$ \\
+Insert & $O(1)$ & $O(n)$ \\
+Find & $O(n)$ & $O(n)$ หรือ $O(\log n)$ ถ้า{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค \\
+Delete & $O(n)$ & $O(n)$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}กระบวนการ{\wbr}ต่าง ๆ ของ{\wbr}พจนานุกรม ที่{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ทั้ง{\wbr}สอง{\wbr}แบบ}
+\label{fig:array-running-time-dict-by-array}
+\end{figure}
+
 
 \section{ตัวอย่าง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}มี{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}อื่น ๆ}
