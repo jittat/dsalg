@@ -607,7 +607,54 @@ InsertAfter & $O(n)$\\
 \end{figure}
 
 สำหรับ{\wbr}รายการ{\wbr}โดย{\wbr}ทั่วไป{\wbr}แล้ว เรา{\wbr}อาจ{\wbr}จะ{\wbr}มี{\wbr}กระบวนการ{\wbr}อื่น ๆ อีก เช่น{\wbr}
-นำ{\wbr}รายการ{\wbr}ที่{\wbr}สอง{\wbr}ไป{\wbr}ต่อท้าย{\wbr}รายการ{\wbr}แรก หรือ{\wbr}นำ{\wbr}รายการ{\wbr}หนึ่ง{\wbr}ไป{\wbr}แทรก{\wbr}ภายใน{\wbr}อีก{\wbr}รายการ{\wbr}หนึ่ง  กระบวนการ{\wbr}เหล่านี้{\wbr}สามารถ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}นัก และ{\wbr}โดยมาก{\wbr}จะ{\wbr}ใช้เวลา $O(n)$
+นำ{\wbr}รายการ{\wbr}ที่{\wbr}สอง{\wbr}ไป{\wbr}ต่อท้าย{\wbr}รายการ{\wbr}แรก หรือ{\wbr}นำ{\wbr}รายการ{\wbr}หนึ่ง{\wbr}ไป{\wbr}แทรก{\wbr}ภายใน{\wbr}อีก{\wbr}รายการ{\wbr}หนึ่ง{\wbr}
+กระบวนการ{\wbr}เหล่านี้{\wbr}สามารถ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}นัก และ{\wbr}โดยมาก{\wbr}จะ{\wbr}ใช้เวลา{\wbr}
+$O(n)$
+
+\subsubsection{การ{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}ชุด{\wbr}ของ{\wbr}ข้อมูล}
+
+อิน{\wbr}เทอร์เฟส{\wbr}ที่{\wbr}เรา{\wbr}กล่าว{\wbr}ไป{\wbr}แล้ว{\wbr}นั้น{\wbr}ยัง{\wbr}ขาด{\wbr}กลุ่ม{\wbr}กระบวนการ{\wbr}เข้าถึง{\wbr}ข้อมูล{\wbr}ทุก{\wbr}ตัว{\wbr}ใน{\wbr}รายการ{\wbr}ไป{\wbr}ทีละ{\wbr}ตัว{\wbr}
+รูปแบบ{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}ใช้{\wbr}จะ{\wbr}สอดคล้อง{\wbr}กับ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ตัว{\wbr}วิ่ง (iterator) ใน{\wbr}ไลบ{\wbr}รา{\wbr}รี{\wbr}มาตรฐาน{\wbr}ของ C++
+
+ใน{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ทุก{\wbr}ตัว{\wbr}ใน{\wbr}รายการ{\wbr}
+เรา{\wbr}จะ{\wbr}ใช้{\wbr}ตัว{\wbr}วิ่ง{\wbr}ที่{\wbr}มี{\wbr}ลักษณะ{\wbr}การ{\wbr}ทำงาน{\wbr}เหมือน{\wbr}กับ{\wbr}การ{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}อาร์เรย์
+สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}กรณี{\wbr}ของ{\wbr}อาร์เรย์ เรา{\wbr}ยัง{\wbr}สามารถ{\wbr}ใช้{\wbr}ดัชนี{\wbr}ใน{\wbr}การ{\wbr}ไล่{\wbr}พิจารณา{\wbr}ข้อมูล{\wbr}ทุก{\wbr}ตัว{\wbr}ได้{\wbr}
+แต่{\wbr}กับ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}อื่น ๆ การ{\wbr}ใช้{\wbr}ดัชนี{\wbr}อาจ{\wbr}จะ{\wbr}ไม่{\wbr}ใช้{\wbr}วิธี{\wbr}ที่{\wbr}เป็นธรรม{\wbr}ชาติ{\wbr}นัก{\wbr}
+
+ตัว{\wbr}วิ่ง{\wbr}ที่{\wbr}ใช้{\wbr}ใน{\wbr}การ{\wbr}ไล่{\wbr}พิจารณา{\wbr}ข้อมูล{\wbr}นี้ มัก{\wbr}นิยม{\wbr}ใช้{\wbr}ใน{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ใน{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}กระบวนการ{\wbr}เช่น{\wbr}
+Delete หรือ InsertAfter ด้วย{\wbr}
+
+เรา{\wbr}จะ{\wbr}นิยาม{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}เพิ่มเติม{\wbr}ดังนี้{\wbr}
+\begin{itemize}
+\item Begin($L$) คืนตัว{\wbr}วิ่ง{\wbr}ที่{\wbr}อ้าง{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ตัว{\wbr}แรก{\wbr}ใน{\wbr}รายการ $L$
+\item End($L$) คืนตัว{\wbr}วิ่ง{\wbr}ที่{\wbr}อ้าง{\wbr}ถึง{\wbr}ตำแหน่ง{\wbr}ที่{\wbr}ไม่{\wbr}มี{\wbr}ข้อมูล{\wbr}แล้ว{\wbr}ของ{\wbr}รายการ $L$
+  (เรา{\wbr}จะ{\wbr}ใช้{\wbr}ตัว{\wbr}วิ่ง{\wbr}นี้{\wbr}ใน{\wbr}การ{\wbr}ระบุ{\wbr}จุดสิ้นสุด{\wbr}ของ{\wbr}ข้อมูล)
+\item Next($p$) คืนตัว{\wbr}วิ่ง{\wbr}ที่{\wbr}อ้าง{\wbr}ถึง{\wbr}ข้อมูล{\wbr}ถัดจาก{\wbr}ตัว{\wbr}วิ่ง $p$
+\item Value($p$) คือ{\wbr}ข้อมูล{\wbr}ที่{\wbr}อ้าง{\wbr}ถึง{\wbr}โดย{\wbr}ตัว{\wbr}วิ่ง $p$
+\end{itemize}
+
+การ{\wbr}ใช้{\wbr}งาน{\wbr}ตัว{\wbr}วิ่ง{\wbr}จะ{\wbr}มี{\wbr}ลักษณะ{\wbr}เดียวกัน{\wbr}กับ{\wbr}การ{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}อาร์เรย์ ดัง{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:analysis-iterator-and-pointer}
+
+\latintext
+\begin{codelist}{C++}{caption={\thaitext โปรแกรม{\wbr}ที่{\wbr}หา{\wbr}ผลรวม{\wbr}โดย{\wbr}การ{\wbr}ใช้{\wbr}ตัว{\wbr}วิ่ง{\wbr}ผ่าน{\wbr}ทาง{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}เทียบ{\wbr}กับ{\wbr}การ{\wbr}ใช้{\wbr}พอยน์เตอร์\latintext},label=code:analysis-iterator-and-pointer}
+int list_sum_itr(int list[],          | int list_sum_ptr(int list[],
+                 int size)            |                  int size)
+{                                     | {
+  int s = 0;                          |   int s = 0;
+  for(int* i = list_begin(list,size); |   for(int* i = &list[0];
+      i != list_end(list,size);       |       i != &list[size];
+      i = list_itr_next(i)) {         |       i = i + 1) {
+    s += list_itr_value(i);           |     s += *i;
+  }                                   |   }
+  return s;                           |   return s;
+}                                     | }
+\end{codelist}
+\thaitext
+
+ใน{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}เขียน{\wbr}การ{\wbr}ดำเนินการ{\wbr}ดังกล่าว{\wbr}ใน{\wbr}ลักษณะ{\wbr}ของ{\wbr}ฟังก์ชัน{\wbr}ธรรมดา{\wbr}
+ซึ่ง{\wbr}จะ{\wbr}ทำ{\wbr}ให้การ{\wbr}เรียก{\wbr}ใช้{\wbr}ค่อนข้าง{\wbr}ยุ่งยาก{\wbr}ไม่{\wbr}สะดวก{\wbr}เหมือน{\wbr}กับ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}พอยน์เตอร์
+ใน{\wbr}บท{\wbr}ที่~\ref{chapter:classes} เรา{\wbr}จะ{\wbr}ใช้{\wbr}การ{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}ของ{\wbr}ตัวดำเนินการ (operator
+overloading) ทำ{\wbr}ให้{\wbr}กระบวนการ{\wbr}ดังกล่าว{\wbr}มี{\wbr}รูปแบบ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}เหมือน{\wbr}กับ{\wbr}พอยน์เตอร์{\wbr}ดัง{\wbr}ด้าน{\wbr}ขวา{\wbr}
 
 \subsection{พจนานุกรม}
 ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ทำ{\wbr}ความ{\wbr}รู้จัก{\wbr}กับ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}ที่{\wbr}มี{\wbr}ประโยชน์{\wbr}มาก{\wbr}ที่{\wbr}เรียก{\wbr}ว่า {\em
