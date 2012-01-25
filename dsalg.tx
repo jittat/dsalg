@@ -13,6 +13,8 @@
 %\usepackage{courier}
 \usepackage[utf8x]{inputenc}
 
+\usepackage{calc}
+
 \usepackage{wrapfig}
 
 \lstset{basicstyle=\ttfamily,frame=tlrb}
@@ -33,6 +35,7 @@
   \setlength{\intextsep}{0pt}
   \framed\begin{wrapfigure}{r}{0in}{\latintext (\thealgtctr)}\end{wrapfigure}
 }{\endframed}
+\newlength{\algbackindent}
 
 \newcounter{probctr}[chapter] \setcounter{probctr}{0}
 \renewcommand\theprobctr{\arabic{chapter}.\arabic{probctr}}

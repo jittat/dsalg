@@ -9,7 +9,12 @@ def parse_line(line)
   return c, line[(c+1)..-1]
 end
 
+line_no = false
 label = ARGV[0] || ""
+if label=='*'
+  line_no = true
+  label = ARGV[1] || ""
+end
 
 lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
 $stdout.write "\\begin{algt}\n"
@@ -20,10 +25,17 @@ if title != "*"
 else
   $stdout.write "\\noindent "
 end
-first = true
+n = 1
 lines.each do |line|
-  $stdout.write "\\\\\n" if !first
-  first = false
+  $stdout.write "\\\\\n" if n != 1
+  if line_no
+    lnum = "#{n}."
+    $stdout.write lnum
+    $stdout.write "\\settowidth{\\algbackindent}{#{lnum}}"
+    $stdout.write "\\hspace*{-\\algbackindent}"
+  end
+  n += 1
+
   indent, rest = parse_line(line.chomp)
   indent_str = "\\hspace*{0.2in}" * indent
   $stdout.write "#{indent_str} #{rest}"
