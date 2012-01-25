@@ -34,6 +34,15 @@
   \framed\begin{wrapfigure}{r}{0in}{\latintext (\thealgtctr)}\end{wrapfigure}
 }{\endframed}
 
+\newcounter{probctr}[chapter] \setcounter{probctr}{0}
+\renewcommand\theprobctr{\arabic{chapter}.\arabic{probctr}}
+\newenvironment{prob}[1]{
+\refstepcounter{probctr}
+\noindent\hrulefill\\
+{\bf โจทย์ปัญหา \theprobctr} \ \ #1\\}{\hrulefill\vspace{0.05in}}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
 \renewcommand{\lstlistingname}{\thaitext โปรแกรมที่\latintext}
 \lstnewenvironment{codelist}[2]{\lstset{language=#1,#2}}{}
 

@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
+
+if lines[0].strip == '*'
+  title = ""
+  lines.shift
+else
+  title = lines.shift
+end
+
+puts "\\begin{prob}{#{title.strip}}"
+lines.each do |line|
+  $stdout.write(line)
+end
+puts "\\end{prob}"
