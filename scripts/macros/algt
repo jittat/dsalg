@@ -11,9 +11,9 @@ end
 
 line_no = false
 label = ARGV[0] || ""
-if label=='*'
+if label.index('*,') == 0
   line_no = true
-  label = ARGV[1] || ""
+  label = label.slice(2,label.length-2)
 end
 
 lines = $stdin.readlines.collect {|l| l.force_encoding("utf-8")}
