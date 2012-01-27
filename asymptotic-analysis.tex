@@ -627,6 +627,10 @@ $O(n)$
 
 ดังนั้น{\wbr}เวลา{\wbr}รวม{\wbr}คือ $O(1) + O(n) + O(n^2)$ ซึ่ง{\wbr}สามารถ{\wbr}แสดง{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}ว่า{\wbr}คือ $O(n^2)$
 
+เรา{\wbr}จะ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อีก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}หนึ่ง 
+
+TODO: เขียน{\wbr}ส่วน{\wbr}นี้ ให้{\wbr}มี{\wbr}การ{\wbr}เปลี่ยน{\wbr}เทียบ{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}สอง{\wbr}อัน{\wbr}ที่{\wbr}เวลา{\wbr}ไม่{\wbr}เท่า{\wbr}กัน แสดง{\wbr}กราฟ{\wbr}
+
 ใน{\wbr}ส่วน{\wbr}ถัด{\wbr}ไป{\wbr}ของ{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}หลาย{\wbr}แบบ{\wbr}ที่{\wbr}พัฒนา{\wbr}บน{\wbr}อาร์เรย์
 และ{\wbr}ใน{\wbr}ส่วน{\wbr}สุดท้าย{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}พิจารณา{\wbr}ตัวอย่าง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}มี{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}อื่น ๆ
 
@@ -697,7 +701,7 @@ InsertAfter & $O(n)$\\
 สำหรับ{\wbr}รายการ{\wbr}โดย{\wbr}ทั่วไป{\wbr}แล้ว เรา{\wbr}อาจ{\wbr}จะ{\wbr}มี{\wbr}กระบวนการ{\wbr}อื่น ๆ อีก เช่น{\wbr}
 นำ{\wbr}รายการ{\wbr}ที่{\wbr}สอง{\wbr}ไป{\wbr}ต่อท้าย{\wbr}รายการ{\wbr}แรก หรือ{\wbr}นำ{\wbr}รายการ{\wbr}หนึ่ง{\wbr}ไป{\wbr}แทรก{\wbr}ภายใน{\wbr}อีก{\wbr}รายการ{\wbr}หนึ่ง{\wbr}
 กระบวนการ{\wbr}เหล่านี้{\wbr}สามารถ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ได้{\wbr}ไม่{\wbr}ยาก{\wbr}นัก และ{\wbr}โดยมาก{\wbr}จะ{\wbr}ใช้เวลา{\wbr}
-$O(n)$
+$O(n)$ เมื่อ $n$ แทน{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ที่อยู่{\wbr}ใน{\wbr}รายการ{\wbr}
 
 \subsubsection{การ{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}ชุด{\wbr}ของ{\wbr}ข้อมูล}
 
@@ -788,7 +792,15 @@ void list_delete(int list[], int size, list_itr p)
 ทดลอง{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}ทั้งหมด{\wbr}ใน{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}รายการ{\wbr}ด้วย{\wbr}อาร์เรย์
 \end{quiz}
 
+เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}ฟังก์ชัน{\wbr}ที่{\wbr}เกี่ยวกับ{\wbr}ตัว{\wbr}วิ่ง{\wbr}ทั้งหมด{\wbr}เป็น{\wbr}ค่าคงที่ นั่น{\wbr}คือ{\wbr}ใช้เวลา $O(1)$ 
+
 \subsection{พจนานุกรม}
+พิจารณา{\wbr}ปัญหา{\wbr}ต่อไปนี้{\wbr}
+
+\begin{prob}{}
+TODO: เพิ่ม{\wbr}ปัญหา{\wbr}ที่{\wbr}มี{\wbr}การ{\wbr}ใช้{\wbr}พจนานุกรม{\wbr}
+\end{prob}
+
 ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ทำ{\wbr}ความ{\wbr}รู้จัก{\wbr}กับ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}ที่{\wbr}มี{\wbr}ประโยชน์{\wbr}มาก{\wbr}ที่{\wbr}เรียก{\wbr}ว่า {\em
   พจนานุกรม} หรือ {\em dictionary}
 แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นี้{\wbr}รองรับ{\wbr}การ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ที่{\wbr}ประกอบ{\wbr}ด้วย{\wbr}ข้อมูล{\wbr}และ{\wbr}กุญแจ{\wbr}
@@ -910,15 +922,128 @@ int dict_find(int keys[], int values[], int size, int x)
 เรจะ{\wbr}เปลี่ยน{\wbr}ไป{\wbr}คืน{\wbr}ค่า{\wbr}เป็น{\wbr}ตัว{\wbr}วิ่ง{\wbr}ที่{\wbr}แสดง{\wbr}ถึง{\wbr}สถานะ{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}ไม่{\wbr}มี (เช่น{\wbr}ที่{\wbr}คืน{\wbr}จาก {\ct
   list\_itr\_end} เป็นต้น) ตาม{\wbr}รูปแบบ{\wbr}ของ{\wbr}ไลบ{\wbr}รา{\wbr}รี{\wbr}มาตรฐาน{\wbr}
 
-เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}ฟั
+เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}ฟังก์ชั่น{\wbr}ต่าง ๆ
+แสดง{\wbr}ใน{\wbr}ตาราง{\wbr}ใน{\wbr}รูป{\wbr}ที่~\ref{fig:array-running-time-dict-by-array}
 
 \begin{quiz}{}
 เขียน{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}สำหรับ{\wbr}กระบวนการ Delete ข้อมูล{\wbr}ใน{\wbr}รายการ และ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}
 \end{quiz}
 
 \subsubsection{การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}อีก{\wbr}รูปแบบ{\wbr}หนึ่ง}
-ใน{\wbr}ส่วน{\wbr}ที่แล้ว เรา{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ใน{\wbr}พจนา{\wbr}
+วิธีการ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ที่แล้ว{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ใน{\wbr}พจนานุกรม{\wbr}ลง{\wbr}ใน{\wbr}อาร์เรย์{\wbr}โดย{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}จัด{\wbr}ระบบ{\wbr}ใด ๆ เลย{\wbr}
+ทำ{\wbr}ให้การ{\wbr}หา{\wbr}ข้อมูล{\wbr}จำเป็น{\wbr}ต้อง{\wbr}พิจารณา{\wbr}ข้อมูล{\wbr}ทุก{\wbr}ตัว{\wbr}ใน{\wbr}อาร์เรย์
 
+\begin{quiz}{}
+ลอง{\wbr}เสนอ{\wbr}วิธีการ{\wbr}ต่าง ๆ ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}ใน{\wbr}การ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}ให้{\wbr}เป็น{\wbr}ระบบ{\wbr}มาก{\wbr}ขึ้น{\wbr}
+เพื่อ{\wbr}ทำ{\wbr}ให้การ{\wbr}ค้น{\wbr}ข้อมูล{\wbr}ทำ{\wbr}ได้{\wbr}ง่าย{\wbr}
+\end{quiz}
+
+เรา{\wbr}จะ{\wbr}ทดลอง{\wbr}วิธี{\wbr}ง่าย ๆ ที่{\wbr}เรา{\wbr}ก็{\wbr}มัก{\wbr}ใช้{\wbr}ใน{\wbr}ชีวิต{\wbr}ประจำวัน{\wbr}
+นั่น{\wbr}คือ{\wbr}การ{\wbr}เรียง{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}ที่{\wbr}เก็บ{\wbr}ใน{\wbr}อาร์เรย์{\wbr}ตาม{\wbr}ลำดับ{\wbr}ของ{\wbr}กุญแจ{\wbr}
+ข้อเสีย{\wbr}ของ{\wbr}เงื่อนไข{\wbr}นี้{\wbr}คือ{\wbr}การ{\wbr}เพิ่ม{\wbr}ข้อมูล{\wbr}ใน{\wbr}พจนานุกรม{\wbr}จะ{\wbr}ใช้เวลา{\wbr}มาก{\wbr}ขึ้น{\wbr}
+เนื่องจาก{\wbr}เรา{\wbr}จะ{\wbr}ต้อง{\wbr}แทรก{\wbr}ข้อมูล{\wbr}ลง{\wbr}ไป{\wbr}ใน{\wbr}ตำแหน่ง{\wbr}ที่{\wbr}เหมาะสม อย่างไรก็ตาม{\wbr}
+เงื่อนไข{\wbr}นี้{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}จัดการ{\wbr}กรณี{\wbr}ที่{\wbr}มี{\wbr}การ{\wbr}เพิ่ม{\wbr}ข้อมูล{\wbr}ที่{\wbr}ใช้{\wbr}กุญแจ{\wbr}ซ้ำ{\wbr}กัน{\wbr}ได้{\wbr}
+
+จาก{\wbr}ข้อกำหนด{\wbr}ดังกล่าว{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}สามารถ{\wbr}พัฒนา{\wbr}กระบวนการ{\wbr}ค้นหา{\wbr}ข้อมูล{\wbr}ให้{\wbr}เร็ว{\wbr}ขึ้น{\wbr}ได้ กล่าวคือ{\wbr}
+ถ้า{\wbr}เรา{\wbr}ต้องการ{\wbr}หา{\wbr}ข้อมูล{\wbr}ที่{\wbr}มี{\wbr}กุญแจ $k$ โดย{\wbr}การ{\wbr}ไล่{\wbr}พิจารณา{\wbr}กุญแจ{\wbr}ที่{\wbr}มี{\wbr}ค่า{\wbr}น้อย{\wbr}ที่สุด{\wbr}
+จนกระทั่ง{\wbr}เรา{\wbr}พบ{\wbr}กุญแจ{\wbr}ที่{\wbr}มี{\wbr}ค่า{\wbr}มาก{\wbr}กว่า $k$ เรา{\wbr}จะ{\wbr}ทราบ{\wbr}ได้{\wbr}ทัน{\wbr}ที่{\wbr}ว่า{\wbr}
+ข้อมูล{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}หาไม่{\wbr}อยู่{\wbr}ใน{\wbr}พจนานุกรม{\wbr}อย่าง{\wbr}แน่นอน เรา{\wbr}เขียน{\wbr}ฟังก์ชัน {\ct dict\_find}
+สำหรับ{\wbr}กรณี{\wbr}นี้{\wbr}ได้{\wbr}ดังนี้{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+int dict_find(int keys[], int values[], int size, int x)
+{
+  for(int i = 0; i != size; ++i) {
+    if(keys[i] == x)
+      return i;
+    if(keys[i] > x)
+      return -1;
+  }
+  return -1; 
+}
+\end{codelist}
+\thaitext
+
+\begin{quiz}{}
+กรณี{\wbr}ใด{\wbr}บ้าง{\wbr}ที่{\wbr}ฟังก์ชัน {\ct dict\_find}
+ทำงาน{\wbr}ได้{\wbr}เร็ว{\wbr}กว่า{\wbr}ฟังก์ชัน{\wbr}เดียวกัน{\wbr}ใน{\wbr}กรณี{\wbr}ที่{\wbr}ข้อมูล{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}เรียงลำดับ{\wbr}
+กรณี{\wbr}ใด{\wbr}บ้าง{\wbr}ที่{\wbr}ไม่{\wbr}มี{\wbr}ประโยชน์{\wbr}เลย{\wbr}
+\end{quiz}
+
+ใน{\wbr}ฟังก์ชัน{\wbr}ดังกล่าว เรา{\wbr}ใช้ประโยชน์{\wbr}จาก{\wbr}การ{\wbr}ที่{\wbr}ข้อมูล{\wbr}เรียง{\wbr}กัน{\wbr}ใน{\wbr}การ{\wbr}จบ{\wbr}การ{\wbr}ทำงาน{\wbr}เร็ว{\wbr}กว่า{\wbr}กำหนด{\wbr}
+อย่างไรก็ตาม{\wbr}เรา{\wbr}มี{\wbr}วิธีการ{\wbr}ที่{\wbr}จะ{\wbr}ค้นหา{\wbr}ได้{\wbr}เร็ว{\wbr}กว่า{\wbr}นั้น{\wbr}ใน{\wbr}แทบ{\wbr}จะ{\wbr}ทุก ๆ กรณี{\wbr}
+วิธี{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}ใช้{\wbr}นั้น{\wbr}มี{\wbr}ลักษณะ{\wbr}เดียวกับ{\wbr}เทคนิค{\wbr}ที่{\wbr}เรา{\wbr}ใช้{\wbr}ใน{\wbr}การ{\wbr}เล่น{\wbr}เกม{\wbr}ทาย{\wbr}เลข{\wbr}
+
+\begin{quiz}{เกม{\wbr}ทาย{\wbr}เลข}
+เกม{\wbr}ทาย{\wbr}เลข{\wbr}เป็น{\wbr}เกม{\wbr}ระหว่าง{\wbr}ผู้{\wbr}เล่น{\wbr}สอง{\wbr}คน ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}นึก{\wbr}ตัวเลข{\wbr}ระหว่าง 1 - 100
+จากนั้น{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}จะ{\wbr}ทาย{\wbr}ตัวเลข{\wbr}ตัว{\wbr}นั้น{\wbr}
+ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}จะ{\wbr}ใบ้{\wbr}โดย{\wbr}การ{\wbr}บอก{\wbr}ว่า{\wbr}ตัวเลข{\wbr}ที่{\wbr}ทาย{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ มาก{\wbr}กว่า หรือ{\wbr}น้อย{\wbr}กว่า{\wbr}ตัวเลข{\wbr}ที่{\wbr}นึก{\wbr}ไว้{\wbr}
+ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}จะ{\wbr}ใช้{\wbr}ข้อมูล{\wbr}ดังกล่าว{\wbr}ใน{\wbr}การ{\wbr}เลือก{\wbr}เลขที่{\wbr}จะ{\wbr}ทาย{\wbr}ตัว{\wbr}ต่อ ๆ ไป{\wbr}
+
+ให้{\wbr}หา{\wbr}วิธีการ{\wbr}ถาม{\wbr}ของ{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง เพื่อให้{\wbr}ได้{\wbr}คำตอบ{\wbr}เร็ว{\wbr}ที่สุด{\wbr}สำหรับ{\wbr}ทุก ๆ
+ตัวเลข{\wbr}ที่{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}นึก{\wbr}ไว้{\wbr}
+
+(คำ{\wbr}ใบ้: เกม{\wbr}ดังกล่าว{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}จะ{\wbr}สามารถ{\wbr}ทาย{\wbr}คำตอบ{\wbr}โดย{\wbr}ทาย{\wbr}เลข{\wbr}ไม่{\wbr}เกิน 7 ครั้ง)
+\end{quiz}
+
+\begin{quiz}{}
+ทำไม{\wbr}การ{\wbr}ถาม{\wbr}ที่{\wbr}ตอบ{\wbr}มา{\wbr}จึง{\wbr}สามารถ{\wbr}หา{\wbr}คำตอบ{\wbr}ได้{\wbr}เร็ว{\wbr}กว่า{\wbr}การ{\wbr}ไล่{\wbr}ถาม{\wbr}จาก $1,2,3,\ldots$ ? 
+
+คำ{\wbr}ใบ้: ให้{\wbr}พิจารณา{\wbr}จำนวน{\wbr}คำตอบ{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}ใน{\wbr}เวลา{\wbr}หนึ่ง ๆ
+\end{quiz}
+
+ถ้า{\wbr}เรา{\wbr}ไม่{\wbr}มี{\wbr}ข้อมูล{\wbr}อะไร{\wbr}เลย นั่น{\wbr}หมายความ{\wbr}ว่า{\wbr}เรา{\wbr}เชื่อ{\wbr}ว่า{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}อาจ{\wbr}จะ{\wbr}นึก{\wbr}ตัวเลข{\wbr}ใด ๆ
+ก็ได้{\wbr}ตั้งแต่ 1 - 100 ดังนั้น โดย{\wbr}ทั่วไป{\wbr}แล้ว เรา{\wbr}มักจะ{\wbr}ถาม{\wbr}เลข{\wbr}ตัว{\wbr}แรก{\wbr}เป็น 50 หรือ 49
+
+ตัวเลข{\wbr}นี้{\wbr}มี{\wbr}ความ{\wbr}น่า{\wbr}สนใจ{\wbr}เป็นพิเศษ{\wbr}
+
+\begin{quiz}{เลข 50}
+ทำไม{\wbr}การ{\wbr}เลือก{\wbr}ทาย{\wbr}ค่า 50 จึง{\wbr}น่าจะ ``มี{\wbr}ประโยชน์'' มาก{\wbr}กว่า{\wbr}เริ่ม{\wbr}ทาย{\wbr}ด้วย 10 หรือ 5 หรือ 1
+
+คำ{\wbr}ใบ้: พิจารณา{\wbr}ผล{\wbr}ที่{\wbr}ได้{\wbr}จาก{\wbr}การ{\wbr}ทาย 50 เมื่อ{\wbr}ได้{\wbr}รับคำ{\wbr}บอกใบ้{\wbr}จาก{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}
+\end{quiz}
+
+ถ้า{\wbr}เรา{\wbr}ใช้{\wbr}หลัก{\wbr}คิด{\wbr}ดังกล่าว ซ้ำ{\wbr}ไป{\wbr}เรื่อย ๆ กับ{\wbr}ผลลัพธ์{\wbr}ที่{\wbr}ได้{\wbr}
+เรา{\wbr}จะ{\wbr}ทาย{\wbr}ค่า{\wbr}ตรง{\wbr}กลาง{\wbr}ของ{\wbr}ขอบเขต{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}ที่{\wbr}เหลือ{\wbr}ตลอด จนกว่า{\wbr}จะ{\wbr}ไม่{\wbr}มี{\wbr}ค่า{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}อีก{\wbr}
+
+\begin{quiz}{กรณี{\wbr}แย่{\wbr}สุด}
+ถ้า{\wbr}ใช้{\wbr}วิธี{\wbr}ดังกล่าว เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ทาย{\wbr}อย่าง{\wbr}มาก{\wbr}ที่สุด{\wbr}กี่{\wbr}ครั้ง?  อธิบาย{\wbr}เหตุผล{\wbr}ประกอบ{\wbr}
+\end{quiz}
+\begin{quizans}
+เรา{\wbr}จะ{\wbr}พิจารณา{\wbr}ให้{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}พยายาม{\wbr}เล่น{\wbr}ให้{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}ต้อง{\wbr}ทาย{\wbr}ให้{\wbr}มาก{\wbr}ครั้ง{\wbr}ที่สุด{\wbr}เท่า{\wbr}ที่{\wbr}จะ{\wbr}ทำ{\wbr}ได้{\wbr}
+เมื่อ{\wbr}เขา{\wbr}ทาย{\wbr}ค่า 50 ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}สามารถ{\wbr}ตอบ{\wbr}ว่า ผลลัพธ์{\wbr}ถูกต้อง (จบ{\wbr}เลย{\wbr}ไม่{\wbr}ทาย{\wbr}ต่อ),
+ค่า{\wbr}ที่{\wbr}ทาย{\wbr}มี{\wbr}ค่า{\wbr}มาก{\wbr}กว่า{\wbr}ค่า{\wbr}ที่{\wbr}สมมติ (ค่า{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}ต่อไป{\wbr}คือ 1-49), หรือ{\wbr}
+ค่า{\wbr}ที่{\wbr}ทำนาย{\wbr}มี{\wbr}ค่า{\wbr}น้อย{\wbr}กว่า{\wbr}ค่า{\wbr}ที่{\wbr}สมมติ (ค่า{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}ต่อไป{\wbr}คือ 51 - 100)
+สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}กรณี{\wbr}ที่{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}ตอบ{\wbr}ว่า{\wbr}ค่า{\wbr}ที่{\wbr}ทำ{\wbr}นาน{\wbr}มี{\wbr}ค่า{\wbr}น้อย{\wbr}กว่า{\wbr}ค่า{\wbr}ที่{\wbr}สมมติ{\wbr}
+ทำ{\wbr}ให้{\wbr}ตัวเลือก{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}เหลือ 50 ตัวเลือก{\wbr}ซึ่ง{\wbr}มาก{\wbr}ที่สุด{\wbr}เท่า{\wbr}ที่{\wbr}จะ{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}แล้ว{\wbr}
+ถ้า{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}เริ่ม{\wbr}ถาม{\wbr}ด้วย{\wbr}ค่า 50
+
+จะ{\wbr}ตอบ{\wbr}ว่า{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก{\wbr}ควร{\wbr}ตอบ{\wbr}อะไร เรา{\wbr}ต้อง{\wbr}ตอบ{\wbr}คำถาม{\wbr}ให้{\wbr}ได้{\wbr}ว่า ใน{\wbr}รอบ{\wbr}ต่อไป กรณี{\wbr}ที่ 2
+(1-49) หรือ{\wbr}กรณี{\wbr}ที่ 3 (51-100)
+จะ{\wbr}เป็น{\wbr}กรณี{\wbr}ที่{\wbr}แย่{\wbr}ที่สุด{\wbr}สำหรับ{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}ที่{\wbr}ต้อง{\wbr}ทาย{\wbr}ตัวเลข{\wbr}มาก{\wbr}กว่า{\wbr}กัน{\wbr}
+สังเกต{\wbr}ว่า{\wbr}ขอบเขต{\wbr}บน{\wbr}หรือ{\wbr}ล่าง{\wbr}ของ{\wbr}ช่วง{\wbr}คำตอบ{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}นั้น{\wbr}ไม่{\wbr}มี{\wbr}ผล{\wbr}ต่อ{\wbr}จำนวน{\wbr}ครั้ง{\wbr}ใน{\wbr}การ{\wbr}ถาม{\wbr}
+(จะ{\wbr}เป็น 1-49 หรือ 1001 - 1049
+วิธีการ{\wbr}ถาม{\wbr}ที่{\wbr}ดี{\wbr}ที่สุด{\wbr}และ{\wbr}วิธีการ{\wbr}ตอบ{\wbr}ที่{\wbr}ทำร้าย{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}มาก{\wbr}ที่สุด{\wbr}
+ก็{\wbr}สามารถ{\wbr}นำมา{\wbr}ใช้ได้{\wbr}ผล{\wbr}เป็น{\wbr}จำนวน{\wbr}ครั้ง{\wbr}ของ{\wbr}การ{\wbr}ถาม{\wbr}ที่{\wbr}เท่า{\wbr}กัน) อย่างไรก็ตาม{\wbr}สิ่ง{\wbr}ที่{\wbr}สำคัญ{\wbr}กว่า{\wbr}
+ก็{\wbr}คือ{\wbr}จำนวน{\wbr}คำตอบ{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}
+เพราะว่า{\wbr}ถ้า{\wbr}ช่วง{\wbr}ที่{\wbr}เล็ก{\wbr}กว่า{\wbr}ต้อง{\wbr}ใช้{\wbr}จำนวน{\wbr}คำถาม{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}มาก{\wbr}กว่า{\wbr}ช่วง{\wbr}ที่{\wbr}ใหญ่{\wbr}กว่า{\wbr}
+เรา{\wbr}ก็{\wbr}สามารถ{\wbr}สมมติ{\wbr}ให้{\wbr}ช่วง{\wbr}ที่{\wbr}เล็ก{\wbr}มี{\wbr}ขนาด{\wbr}เท่า{\wbr}กับ{\wbr}ช่วง{\wbr}ที่{\wbr}ใหญ่{\wbr}กว่า{\wbr}
+ได้{\wbr}โดย{\wbr}เพิ่ม{\wbr}ขอบเขต{\wbr}บน{\wbr}ไป{\wbr}ให้{\wbr}จำนวน{\wbr}เท่า{\wbr}กัน 
+
+ดังนั้น ทางเลือก{\wbr}ที่{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}แรก จะ{\wbr}ทำ{\wbr}ให้{\wbr}ผู้{\wbr}เล่น{\wbr}คน{\wbr}ที่{\wbr}สอง{\wbr}ต้อง{\wbr}ทาย{\wbr}เป็น{\wbr}จำนวน{\wbr}มาก{\wbr}ครั้ง{\wbr}ที่สุด{\wbr}
+ก็{\wbr}คือ{\wbr}เลือก{\wbr}ให้{\wbr}คำตอบ{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}หลังจาก{\wbr}รู้{\wbr}คำตอบ{\wbr}แล้ว มี{\wbr}จำนวน{\wbr}มาก{\wbr}ที่สุด{\wbr}เท่า{\wbr}ที่{\wbr}จะ{\wbr}ทำ{\wbr}ได้{\wbr}
+
+ถ้า{\wbr}เรา{\wbr}ไล่{\wbr}พิจารณา{\wbr}ไป{\wbr}เรื่อย ๆ ใน{\wbr}รอบ{\wbr}ต่อไป{\wbr}เรา{\wbr}จะ{\wbr}เลือก{\wbr}คำตอบ{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}คือ $\lfloor
+50/2\rfloor=25$, $\lfloor 25/2\rfloor=12$, $\lfloor 12/2\rfloor=6$,
+$\lfloor 6/2\rfloor=3$, $\lfloor 3/2\rfloor=1$, รอบ{\wbr}สุดท้าย (รอบ{\wbr}ที่ 7)
+เรา{\wbr}ถาม{\wbr}อีก{\wbr}หนึ่ง{\wbr}ครั้ง ก็{\wbr}จะ{\wbr}เป็น{\wbr}คำตอบ{\wbr}ที่{\wbr}ถูกต้อง{\wbr}แน่นอน{\wbr}
+\end{quizans}
+
+ใน{\wbr}การ{\wbr}ค้นหา{\wbr}ข้อมูล{\wbr}จาก{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เก็บ{\wbr}กุญแจ{\wbr}ใด ๆ ก็ตาม ถ้า{\wbr}เรา{\wbr}ไล่{\wbr}พิจารณา{\wbr}ตาม{\wbr}ลำดับ{\wbr}จาก{\wbr}กุญแจ{\wbr}แรก{\wbr}
+ไป{\wbr}จนถึง{\wbr}กุญแจ{\wbr}สุดท้าย{\wbr}ใน{\wbr}อาร์เรย์ ทุก ๆ ครั้ง{\wbr}ที่{\wbr}เรา{\wbr}พิจารณา{\wbr}กุญแจ{\wbr}หนึ่ง มี{\wbr}ผลลัพธ์{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}สอง{\wbr}แบบ{\wbr}
+คือ เรา{\wbr}พบ{\wbr}กุญแจ{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}หา หรือ{\wbr}ถ้า{\wbr}เรา{\wbr}ไม่{\wbr}พบ เรา{\wbr}จะ{\wbr}สามารถ ``ทิ้ง''
+กุญแจ{\wbr}ที่{\wbr}เรา{\wbr}พิจารณา{\wbr}อยู่{\wbr}ไป{\wbr}ได้ (เนื่องจาก{\wbr}ไม่{\wbr}ใช่{\wbr}เป้าหมาย{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}แล้ว)
 
 \begin{figure}
 \begin{center}
@@ -932,7 +1057,7 @@ Delete & $O(n)$ & $O(n)$ \\
 \hline
 \end{tabular}
 \end{center}
-\caption{เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}กระบวนการ{\wbr}ต่าง ๆ ของ{\wbr}พจนานุกรม ที่{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ทั้ง{\wbr}สอง{\wbr}แบบ}
+\caption{เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}กระบวนการ{\wbr}ต่าง ๆ ของ{\wbr}พจนานุกรม ที่{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ทั้ง{\wbr}สอง{\wbr}แบบ โดย{\wbr}ที่ $n$ แทน{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ใน{\wbr}พจนานุกรม}
 \label{fig:array-running-time-dict-by-array}
 \end{figure}
 
