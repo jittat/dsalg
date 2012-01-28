@@ -11,7 +11,7 @@ end
 
 line_no = false
 label = ARGV[0] || ""
-if label.index('*,') == 0
+if label.index('*,') == 0  or label=='*'
   line_no = true
   label = label.slice(2,label.length-2)
 end
