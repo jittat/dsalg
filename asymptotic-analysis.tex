@@ -1114,10 +1114,11 @@ $keys[m] < x$ และ (2) $keys[m] > x$
 (คำ{\wbr}ใบ้: ดู{\wbr}จาก{\wbr}ขอบเขต{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้)
 \end{quiz}
 
-เรา{\wbr}นำ{\wbr}แนวทาง{\wbr}ดังกล่าว{\wbr}มา{\wbr}เขียน{\wbr}เป็น{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ได้{\wbr}ดังนี้{\wbr}
+เรา{\wbr}นำ{\wbr}แนวทาง{\wbr}ดังกล่าว{\wbr}มา{\wbr}เขียน{\wbr}เป็น{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ได้{\wbr}ดัง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:analysis-bin-search}
 
+\begin{figure}
 \begin{algt}
-\label{}
+\label{algo:analysis-bin-search}
 \noindent {\bf ค้นหา{\wbr}กุญแจ $k$ จาก{\wbr}อาร์เรย์ $keys$ ขนาด $n$ ที่{\wbr}ข้อมูล{\wbr}เรียงลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}มาก}\\
 1.\settowidth{\algbackindent}{1.}\hspace*{-\algbackindent}\hspace*{0.2in} $s\leftarrow 0$, $t\leftarrow n-1$\\
 2.\settowidth{\algbackindent}{2.}\hspace*{-\algbackindent}\hspace*{0.2in} WHILE $s\leq t$ DO\\
@@ -1130,11 +1131,78 @@ $keys[m] < x$ และ (2) $keys[m] > x$
 9.\settowidth{\algbackindent}{9.}\hspace*{-\algbackindent}\hspace*{0.2in}\hspace*{0.2in}\hspace*{0.2in} $t\leftarrow m-1$\\
 10.\settowidth{\algbackindent}{10.}\hspace*{-\algbackindent}\hspace*{0.2in} RETURN $-1$ and EXIT   // not found
 \end{algt}
+\end{figure}
+
+เรา{\wbr}จะ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ดังกล่าว โดย{\wbr}ทั่วไป{\wbr}แล้ว{\wbr}
+ใน{\wbr}การ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ใด{\wbr}
+เรา{\wbr}จำเป็น{\wbr}จะ{\wbr}ต้อง{\wbr}ให้{\wbr}เหตุผล{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}นั้น{\wbr}เมื่อ{\wbr}ทำงาน{\wbr}แล้ว{\wbr}ก่อ{\wbr}ให้{\wbr}เกิด ``ความ{\wbr}ก้าวหน้า''
+และ{\wbr}ใช้{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}นั้น{\wbr}ใน{\wbr}การ{\wbr}ให้{\wbr}เหตุผล{\wbr}ต่อไป{\wbr}
+
+เรา{\wbr}จะ{\wbr}ลอง{\wbr}ใช้{\wbr}เหตุผล{\wbr}เกี่ยวกับ{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}ใน{\wbr}การ{\wbr}พิจารณา{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ตาม{\wbr}ลำดับ{\wbr}
+ใน{\wbr}วิธี{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}พจนานุกรม{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}แบบ{\wbr}แรก{\wbr}เพื่อ{\wbr}แสดง{\wbr}เป็น{\wbr}ตัวอย่าง{\wbr}
+
+\begin{quiz}{ความ{\wbr}ก้าวหน้า{\wbr}ของ{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ตาม{\wbr}ลำดับ}
+การ{\wbr}ค้นหา{\wbr}ตาม{\wbr}โปรแกรม{\wbr}ที่~\ref{code:analysis-dict-find} เป็น{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ตาม{\wbr}ลำดับ{\wbr}
+ให้{\wbr}พิจารณา{\wbr}โปรแกรม{\wbr}ดังกล่าว และ{\wbr}ลอง{\wbr}หาว่า{\wbr}เรา{\wbr}สามารถ{\wbr}ใช้{\wbr}สถานะ{\wbr}อะไร{\wbr}ของ{\wbr}โปรแกรม (เช่น{\wbr}
+ตัวแปร{\wbr}หรือ{\wbr}ค่า{\wbr}อื่น ๆ) เพื่อ{\wbr}บอก{\wbr}ว่า{\wbr}โปรแกรม{\wbr}มี{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}ใน{\wbr}การ{\wbr}ทำงาน{\wbr}ได้{\wbr}บ้าง?
+\end{quiz}
 
 ใน{\wbr}การ{\wbr}ค้นหา{\wbr}ข้อมูล{\wbr}จาก{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เก็บ{\wbr}กุญแจ{\wbr}ใด ๆ ก็ตาม ถ้า{\wbr}เรา{\wbr}ไล่{\wbr}พิจารณา{\wbr}ตาม{\wbr}ลำดับ{\wbr}จาก{\wbr}กุญแจ{\wbr}แรก{\wbr}
 ไป{\wbr}จนถึง{\wbr}กุญแจ{\wbr}สุดท้าย{\wbr}ใน{\wbr}อาร์เรย์ ทุก ๆ ครั้ง{\wbr}ที่{\wbr}เรา{\wbr}พิจารณา{\wbr}กุญแจ{\wbr}หนึ่ง มี{\wbr}ผลลัพธ์{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}สอง{\wbr}แบบ{\wbr}
 คือ เรา{\wbr}พบ{\wbr}กุญแจ{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}หา หรือ{\wbr}ถ้า{\wbr}เรา{\wbr}ไม่{\wbr}พบ เรา{\wbr}จะ{\wbr}สามารถ ``ทิ้ง''
-กุญแจ{\wbr}ที่{\wbr}เรา{\wbr}พิจารณา{\wbr}อยู่{\wbr}ไป{\wbr}ได้ (เนื่องจาก{\wbr}ไม่{\wbr}ใช่{\wbr}เป้าหมาย{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}แล้ว)
+กุญแจ{\wbr}ที่{\wbr}เรา{\wbr}พิจารณา{\wbr}อยู่{\wbr}ไป{\wbr}ได้ (เนื่องจาก{\wbr}ไม่{\wbr}ใช่{\wbr}เป้าหมาย{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}แล้ว) ใน{\wbr}กรณี{\wbr}นี้{\wbr}
+ความ{\wbr}ก้าวหน้า{\wbr}ของ{\wbr}งาน{\wbr}ที่{\wbr}เรา{\wbr}ทำ{\wbr}ก็{\wbr}คือ จำนวน{\wbr}กุญแจ{\wbr}ที่{\wbr}เรา{\wbr}สามารถ{\wbr}ทิ้ง{\wbr}ไป{\wbr}ได้ ดังนั้น{\wbr}ถ้า{\wbr}เรา{\wbr}มี{\wbr}กุญแจ{\wbr}ทั้งสิ้น{\wbr}
+$n$ กุญแจ และ{\wbr}ใน{\wbr}แต่ละ{\wbr}รอบ{\wbr}ของ{\wbr}การ{\wbr}ทำงาน เรา{\wbr}ใช้เวลา $O(1)$
+เพื่อ{\wbr}จะ{\wbr}ทิ้ง{\wbr}กุญแจ{\wbr}ที่{\wbr}ไม่{\wbr}ถูกต้อง{\wbr}ได้ 1 อัน ดังนั้น{\wbr}ใน{\wbr}กรณี{\wbr}ที่{\wbr}แย่{\wbr}ที่สุด ก็{\wbr}คือ{\wbr}เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ใช้เวลา $O(n)$
+
+\begin{quiz}{ความ{\wbr}ก้าวหน้า{\wbr}ของ{\wbr}การ{\wbr}ค้นหา{\wbr}ที่{\wbr}ดี{\wbr}ขึ้น}
+ถ้า{\wbr}เรา{\wbr}ใช้{\wbr}จำนวน{\wbr}กุญแจ{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}ต้อง{\wbr}พิจารณา{\wbr}แทน{\wbr}ปริมาณ{\wbr}งาน{\wbr}ทั้งหมด (เริ่มต้น{\wbr}ที่ $n$ หน่วย)
+ใน{\wbr}แต่ละ{\wbr}รอบ{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:analysis-bin-search}
+เรา{\wbr}จัดการ{\wbr}กับ{\wbr}งาน{\wbr}ดังกล่าว{\wbr}ไป{\wbr}ได้{\wbr}เท่าใด?
+
+(คำ{\wbr}ใบ้: พิจาณารอบ{\wbr}ที่ 1, รอบ{\wbr}ที่ 2, แล้ว{\wbr}ค่อย{\wbr}พยายาม{\wbr}พิจารณา{\wbr}ใน{\wbr}รอบ{\wbr}ใด ๆ)
+\end{quiz}
+
+เรา{\wbr}สามารถ{\wbr}พิสูจน์{\wbr}ได้{\wbr}ว่า ใน{\wbr}ทุก ๆ รอบ{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}วน{\wbr}รอบ WHILE
+จำนวน{\wbr}ดัชนี{\wbr}ของ{\wbr}กุญแจ{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}จะ{\wbr}มี{\wbr}ค่า{\wbr}ลด{\wbr}ลง{\wbr}อย่าง{\wbr}น้อย 2 เท่า{\wbr}
+สังเกต{\wbr}ว่า{\wbr}เมื่อ{\wbr}เริ่มต้น{\wbr}เข้า{\wbr}ทำงาน{\wbr}ใน{\wbr}วน{\wbr}รอบ จำนวน{\wbr}กุญแจ{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}คือ $t - s + 1$
+ถ้า{\wbr}เรา{\wbr}พบ{\wbr}คำตอบ อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}จบ{\wbr}การ{\wbr}ทำงาน ถ้า{\wbr}ไม่{\wbr}เช่นนั้น มี{\wbr}สอง{\wbr}กรณี{\wbr}ที่{\wbr}เรา{\wbr}ต้อง{\wbr}พิจารณา{\wbr}
+\begin{itemize}
+\item ถ้า{\wbr}เรา{\wbr}ผ่าน{\wbr}เงื่อนไข{\wbr}ใน{\wbr}บรรทัด{\wbr}ที่ 6 เข้า{\wbr}ไป{\wbr}ทำงาน{\wbr}ใน{\wbr}บรรทัด{\wbr}ที่ 7 เรา{\wbr}จะ{\wbr}ได้{\wbr}ว่า{\wbr}
+  $s\leftarrow m+1$ ดังนั้น{\wbr}จำนวน{\wbr}กุญแจ{\wbr}ใหม่{\wbr}คือ{\wbr}
+  \begin{eqnarray*}
+    t - (\lfloor (s+t)/2\rfloor + 1) + 1 
+    &=& \lceil t - s/2 - t/2 \rceil\\
+    &=& \lceil t/2 - s/2\rceil\\
+    &\leq& t/2 - s/2 + 1/2 = (t-s+1)/2
+  \end{eqnarray*}
+\item ใน{\wbr}อีก{\wbr}กรณี{\wbr}หนึ่ง ถ้า{\wbr}เงื่อนไข{\wbr}บรรทัด{\wbr}ที่ 8 เป็นจริง แล้ว{\wbr}เรา{\wbr}เข้า{\wbr}ไป{\wbr}ทำงาน{\wbr}ใน{\wbr}บรรทัด{\wbr}ที่ 9
+  ใน{\wbr}ส่วน{\wbr}นี้{\wbr}สามารถ{\wbr}พิสูจน์{\wbr}ได้{\wbr}ด้วย{\wbr}วิธี{\wbr}ที่{\wbr}คล้าย{\wbr}กัน{\wbr}
+\end{itemize}
+
+\begin{quiz}{ก้าวหน้า{\wbr}อย่าง{\wbr}น้อย...}
+จง{\wbr}พิสูจน์{\wbr}ว่า ถ้า{\wbr}โปรแกรม{\wbr}ทำงาน{\wbr}เข้า{\wbr}ไป{\wbr}ใน{\wbr}คำสั่ง{\wbr}บรรทัด{\wbr}ที่ 9
+จำนวน{\wbr}กุญแจ{\wbr}ที่{\wbr}จะ{\wbr}ต้อง{\wbr}พิจารณา{\wbr}จะ{\wbr}มี{\wbr}ค่า{\wbr}ลด{\wbr}ลง{\wbr}อย่าง{\wbr}น้อย 2 เท่า{\wbr}
+\end{quiz}
+
+เรา{\wbr}จะ{\wbr}วิเคราะห์{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน \ สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}แต่ละ{\wbr}รอบ{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}วน{\wbr}รอบ WHILE
+ใช้เวลา $O(1)$ \ \ เมื่อ{\wbr}ทำงาน{\wbr}เสร็จ{\wbr}ใน{\wbr}แต่ละ{\wbr}รอบ ถ้า{\wbr}โปรแกรม{\wbr}ไม่{\wbr}หยุด{\wbr}การ{\wbr}ทำงาน{\wbr}
+จาก{\wbr}การ{\wbr}พิจารณา{\wbr}ข้างต้น เรา{\wbr}จะ{\wbr}พบ{\wbr}ว่า{\wbr}จำนวน{\wbr}กุญแจ{\wbr}ที่{\wbr}เหลือ{\wbr}ต้อง{\wbr}พิจารณา{\wbr}จะ{\wbr}ลด{\wbr}ลง{\wbr}อย่าง{\wbr}น้อย 2 เท่า{\wbr}
+นั่น{\wbr}คือ{\wbr}เรา{\wbr}ทราบ{\wbr}ว่า{\wbr}หลัง{\wbr}การ{\wbr}ทำงาน{\wbr}รอบ{\wbr}แรก จะ{\wbr}เหลือ{\wbr}กุญแจ{\wbr}ไม่{\wbr}เกิน $n/2$
+หลัง{\wbr}รอบ{\wbr}ที่{\wbr}สอง{\wbr}จะ{\wbr}เหลือ{\wbr}กุญแจ{\wbr}ไม่{\wbr}เกิน $n/2/2 = n/4$ และ{\wbr}หลัง{\wbr}รอบ{\wbr}ที่ $x$ จะ{\wbr}เหลือ{\wbr}กุญแจ{\wbr}ไม่{\wbr}เกิน{\wbr}
+$n/2^x$ อัน{\wbr}
+
+เรา{\wbr}ทราบ{\wbr}ว่า{\wbr}โปรแกรม{\wbr}จะ{\wbr}หยุด{\wbr}ทำงาน{\wbr}แน่นอน{\wbr}ถ้า{\wbr}ไม่{\wbr}มี{\wbr}กุญแจ{\wbr}ให้{\wbr}พิจารณา{\wbr}อีก{\wbr}
+เนื่องจาก{\wbr}เมื่อ{\wbr}เริ่มต้น{\wbr}เรา{\wbr}มี{\wbr}กุญแจ{\wbr}ต้อง{\wbr}พิจารณา{\wbr}จำนวน $n$ กุญแจ ถ้า{\wbr}ให้ $x$
+แทน{\wbr}จำนวน{\wbr}รอบ{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}ไม่{\wbr}ใช่{\wbr}รอบ{\wbr}สุดท้าย เรา{\wbr}จะ{\wbr}ได้{\wbr}ว่า $\frac{n}{2^x} >
+1$ เมื่อ{\wbr}แก้{\wbr}สมการ{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}ว่า $x < \log_2 n$ นั่น{\wbr}คือ{\wbr}โปรแกรม{\wbr}จะ{\wbr}ทำงาน{\wbr}ไม่{\wbr}เกิน $\log n$
+รอบ\footnote{ใน{\wbr}หนังสือ{\wbr}เล่ม{\wbr}นี้ ถ้า{\wbr}ไม่{\wbr}ระบุ{\wbr}ฐาน เรา{\wbr}จะ{\wbr}ถือ{\wbr}ว่า{\wbr}เรา{\wbr}ใช้{\wbr}ลอการิทึม{\wbr}ฐาน 2 เสมอ}
+
+ดังนั้น{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}การ{\wbr}ค้นหา{\wbr}ดังกล่าว{\wbr}คือ $O(\log n)$
+การ{\wbr}ค้นหา{\wbr}โดย{\wbr}การ{\wbr}เลือก{\wbr}ค่า{\wbr}ที่{\wbr}แบ่ง{\wbr}ข้อมูล{\wbr}ออก{\wbr}เป็น{\wbr}สอง{\wbr}ส่วน{\wbr}แบบ{\wbr}นี้{\wbr}เป็น{\wbr}เทคนิค{\wbr}สำคัญ{\wbr}ใน{\wbr}การ{\wbr}ออกแบบ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
+การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}นี้{\wbr}มี{\wbr}ชื่อ{\wbr}ว่า {\em การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค} ({\em binary searching})
+
+เรา{\wbr}สรุป{\wbr}เวลา{\wbr}ของ{\wbr}กระบวนการ{\wbr}ต่าง{\wbr}เมื่อ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}พจนานุกรม{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ทั้ง{\wbr}สอง{\wbr}แบบ{\wbr}เป็นตาราง{\wbr}ใน{\wbr}รูป~\ref{fig:array-running-time-dict-by-array}
 
 \begin{figure}
 \begin{center}
@@ -1152,5 +1220,6 @@ Delete & $O(n)$ & $O(n)$ \\
 \label{fig:array-running-time-dict-by-array}
 \end{figure}
 
+\subsubsection{ควร{\wbr}จะ{\wbr}เลือก{\wbr}ใช้{\wbr}วิธีการ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}แบบ{\wbr}ใด?}
 
-\section{ตัวอย่าง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}มี{\wbr}เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}อื่น ๆ}
+TODO: เขียน{\wbr}ส่วน{\wbr}นี้{\wbr}
