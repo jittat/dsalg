@@ -727,6 +727,7 @@ Delete หรือ InsertAfter ด้วย{\wbr}
 
 การ{\wbr}ใช้{\wbr}งาน{\wbr}ตัว{\wbr}วิ่ง{\wbr}จะ{\wbr}มี{\wbr}ลักษณะ{\wbr}เดียวกัน{\wbr}กับ{\wbr}การ{\wbr}ใช้{\wbr}พอยน์เตอร์{\wbr}วิ่ง{\wbr}ไป{\wbr}ใน{\wbr}อาร์เรย์ ดัง{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:analysis-iterator-and-pointer}
 
+\begin{figure}
 \latintext
 \begin{codelist}{C++}{caption={\thaitext โปรแกรม{\wbr}ที่{\wbr}หา{\wbr}ผลรวม{\wbr}โดย{\wbr}การ{\wbr}ใช้{\wbr}ตัว{\wbr}วิ่ง{\wbr}ผ่าน{\wbr}ทาง{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}เทียบ{\wbr}กับ{\wbr}การ{\wbr}ใช้{\wbr}พอยน์เตอร์\latintext},label=code:analysis-iterator-and-pointer}
 int list_sum_itr(int list[],      | int list_sum_ptr(int list[],
@@ -743,6 +744,7 @@ int list_sum_itr(int list[],      | int list_sum_ptr(int list[],
 }                                 | }
 \end{codelist}
 \thaitext
+\end{figure}
 
 เรา{\wbr}จะ{\wbr}ประกาศ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล {\ct list\_itr} เพื่อ{\wbr}ใช้{\wbr}เป็น{\wbr}ชนิด{\wbr}ของ{\wbr}ข้อมูล{\wbr}ตัว{\wbr}วิ่ง{\wbr}
 โดย{\wbr}จะ{\wbr}ประกาศ{\wbr}ด้วย{\wbr}คีย์{\wbr}เวิร์ด {\ct typedef} ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
@@ -787,6 +789,11 @@ void list_delete(int list[], int size, list_itr p)
 \end{codelist}
 \thaitext
 \end{figure}
+
+ใน{\wbr}การ{\wbr}ใช้{\wbr}งาน {\ct list\_itr} เป็น{\wbr}ตัว{\wbr}วิ่ง{\wbr}ใน{\wbr}การ{\wbr}คืน{\wbr}ค่า{\wbr}จาก{\wbr}ฟังก์ชัน{\wbr}เช่น {\ct list\_find}
+เรา{\wbr}จำเป็น{\wbr}จะ{\wbr}ต้อง{\wbr}กำหนด{\wbr}ว่า{\wbr}ถ้า{\wbr}ไม่{\wbr}พบ{\wbr}ข้อมูล ตัว{\wbr}วิ่ง{\wbr}จะ{\wbr}มี{\wbr}ค่า{\wbr}เป็น{\wbr}เช่น{\wbr}ใด{\wbr}
+เรา{\wbr}จะ{\wbr}ใช้{\wbr}รูปแบบ{\wbr}เช่นเดียวกับ{\wbr}ไลบ{\wbr}รา{\wbr}รี{\wbr}มาตรฐาน{\wbr}คือ{\wbr}เรา{\wbr}จะ{\wbr}คืน{\wbr}ค่าตัว{\wbr}วิ่ง{\wbr}ที่{\wbr}อ้าง{\wbr}ถึง{\wbr}ตำแหน่ง{\wbr}ที่{\wbr}ไม่{\wbr}มี{\wbr}ข้อมูล{\wbr}
+(นั่น{\wbr}คือ{\wbr}จะ{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ{\wbr}ค่า{\wbr}ที่{\wbr}ได้{\wbr}เมื่อ{\wbr}เรียก{\wbr}ฟังก์ชัน End)
 
 \begin{quiz}{}
 ทดลอง{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}ทั้งหมด{\wbr}ใน{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}รายการ{\wbr}ด้วย{\wbr}อาร์เรย์
@@ -1219,6 +1226,15 @@ Delete & $O(n)$ & $O(n)$ \\
 \caption{เวลา{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}กระบวนการ{\wbr}ต่าง ๆ ของ{\wbr}พจนานุกรม ที่{\wbr}พัฒนา{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ทั้ง{\wbr}สอง{\wbr}แบบ โดย{\wbr}ที่ $n$ แทน{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ใน{\wbr}พจนานุกรม}
 \label{fig:array-running-time-dict-by-array}
 \end{figure}
+
+\begin{quiz}{}
+จง{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ฟังก์ชัน {\ct dict\_find} 
+ที่{\wbr}มี{\wbr}ประสิทธิภาพ{\wbr}มาก{\wbr}ขึ้น{\wbr}เมื่อ{\wbr}กุญแจ{\wbr}ใน{\wbr}อาร์เรย์ {\ct keys} เรียง{\wbr}ตาม{\wbr}ลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}หา{\wbr}มาก{\wbr}
+\end{quiz}
+
+\subsubsection{ความ{\wbr}แตกต่าง{\wbr}ระหว่าง $O(n)$ และ $O(\log n)$}
+
+TODO: เขียน{\wbr}ส่วน{\wbr}นี้{\wbr}
 
 \subsubsection{ควร{\wbr}จะ{\wbr}เลือก{\wbr}ใช้{\wbr}วิธีการ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}แบบ{\wbr}ใด?}
 

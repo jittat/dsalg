@@ -1,0 +1,361 @@
+\chapter{การ{\wbr}ซ่อน{\wbr}รายละเอียด: ค{\wbr}ลา{\wbr}ส{\wbr}และ{\wbr}เท็ม{\wbr}เพล{\wbr}ต}
+
+ใน{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ศึกษา{\wbr}เครื่องมือ{\wbr}ของ{\wbr}ภาษา C++ ที่{\wbr}เรา{\wbr}จะ{\wbr}ใช้{\wbr}พัฒนา{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}
+เรา{\wbr}จะ{\wbr}ศึกษา{\wbr}บาง{\wbr}ส่วน{\wbr}ของ{\wbr}แนว{\wbr}คิด{\wbr}การ{\wbr}โปรแกรม{\wbr}เชิง{\wbr}วัตถุ (object-oriented programming)
+และ{\wbr}การ{\wbr}โปรแกรม{\wbr}เชิง{\wbr}เจน{\wbr}เน{\wbr}อริ{\wbr}ก (generic programming)
+ผ่าน{\wbr}ทางการ{\wbr}ปรับปรุง{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}สำหรับ{\wbr}จัด{\wbr}เก็บ{\wbr}รายการ{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เรา{\wbr}ได้{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ใน{\wbr}บท{\wbr}ก่อน ๆ
+
+\section{การ{\wbr}รวม{\wbr}กลุ่ม{\wbr}ข้อมูล{\wbr}และ{\wbr}กระบวนการ{\wbr}จัดการ}
+
+ใน{\wbr}ส่วน{\wbr}นี้ เรา{\wbr}จะ{\wbr}ปรับปรุง{\wbr}รูปแบบ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}ให้{\wbr}สะดวก{\wbr}ขึ้น{\wbr}
+โดย{\wbr}การ{\wbr}รวม{\wbr}ตัวแปร{\wbr}ที่{\wbr}เกี่ยวข้อง{\wbr}หลาย{\wbr}ตัว{\wbr}เข้า{\wbr}ด้วย{\wbr}กัน{\wbr}เป็น{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ใหม่{\wbr}
+จากนั้น{\wbr}เรา{\wbr}จะ{\wbr}รวม{\wbr}กระบวนการ{\wbr}จัดการ{\wbr}เข้า{\wbr}ไว้{\wbr}ดว้ย
+
+\subsection{การ{\wbr}รวม{\wbr}กลุ่ม{\wbr}ข้อมูล: {\ct struct}}
+
+ถ้า{\wbr}เรา{\wbr}พิจารณา{\wbr}ฟังก์ชัน{\wbr}ต่าง ๆ ที่{\wbr}เรา{\wbr}อิม{\wbr}พลี{\wbr}เมนท์
+เรา{\wbr}จะ{\wbr}พบ{\wbr}ว่า{\wbr}ทุก{\wbr}ครั้ง{\wbr}ใน{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}เรา{\wbr}จำเป็น{\wbr}จะ{\wbr}ต้อง{\wbr}ส่ง{\wbr}พารามิเตอร์ {\ct list} ที่{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}
+และ {\ct size} ที่{\wbr}ระบุ{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}ไป{\wbr}พร้อม ๆ กัน{\wbr}ตลอด{\wbr}
+ข้อสังเกต{\wbr}นี้{\wbr}แสดง{\wbr}ว่า{\wbr}ข้อมูล{\wbr}ทั้ง{\wbr}สอง{\wbr}มี{\wbr}ความ{\wbr}เกี่ยวข้อง{\wbr}กัน{\wbr}มาก{\wbr}
+ใน{\wbr}กรณี{\wbr}นี้{\wbr}เพราะว่า{\wbr}เป็น{\wbr}ข้อมูล{\wbr}พื้นฐาน{\wbr}ของ{\wbr}การ{\wbr}จัดการ{\wbr}เกี่ยวกับ{\wbr}รายการ{\wbr}ของ{\wbr}เรา{\wbr}
+
+สิ่ง{\wbr}แรก{\wbr}ที่{\wbr}เรา{\wbr}สามารถ{\wbr}ปรับปรุง{\wbr}ได้{\wbr}คือ{\wbr}การ{\wbr}รวม{\wbr}กลุ่ม{\wbr}ข้อมูล{\wbr}นี้{\wbr}เข้า{\wbr}ด้วย{\wbr}กัน ใน{\wbr}ภาษา C++
+เรา{\wbr}สามารถ{\wbr}ประกาศ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}แบบ{\wbr}โครงสร้าง{\wbr}โดย{\wbr}ใช้{\wbr}คีย์{\wbr}เวิร์ด {\ct struct}
+เพื่อ{\wbr}รวม{\wbr}กลุ่ม{\wbr}ข้อมูล{\wbr}หลาย ๆ ชนิด{\wbr}เข้า{\wbr}ด้วย{\wbr}กัน{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+const int max_list_size = 1000;
+
+struct list {
+  int items[max_list_size];
+  int size;
+};
+\end{codelist}
+\thaitext
+
+ใน{\wbr}การ{\wbr}ประกาศ{\wbr}นั้น{\wbr}เรา{\wbr}จะ{\wbr}ระบุ{\wbr}สมาชิก (member) ของ{\wbr}โครงสร้าง{\wbr}ที่{\wbr}เรา{\wbr}ประกาศ{\wbr}
+เรา{\wbr}สามารถ{\wbr}ประกาศ{\wbr}ชนิด{\wbr}ข้อมูล {\ct list} ที่{\wbr}มี{\wbr}สมาชิก{\wbr}คือ{\wbr}อาร์เรย์ {\ct items}
+และ{\wbr}จำนวนเต็ม {\ct size} ดัง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+(สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}ประกาศ{\wbr}ขนาด{\wbr}ของ{\wbr}อาร์เรย์{\wbr}ไว้{\wbr}ที่{\wbr}ค่าคงที่ {\ct max\_list\_size}
+โดย{\wbr}ให้{\wbr}มี{\wbr}ขนาด 1000 ช่อง)
+
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ใช้{\wbr}เครื่องหมาย {\ct ;} ใน{\wbr}การ{\wbr}ปิด{\wbr}การ{\wbr}ประกาศ {\ct struct} ด้วย{\wbr}
+
+เรา{\wbr}สามารถ{\wbr}ประกาศ{\wbr}ตัวแปร{\wbr}ที่{\wbr}มี{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}เป็น {\ct list} ได้ ตัวแปร{\wbr}นี้{\wbr}จะ{\wbr}มี{\wbr}สมาชิก{\wbr}ชื่อ {\ct
+  items} และ {\ct size} ซึ่ง{\wbr}สามารถ{\wbr}อ้าง{\wbr}ถึง{\wbr}ได้{\wbr}โดย{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct .}
+ยก{\wbr}ตัวอย่าง{\wbr}เช่น ถ้า{\wbr}เรา{\wbr}ประกาศ{\wbr}
+\begin{center}
+{\ct list lst;}
+\end{center}
+เรา{\wbr}จะ{\wbr}สามารถ{\wbr}อ้าง{\wbr}ถึง {\ct lst.items} และ {\ct lst.size} ได้{\wbr}
+
+เรา{\wbr}สามารถ{\wbr}ปรับ{\wbr}ฟังก์ชัน{\wbr}ต่าง ๆ ที่{\wbr}เคย{\wbr}ต้อง{\wbr}รับ{\wbr}พารามิเตอร์{\wbr}สอง{\wbr}ตัว{\wbr}ให้{\wbr}รับ{\wbr}โครงสร้าง {\ct list}
+เพียง{\wbr}พารามิเตอร์{\wbr}เดียว{\wbr}ได้ บาง{\wbr}ฟังก์ชัน{\wbr}ที่{\wbr}สำคัญ{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:abs-struct-list}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext บาง{\wbr}ฟังก์ชัน{\wbr}ที่ทำงาน{\wbr}กับ {\ct list}\latintext},label=code:abs-struct-list}
+typedef int* list_itr;
+
+void list_init(list& l)
+{
+  l.size = 0;
+}
+
+list_itr list_itr_end(list& l)
+{
+  return &l.items[l.size];
+}
+
+list_itr list_find(list& l, int x)
+{
+  for(int i = 0; i < l.size; ++i)
+    if(l.items[i] == x)
+      return &l.items[i];
+  return list_itr_end(l);
+}
+
+list_itr list_append(list& l, int x)
+{
+  if(l.size >= max_list_size)
+    throw "List overflow";
+  l.items[l.size] = x;
+  ++l.size;
+  return &l.items[l.size-1];
+}
+\end{codelist}
+\thaitext
+\end{figure}
+
+อย่างไรก็ตาม เรา{\wbr}ต้อง{\wbr}ระวัง{\wbr}วิธีการ{\wbr}ผ่าน{\wbr}พารามิเตอร์ เนื่องจาก{\wbr}โดย{\wbr}ปกติ C++
+จะ{\wbr}ส่ง{\wbr}ค่า{\wbr}พารามิเตอร์{\wbr}แบบ pass by value ดังนั้น ถ้า{\wbr}เรา{\wbr}ส่ง{\wbr}ค่า{\wbr}โครงสร้าง {\ct list}
+โดย{\wbr}ตรง จะ{\wbr}ทำ{\wbr}ให้{\wbr}ระบบ{\wbr}สร้าง{\wbr}ตัวแปร{\wbr}ประเภท {\ct list}
+อีก{\wbr}ตัว{\wbr}หนึ่ง{\wbr}และ{\wbr}คัดลอก{\wbr}ข้อมูล{\wbr}จาก{\wbr}อาร์กิวเมนท์{\wbr}ที่{\wbr}เรา{\wbr}ส่ง{\wbr}ไป{\wbr}ยัง{\wbr}ตัวแปร{\wbr}ชั่ว{\wbr}คราวนี้{\wbr}
+ซึ่ง{\wbr}ใน{\wbr}กรณี{\wbr}ของ{\wbr}โครงสร้าง {\ct list} นอกจาก{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}โปรแกรม{\wbr}ทำงาน{\wbr}ไม่{\wbr}ถูกต้อง{\wbr}แล้ว{\wbr}
+(เช่น{\wbr}ใน{\wbr}กรณี{\wbr}ของ{\wbr}ฟังก์ชัน {\ct list\_init})
+ยัง{\wbr}เป็น{\wbr}การ{\wbr}ทำ{\wbr}ให้{\wbr}โปรแกรม{\wbr}มี{\wbr}ประสิทธิภาพ{\wbr}การ{\wbr}ทำงาน{\wbr}ต่ำ{\wbr}ลง{\wbr}โดย{\wbr}ไม่{\wbr}จำเป็น{\wbr}ด้วย{\wbr}
+
+ตัวอย่าง{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ฟังก์ชัน{\wbr}ดังกล่าว{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ต่อไปนี้{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+  list lst;
+  list_init(lst);
+  list_append(lst,10);  list_append(lst,30);  list_append(lst,20);
+  if(list_find(lst,5) != list_itr_end(lst))  // find 5 in list
+    cout << "found" << endl;
+  else
+    cout << "not found" << endl;
+\end{codelist}
+\thaitext
+
+\subsection{การ{\wbr}รวม{\wbr}กระบวนการ{\wbr}เข้า{\wbr}เป็น{\wbr}ฟังก์ชัน{\wbr}สมาชิก} 
+
+สังเกต{\wbr}ว่า{\wbr}ฟังก์ชัน{\wbr}ต่าง ๆ ที่ทำงาน{\wbr}กับ{\wbr}รายการ{\wbr}ที่{\wbr}เรา{\wbr}เขียน{\wbr}นั้น โดยมาก{\wbr}จะ{\wbr}ทำงาน{\wbr}กับ{\wbr}โครงสร้าง{\wbr}
+{\ct list} ที่{\wbr}รับ{\wbr}พารามิเตอร์{\wbr}มา เนื่องจาก{\wbr}ฟังก์ชัน{\wbr}เหล่านี้{\wbr}ประมวลผล{\wbr}กับ{\wbr}ข้อมูล{\wbr}โดย{\wbr}ตรง{\wbr}
+เรา{\wbr}จะ{\wbr}รวม{\wbr}ฟังก์ชัน{\wbr}เหล่านั้น{\wbr}เข้า{\wbr}เป็น{\wbr}สมาชิก{\wbr}ของ{\wbr}โครงสร้าง {\ct list}
+เพื่อให้{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ทำ{\wbr}ได้{\wbr}สะดวก{\wbr}ขึ้น ตัวอย่าง{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ฟังก์ชัน{\wbr}เหล่านี้{\wbr}ผ่าน{\wbr}ทาง{\wbr}ตัวแปร {\ct
+  list} แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ถัด{\wbr}ไป เรา{\wbr}จะ{\wbr}สังเกต{\wbr}ว่า{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ดู{\wbr}กระชับ{\wbr}ขึ้น{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+  list lst;
+  lst.init();
+  lst.append(10);  lst.append(30);  lst.append(20);
+  if(lst.find(5) != lst.end())  // find 5 in list
+    cout << "found" << endl;
+  else
+    cout << "not found" << endl;
+\end{codelist}
+\thaitext
+
+เรา{\wbr}จะ{\wbr}เพิ่ม{\wbr}การ{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}เข้า{\wbr}ไป{\wbr}ใน{\wbr}การ{\wbr}ประกาศ {\ct struct}
+ดัง{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:abs-struct-list-functions}
+ฟังก์ชัน{\wbr}เหล่านี้{\wbr}เรียก{\wbr}ว่า{\em ฟังก์ชัน{\wbr}สมาชิก} ({\em member function})
+
+นอกจากนี้ เรา{\wbr}ยัง{\wbr}นำ{\wbr}ชนิด{\wbr}ข้อมูล {\ct list\_itr} ย้าย{\wbr}ไป{\wbr}ประกาศ{\wbr}ไว้{\wbr}ภายใน{\wbr}โครงสร้าง {\ct
+  list} ด้วย โดย{\wbr}ใช้{\wbr}ชื่อ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}เป็น {\ct iterator} (สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}ตัด{\wbr}คำขึ้นต้น {\ct
+  list} ทิ้ง{\wbr}ไป{\wbr}หมด เพื่อ{\wbr}ไม่{\wbr}ให้{\wbr}ชื่อ{\wbr}ซ้ำซ้อน) นอกจากนี้{\wbr}เรา{\wbr}ยัง{\wbr}หลีกเลี่ยง{\wbr}การ{\wbr}ตั้ง{\wbr}ชื่อ{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}ว่า{\wbr}
+{\ct delete} โดย{\wbr}ใช้{\wbr}ชื่อ{\wbr}ว่า {\ct del} แทน เพราะ{\wbr}จะ{\wbr}ซ้ำ{\wbr}กับ{\wbr}ชื่อ{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct
+  delete}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext การ{\wbr}ประกาศ{\wbr}โครงสร้าง {\ct list} ที่{\wbr}ระบุ{\wbr}ฟังก์ชัน{\wbr}สมาชิก\latintext},label=code:abs-struct-list-functions}
+struct list {
+  // members
+  int items[max_list_size];
+  int size;
+
+  typedef int* iterator;
+
+  // member functions
+  void init();
+  iterator begin();
+  iterator end();
+  iterator find(int x);
+  iterator append(int x);
+  void del(iterator p);
+  void insert_after(iterator p, int x);
+};
+\end{codelist}
+\thaitext
+\end{figure}
+
+ฟังก์ชัน{\wbr}สมาชิก{\wbr}เหล่านี้ จะ{\wbr}ทำงาน{\wbr}กับ{\wbr}ตัวแปร{\wbr}โครงสร้าง {\ct list}
+และ{\wbr}สามารถ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก{\wbr}ที่{\wbr}เป็น{\wbr}ตัวแปร{\wbr}เช่น {\ct size} และ {\ct items} ได้{\wbr}โดย{\wbr}ตรง{\wbr}
+รูป{\wbr}ที่~\ref{fig:abs-member-functions}
+
+\begin{figure}
+TODO: add this
+\caption{แสดง{\wbr}ลักษณะ{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}ฟังก์ชัน{\wbr}สมาชิก}
+\label{fig:abs-member-functions}
+\end{figure}
+
+หลังจาก{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}ต่าง ๆ เหล่านี้ ใน{\wbr}โครงสร้าง {\ct list} แล้ว{\wbr}
+เรา{\wbr}จะ{\wbr}นิยาม{\wbr}ฟังก์ชัน{\wbr}ดังกล่าว โปรแกรม{\wbr}ที่~\ref{code:abs-list-init-find}
+แสดง{\wbr}การ{\wbr}นิยาม{\wbr}ฟังก์ชัน {\ct list::init} และ {\ct list:find}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ฟังก์ชัน{\wbr}สมาชิก {\ct list::init} และ {\ct list::find}\latintext},label=code:abs-list-init-find}
+void list::init()
+{
+  size = 0;
+}
+
+list::iterator list::find(int x)
+{
+  for(int i = 0; i < size; ++i)
+    if(items[i] == x)
+      return &items[i];
+  return end(l);
+}
+\end{codelist}
+\thaitext
+\end{figure}
+
+เช่นเดียวกับ{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก {\ct size} และ {\ct items} ของ{\wbr}ตัวแปร {\ct l} ด้วย{\wbr}
+{\ct l.size} และ {\ct l.items} ใน{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}ของ{\wbr}ตัวแปร{\wbr}ต่าง ๆ
+เรา{\wbr}จะ{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์{\wbr}จุด ({\ct .})  ส่วน{\wbr}ใน{\wbr}กรณี{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก{\wbr}ของ{\wbr}โครงสร้าง{\wbr}เอง{\wbr}
+เรา{\wbr}จะ{\wbr}ใช้{\wbr}โอ{\wbr}เปอเรเตอร์ {\ct ::} เช่น {\ct list::init} และ {\ct
+  list::iterator}
+
+สังเกต{\wbr}ว่า{\wbr}ภายใน{\wbr}ฟังก์ชัน{\wbr}สมาชิก {\ct list::init} เรา{\wbr}สามารถ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก {\ct size}
+ได้{\wbr}โดย{\wbr}ตรง ตัวแปร{\wbr}ดังกล่าว{\wbr}จะ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก {\ct size}
+ของ{\wbr}ตัวแปร{\wbr}ที่{\wbr}เรา{\wbr}เรียก{\wbr}ฟังก์ชัน{\wbr}เหล่านี้{\wbr}ผ่าน เช่น ถ้า{\wbr}เรา{\wbr}เรียก {\ct lst.init()} ตัวแปร{\wbr}
+{\ct size} ใน{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}ที่{\wbr}เรา{\wbr}เขียน{\wbr}จะ{\wbr}หมายถึง {\ct lst.size}
+
+\begin{quiz}{ฟังก์ชัน{\wbr}สมาชิก{\wbr}อื่น ๆ}
+เขียน{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}อื่น ๆ ของ{\wbr}โครงสร้าง {\ct list} และ{\wbr}ทดสอบ{\wbr}กับ{\wbr}โปรแกรม{\wbr}ตัวอย่าง{\wbr}
+\end{quiz}
+
+\section{การ{\wbr}ซ่อน{\wbr}รายละเอียด: {\ct class}}
+
+ใน{\wbr}ส่วน{\wbr}ที่แล้ว{\wbr}เรา{\wbr}พัฒนา{\wbr}ชนิด{\wbr}ข้อมูล {\ct list}
+ที่{\wbr}รวม{\wbr}ข้อมูล{\wbr}และ{\wbr}กระบวนการ{\wbr}ที่ทำงาน{\wbr}กับ{\wbr}ข้อมูล{\wbr}ไว้{\wbr}ด้วย{\wbr}กัน ทำ{\wbr}ให้การ{\wbr}ใช้{\wbr}งาน{\wbr}ต่าง ๆ
+สะดวก{\wbr}ขึ้น{\wbr}และ{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ได้{\wbr}อย่าง{\wbr}กระชับ{\wbr}ขึ้น การ{\wbr}สร้าง{\wbr}ชนิด{\wbr}ข้อมูล {\ct list} ที่{\wbr}เรา{\wbr}ทำ{\wbr}นี้{\wbr}
+เป็น{\wbr}ส่วนหนึ่ง{\wbr}ของ{\wbr}การ{\wbr}จัดการ{\wbr}กับ{\wbr}ความ{\wbr}ซับซ้อน{\wbr}ของ{\wbr}ซอฟต์แวร์ โดย{\wbr}การ{\wbr}แบ่ง{\wbr}งาน{\wbr}เป็น{\wbr}ส่วนย่อย ๆ
+และ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}เพื่อ{\wbr}รับผิดชอบ{\wbr}งาน{\wbr}แต่ละ{\wbr}ส่วน{\wbr}แยกกัน{\wbr}ไป{\wbr}
+
+อย่างไรก็ตาม สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}การ{\wbr}เขียน{\wbr}ที่{\wbr}ผ่าน{\wbr}มา{\wbr}
+เรา{\wbr}ไม่{\wbr}สามารถ{\wbr}รับประกัน{\wbr}ว่า{\wbr}งาน{\wbr}ที่{\wbr}แบ่ง{\wbr}ออก{\wbr}มา{\wbr}พัฒนา{\wbr}เป็น{\wbr}ส่วน ๆ นั้น{\wbr}
+จะ{\wbr}ถูก{\wbr}แบ่ง{\wbr}ไป{\wbr}ดูแล{\wbr}แยก{\wbr}ขาด{\wbr}จาก{\wbr}กัน ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}
+อาจ{\wbr}มี{\wbr}ส่วนหนึ่ง{\wbr}ของ{\wbr}ระบบ{\wbr}ที่{\wbr}ต้องการ{\wbr}แทรก{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}เพื่อ{\wbr}เป็น{\wbr}รายการ{\wbr}แรก ซึ่ง{\wbr}โครงสร้าง{\wbr}
+{\ct list} ที่{\wbr}เรา{\wbr}ได้{\wbr}พัฒนา{\wbr}ไว้ ยัง{\wbr}ไม่{\wbr}ได้{\wbr}รองรับ{\wbr}
+โปรแกรมเมอร์{\wbr}ผู้รับผิดชอบ{\wbr}ใน{\wbr}ส่วน{\wbr}นั้น{\wbr}ก็{\wbr}อาจ{\wbr}จะ{\wbr}เปิด{\wbr}ดู{\wbr}ส่วน{\wbr}ของ{\wbr}โปรแกรม{\wbr}ที่{\wbr}เรา{\wbr}เขียน{\wbr}ขึ้น{\wbr}
+และ{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ใน{\wbr}ลักษณะ{\wbr}ด้าน{\wbr}ล่าง{\wbr}ขึ้น{\wbr}มา{\wbr}เพื่อ{\wbr}ทำงาน{\wbr}ดังกล่าว{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+for(int i = lst.size-1; i >= 0; --i)
+  lst.items[i+1] = lst.items[i];
+lst.items[0] = x;
+++lst.size;
+\end{codelist}
+\thaitext
+
+โปรแกรม{\wbr}ดังกล่าว{\wbr}สามารถ{\wbr}ทำงาน{\wbr}ได้{\wbr}ถูกต้อง{\wbr}
+อย่างไรก็ตาม{\wbr}โปรแกรม{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}ตรวจสอบ{\wbr}ขอบเขต{\wbr}ของ{\wbr}อาร์เรย์{\wbr}เลย{\wbr}
+ทำ{\wbr}ให้{\wbr}โปรแกรม{\wbr}อาจ{\wbr}จะ{\wbr}เกิด{\wbr}ความผิด{\wbr}พลาด{\wbr}ได้{\wbr}ใน{\wbr}ภายหลัง สังเกต{\wbr}ว่า{\wbr}
+ถ้า{\wbr}โปรแกรมเมอร์{\wbr}คน{\wbr}ที่{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ดังกล่าว เขียน{\wbr}ผิดพลาด (เช่น ลืม{\wbr}เพิ่ม{\wbr}ค่า {\ct
+  lst.size} ก็{\wbr}อาจ{\wbr}จะ{\wbr}มี{\wbr}ผลกระทบ{\wbr}ไป{\wbr}กับ{\wbr}ทุก{\wbr}ส่วน{\wbr}ของ{\wbr}ระบบ{\wbr}ที่{\wbr}มี{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}รายการ{\wbr}นี้)
+
+อย่างไรก็ตาม{\wbr}
+ความ{\wbr}ยาก{\wbr}ของ{\wbr}การ{\wbr}พัฒนา{\wbr}ซอฟต์แวร์{\wbr}ขนาด{\wbr}ใหญ่{\wbr}ไม่{\wbr}ได้{\wbr}เกิด{\wbr}จาก{\wbr}ความ{\wbr}ซับซ้อน{\wbr}เพียง{\wbr}อย่างเดียว{\wbr}
+แต่{\wbr}ระบบ{\wbr}ขนาด{\wbr}ใหญ่{\wbr}ยัง{\wbr}มี{\wbr}ความ{\wbr}ต้องการ{\wbr}ใน{\wbr}การ{\wbr}ปรับ{\wbr}เปลี่ยน{\wbr}ตลอดเวลา{\wbr}
+เพื่อให้{\wbr}สามารถ{\wbr}รองรับ{\wbr}ความ{\wbr}ต้องการ{\wbr}ของ{\wbr}ผู้ใช้{\wbr}ได้{\wbr}
+
+สมมติ{\wbr}ว่า{\wbr}ใน{\wbr}อนาคต มี{\wbr}ความจำ{\wbr}เป็น{\wbr}ต้อง{\wbr}เปลี่ยน{\wbr}รูปแบบ{\wbr}ใน{\wbr}การ{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}รายการ{\wbr}ใหม่{\wbr}
+จาก{\wbr}ที่{\wbr}เคย{\wbr}ใช้{\wbr}อาร์เรย์ มา{\wbr}ใช้{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}แบบ{\wbr}อื่น{\wbr}ที่{\wbr}มี{\wbr}ประสิทธิภาพ{\wbr}มาก{\wbr}กว่า{\wbr}
+ถ้า{\wbr}เรา{\wbr}ยอม{\wbr}ให้{\wbr}โปรแกรม{\wbr}ใน{\wbr}ส่วน{\wbr}ต่าง ๆ พัฒนา{\wbr}กระบวนการ{\wbr}จัดการ{\wbr}รายการ{\wbr}ได้{\wbr}โดย{\wbr}เป็น{\wbr}อิสระ{\wbr}
+เรา{\wbr}จะ{\wbr}ต้อง{\wbr}เข้า{\wbr}ไป{\wbr}แก้ไข{\wbr}โปรแกรม{\wbr}ต่าง ๆ
+เหล่านั้น{\wbr}เพื่อให้{\wbr}การ{\wbr}เปลี่ยนแปลง{\wbr}โครงสร้าง{\wbr}ภายใน{\wbr}ของ{\wbr}รายการ{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}
+
+ยิ่ง{\wbr}ไป{\wbr}กว่า{\wbr}นั้น ถ้า{\wbr}เรา{\wbr}เปลี่ยนแปลง{\wbr}โปรแกรม{\wbr}โดย{\wbr}ที่{\wbr}ยัง{\wbr}ใช้{\wbr}ตัวแปร{\wbr}สมาชิก {\ct items} หรือ {\ct
+  size} อยู่{\wbr}แต่{\wbr}ใช้{\wbr}ใน{\wbr}ความหมาย{\wbr}อื่น โปรแกรม{\wbr}ใน{\wbr}ส่วน{\wbr}อื่น ๆ
+ที่{\wbr}เรียก{\wbr}ใช้{\wbr}ข้อมูล{\wbr}จาก{\wbr}รายการ{\wbr}ผ่าน{\wbr}ทาง{\wbr}สมาชิก{\wbr}ดังกล่าว{\wbr}โดย{\wbr}ตรง{\wbr}ก็{\wbr}จะ{\wbr}ยัง{\wbr}สามารถ{\wbr}คอมไพล์{\wbr}ได้{\wbr}
+รวม{\wbr}ถึง{\wbr}อาจ{\wbr}จะ{\wbr}ทำงาน{\wbr}ได้{\wbr}โดย{\wbr}ที่{\wbr}เรา{\wbr}ไม่{\wbr}ทราบ{\wbr}ว่า{\wbr}มี{\wbr}ความผิด{\wbr}พลาด{\wbr}ซ่อน{\wbr}อยู่{\wbr}
+ความผิด{\wbr}พลาด{\wbr}พวก{\wbr}นี้{\wbr}ก็{\wbr}เป็น{\wbr}เสมือน{\wbr}ระเบิดเวลา{\wbr}รอ{\wbr}การ{\wbr}ระเบิด{\wbr}เท่านั้น{\wbr}เอง{\wbr}
+
+ภาษา C++ ได้{\wbr}พัฒนา{\wbr}มา{\wbr}จาก{\wbr}ภาษา C
+โดย{\wbr}มี{\wbr}เป้าหมาย{\wbr}ที่{\wbr}จะ{\wbr}ทำ{\wbr}ให้{\wbr}ภาษา{\wbr}โปรแกรม{\wbr}ช่วย{\wbr}จัดการ{\wbr}กับ{\wbr}ความ{\wbr}ซับซ้อน{\wbr}ได้{\wbr}ดี{\wbr}ขึ้น{\wbr}
+หนึ่ง{\wbr}ใน{\wbr}ความ{\wbr}สามารถ{\wbr}ที่{\wbr}เพิ่ม{\wbr}เข้า{\wbr}มา{\wbr}คือ{\wbr}การ{\wbr}รวม{\wbr}กระบวนการ{\wbr}เข้า{\wbr}กับ{\wbr}ข้อมูล ดังที่{\wbr}เรา{\wbr}ได้{\wbr}ทดลอง{\wbr}ใช้{\wbr}แล้ว{\wbr}
+อีก{\wbr}หนึ่ง{\wbr}ความ{\wbr}สามารถ{\wbr}ที่{\wbr}สำคัญ{\wbr}ไม่{\wbr}แพ้{\wbr}กัน{\wbr}
+ก็{\wbr}คือ{\wbr}ความ{\wbr}สามารถ{\wbr}ใน{\wbr}การ{\wbr}กำหนด{\wbr}ขอบเขต{\wbr}การ{\wbr}เข้า{\wbr}ใช้{\wbr}สมาชิก{\wbr}ของ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ที่{\wbr}เรา{\wbr}ได้{\wbr}สร้าง{\wbr}ขึ้น เช่น{\wbr}
+ใน{\wbr}กรณี{\wbr}นี้ เรา{\wbr}สามารถ{\wbr}ระบุ{\wbr}ได้{\wbr}ว่า{\wbr}สมาชิก {\ct items} และ {\ct size}
+เป็น{\wbr}สมาชิก{\wbr}ภายใน{\wbr}ของ{\wbr}ส่วน{\wbr}นี้ และ{\wbr}ไม่{\wbr}ยอม{\wbr}ให้{\wbr}โปรแกรม{\wbr}ใน{\wbr}ส่วน{\wbr}อื่น ๆ เข้าถึง{\wbr}ได้{\wbr}โดย{\wbr}ตรง{\wbr}
+
+เรา{\wbr}จะ{\wbr}ศึกษา{\wbr}ความ{\wbr}สามารถ{\wbr}ดังกล่าว{\wbr}โดย{\wbr}การ{\wbr}พัฒนา{\wbr}ค{\wbr}ลา{\wbr}ส ({\ct class})
+สำหรับ{\wbr}จัดการ{\wbr}กับ{\wbr}รายการ  
+
+ใน{\wbr}ภาษา C++ ค{\wbr}ลา{\wbr}ส เป็น{\wbr}การ{\wbr}สร้าง{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ใหม่ ใน{\wbr}ลักษณะ{\wbr}เดียวกัน{\wbr}กับ {\ct struct} จริง{\wbr}
+ๆ แล้ว โครงสร้าง{\wbr}สอง{\wbr}แบบ{\wbr}นี้{\wbr}มี{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}เหมือน{\wbr}กัน{\wbr}ทุก{\wbr}ประการ{\wbr}
+ยกเว้น{\wbr}เกณฑ์{\wbr}มาตรฐาน{\wbr}ใน{\wbr}การ{\wbr}ควบคุม{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก{\wbr}
+สำหรับ{\wbr}ตัวแปร{\wbr}ที่{\wbr}ประกาศ{\wbr}ขึ้น{\wbr}จาก{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}หรือ{\wbr}โครงสร้าง เรา{\wbr}นิยม{\wbr}เรียก{\wbr}ว่า{\em วัตถุ}
+
+เรา{\wbr}จะ{\wbr}นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ได้{\wbr}ใน{\wbr}ลักษณะ{\wbr}เดียวกับ{\wbr}การ{\wbr}นิยาม {\ct struct} แต่{\wbr}สมาชิก{\wbr}ต่าง ๆ
+ที่{\wbr}เรา{\wbr}นิยาม{\wbr}ใน{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}จะ{\wbr}ไม่{\wbr}สามารถ{\wbr}ถูก{\wbr}อ้าง{\wbr}ถึง{\wbr}ได้{\wbr}จาก{\wbr}โปรแกรม{\wbr}ที่อยู่ ``ภายนอก'' ค{\wbr}ลา{\wbr}ส
+ยกเว้น{\wbr}จะ{\wbr}เป็น{\wbr}ส่วน{\wbr}ที่{\wbr}เรา{\wbr}ระบุ{\wbr}ไว้ พิจารณา{\wbr}ตัวอย่าง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}เพื่อ{\wbr}เปรียบเทียบ{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+struct test1 { int a;  int f() { return a+1; } };
+class test2 { int a; int f() { return a+1; } };
+
+test1 s1;  test2 s2;
+cout << s1.a << endl;       // works
+cout << s2.a << endl;       // compilation error
+cout << s1.f() << endl;     // works
+cout << s2.f() << endl;     // compilation error
+\end{codelist}
+\thaitext
+
+สังเกต{\wbr}ว่า{\wbr}ฟังก์ชัน{\wbr}สมาชิก {\ct test2::f } สามารถ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก {\ct a} ได้{\wbr}
+แต่{\wbr}โปรแกรม{\wbr}ภายนอก{\wbr}ไม่{\wbr}สามารถ{\wbr}อ้าง{\wbr}ถึง{\wbr}ได้{\wbr}
+
+ใน{\wbr}การ{\wbr}ระบุ{\wbr}ขอบเขต{\wbr}การ{\wbr}อ้าง{\wbr}ถึง{\wbr}สมาชิก{\wbr}ใน{\wbr}ค{\wbr}ลา{\wbr}ส เรา{\wbr}จะ{\wbr}ใช้{\wbr}คีย์{\wbr}เวิร์ด {\ct private} และ {\ct
+  public} สมาชิก{\wbr}ที่อยู่{\wbr}หลักการ{\wbr}ระบุ {\ct public}
+เป็น{\wbr}ส่วน{\wbr}สาธารณะ{\wbr}จะ{\wbr}ถูก{\wbr}อ้าง{\wbr}ถึง{\wbr}จาก{\wbr}ส่วน{\wbr}ใด ๆ ของ{\wbr}โปรแกรม{\wbr}ก็ได้ ส่วน{\wbr}ที่{\wbr}ถูก{\wbr}ระบุ{\wbr}ว่า{\wbr}เป็น {\ct
+  private} จะ{\wbr}เป็น{\wbr}สมาชิก{\wbr}ส่วนตัว{\wbr}และ{\wbr}ถูก{\wbr}อ้าง{\wbr}ถึง{\wbr}ได้{\wbr}จาก{\wbr}สมาชิก{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}เท่านั้น{\wbr}
+ใน{\wbr}กรณี{\wbr}ที่{\wbr}เรา{\wbr}ไม่{\wbr}ได้{\wbr}ระบุ{\wbr}อะไร สมาชิก{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}จะ{\wbr}เป็น{\wbr}สมาชิก{\wbr}ส่วนตัว \ \ \ ใน{\wbr}ทาง{\wbr}กลับ{\wbr}กัน{\wbr}
+สำหรับ{\wbr}การ{\wbr}นิยาม{\wbr}โครงสร้าง{\wbr}นั้น สมาชิก{\wbr}ที่{\wbr}ไม่{\wbr}ได้{\wbr}ระบุ{\wbr}ขอบเขต{\wbr}การ{\wbr}เข้าถึง{\wbr}
+จะ{\wbr}ถูก{\wbr}พิจารณา{\wbr}เป็น{\wbr}สมาชิก{\wbr}สาธารณะ{\wbr}
+
+พิจารณา{\wbr}ค{\wbr}ลา{\wbr}ส {\ct test2}
+ที่{\wbr}แก้ไข{\wbr}แล้ว{\wbr}ด้าน{\wbr}ล่าง{\wbr}ที่{\wbr}เปิด{\wbr}ให้{\wbr}ฟังก์ชัน {\ct test2::f} สามารถ{\wbr}เข้าถึง{\wbr}ได้{\wbr}จาก{\wbr}ทุก ๆ ที่{\wbr}
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}เพิ่ม{\wbr}ฟังก์ชัน {\ct set\_a} เพื่อให้{\wbr}เรา{\wbr}สามารถ{\wbr}กำหนด{\wbr}ค่า{\wbr}ให้{\wbr}กับ {\ct a}
+ได้{\wbr}ด้วย (ไม่{\wbr}เช่นนั้น{\wbr}เรา{\wbr}จะ{\wbr}ไม่{\wbr}มี{\wbr}ทาง{\wbr}กำหนด{\wbr}ค่า{\wbr}ให้{\wbr}กับ {\ct a} ได้{\wbr}เลย)
+
+\latintext
+\begin{codelist}{C++}{}
+class test2 { 
+  int a; 
+public: 
+  void set_a(int aa) { a = aa; }
+  int f() { return a+1; } 
+};
+\end{codelist}
+\thaitext
+
+\subsection{ค{\wbr}ลา{\wbr}ส{\wbr}สำหรับ{\wbr}ตัว{\wbr}นับ}
+เรา{\wbr}จะ{\wbr}เขียน{\wbr}ค{\wbr}ลา{\wbr}ส {\ct counter} สำหรับ{\wbr}ใช้{\wbr}เป็น{\wbr}ตัว{\wbr}นับ{\wbr}
+ค{\wbr}ลา{\wbr}ส{\wbr}ดังกล่าว{\wbr}ไม่{\wbr}ได้{\wbr}มี{\wbr}ความ{\wbr}ซับซ้อน{\wbr}ใน{\wbr}การ{\wbr}เขียน{\wbr}จึง{\wbr}เป็น{\wbr}ตัวอย่าง{\wbr}ที่{\wbr}ดี{\wbr}ใน{\wbr}การ{\wbr}เริ่มต้น{\wbr}
+
+ใน{\wbr}การ{\wbr}ออกแบบ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}นั้น เรา{\wbr}จำเป็น{\wbr}จะ{\wbr}ต้อง{\wbr}พิจารณา{\wbr}ส่วน{\wbr}ที่{\wbr}ผู้ใช้{\wbr}จะ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ก่อน{\wbr}
+ฟังก์ชัน{\wbr}สมาชิก{\wbr}ใน{\wbr}กลุ่ม{\wbr}นี้{\wbr}จะ{\wbr}เป็น{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}ของ{\wbr}วัตถุ{\wbr}ใน{\wbr}ค{\wbr}ลา{\wbr}ส ที่{\wbr}ผู้ใช้{\wbr}งาน{\wbr}จะ{\wbr}เรียก{\wbr}ใช้{\wbr}
+อิน{\wbr}เทอร์เฟส{\wbr}ของ{\wbr}ตัว{\wbr}นับ{\wbr}นั้น{\wbr}ไม่{\wbr}ซับซ้อน ดัง{\wbr}แสดง{\wbr}ใน{\wbr}รายการ{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+\begin{itemize}
+\item Init($z$) -- กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ใหักับ{\wbr}ตัว{\wbr}นับ โดย{\wbr}ให้{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ $z$
+\item Inc() -- เพิ่ม{\wbr}ค่าตัว{\wbr}นับ{\wbr}ขึ้น 1
+\item Get() -- คืน{\wbr}ค่า{\wbr}ปัจจุบัน{\wbr}ของ{\wbr}ตัว{\wbr}นับ{\wbr}
+\end{itemize}
+
+สังเกต{\wbr}ว่า{\wbr}โดย{\wbr}ทั่วไป{\wbr}แล้ว เรา{\wbr}มัก{\wbr}กำหนด{\wbr}ให้{\wbr}ตัว{\wbr}นับ{\wbr}มี{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}เป็น 0
+จึง{\wbr}เป็น{\wbr}การ{\wbr}เหมาะสม{\wbr}ที่{\wbr}จะ{\wbr}เพิ่ม{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}ที่ทำงาน{\wbr}ดังกล่าว{\wbr}ไว้{\wbr}ด้วย{\wbr}
+\begin{itemize}
+\item Init --- กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}ตัว{\wbr}นับ โดย{\wbr}ให้{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ 0
+\end{itemize}
+
+เรา{\wbr}จะ{\wbr}นิยาม{\wbr}ส่วน{\wbr}สาธารณะ{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ได้{\wbr}ดังนี้{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+class counter {
+  // ... private members not shown
+public:
+  void init(z=0);
+  void inc();
+  int get();
+};
+\end{codelist}
+\thaitext
+
+\section{โครงสร้าง{\wbr}ข้อมูล{\wbr}สำหรับ{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}ใด{\wbr}ก็ได้: เท็ม{\wbr}เพล{\wbr}ต}
+
+\section{รายการ{\wbr}บน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เปลี่ยน{\wbr}ขนาด{\wbr}ได้}
+
+\subsection{ตัว{\wbr}สร้าง{\wbr}สำหรับ{\wbr}การ{\wbr}คัดลอก{\wbr}และ{\wbr}เครื่องหมาย{\wbr}ให้{\wbr}ค่า}
+
+\section{ข้อ{\wbr}ควร{\wbr}รู้{\wbr}เกี่ยวกับ{\wbr}การ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ด้วย C++}
