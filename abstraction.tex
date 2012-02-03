@@ -338,24 +338,114 @@ public:
 \item Init --- กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}ตัว{\wbr}นับ โดย{\wbr}ให้{\wbr}มี{\wbr}ค่า{\wbr}เท่า{\wbr}กับ 0
 \end{itemize}
 
-เรา{\wbr}จะ{\wbr}นิยาม{\wbr}ส่วน{\wbr}สาธารณะ{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ได้{\wbr}ดังนี้{\wbr}
+เรา{\wbr}จะ{\wbr}นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ดังกล่าว{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:abs-counter} สมาชิก{\wbr}ข้อมูล{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส
+{\ct counter} มี{\wbr}เพียงแค่{\wbr}ค่าตัว{\wbr}นับ{\wbr}ที่{\wbr}นับ{\wbr}ได้ {\ct c} เนื่องจาก{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}นี้{\wbr}สั้น{\wbr}
+เรา{\wbr}จึง{\wbr}นิยาม{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}เหล่านี้{\wbr}ไว้{\wbr}ภายใน{\wbr}การ{\wbr}นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส
+สำหรับ{\wbr}ฟังก์ชัน{\wbr}ที่{\wbr}นิยาม{\wbr}ภายใน{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}เหล่านี้ คอม{\wbr}ไพล{\wbr}เลอร์{\wbr}ภาษา C++ จะ{\wbr}แปลง{\wbr}ให้{\wbr}เป็น{\wbr}ฟังก์ชัน{\wbr}แบบ{\wbr}
+inline โดย{\wbr}อัตโนมัติ{\wbr}
+
+สังเกต{\wbr}การ{\wbr}ประกาศ{\wbr}อาร์กิวเมนท์{\wbr}ปริยาย{\wbr}ใน{\wbr}ฟังก์ชัน{\wbr}สมาชิก {\ct counter::init}
+ถ้า{\wbr}มี{\wbr}การ{\wbr}เรียก{\wbr}คำสั่ง{\wbr}ที่{\wbr}ไม่{\wbr}ได้{\wbr}ระบุ{\wbr}ค่า{\wbr}พารามิเตอร์ {\ct z} จะ{\wbr}เปรียบ{\wbr}เสมือน{\wbr}ส่ง{\wbr}ค่า {\ct 0}
+เป็น{\wbr}อาร์กิวเมนท์
 
 \latintext
-\begin{codelist}{C++}{}
+\begin{codelist}{C++}{caption={\thaitext นิยาม{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส {\ct counter}\latintext},label=code:abs-counter}
 class counter {
-  // ... private members not shown
+  int c;
 public:
-  void init(z=0);
-  void inc();
-  int get();
+  void init(int z=0) { c = z; }
+  void inc() { ++c; }
+  int get() { return c; }
 };
 \end{codelist}
 \thaitext
+
+\subsection{ตัว{\wbr}สร้าง: constructor}
+ฟังก์ชัน{\wbr}สมาชิก {\ct counter::init} ทำ{\wbr}หน้าที่{\wbr}เฉพาะ คือ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}วัตถุ{\wbr}ใน{\wbr}ค{\wbr}ลา{\wbr}ส
+{\ct counter}
+
+\begin{quiz}{}
+ถ้า{\wbr}เรา{\wbr}ลืม{\wbr}เรียก{\wbr}ฟังก์ชัน {\ct init} ก่อน{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ตัว{\wbr}นับ{\wbr}จะ{\wbr}เกิด{\wbr}อะไร{\wbr}ขึ้น?
+\end{quiz}
+
+สังเกต{\wbr}ว่า ระหว่าง{\wbr}ที่{\wbr}เรา{\wbr}ประกาศ{\wbr}ตัวแปร จนถึง{\wbr}ก่อน{\wbr}ที่{\wbr}จะ{\wbr}เรียก{\wbr}ใช้{\wbr}ฟังก์ชัน {\ct init} นั้น{\wbr}
+สถานะ{\wbr}ของ{\wbr}วัตถุ{\wbr}นั้น{\wbr}เป็น{\wbr}สถานะ{\wbr}ที่{\wbr}ไม่{\wbr}มี{\wbr}ความหมาย เนื่องจาก{\wbr}ยัง{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}กำหนด{\wbr}ค่า \ \ ใน{\wbr}ภาษา{\wbr}
+C++ เรา{\wbr}สามารถ{\wbr}กำหนด{\wbr}ฟังก์ชัน{\wbr}สมาชิกพิเศษ{\wbr}ให้{\wbr}ทำงาน{\wbr}ทันที{\wbr}
+เมื่อ{\wbr}มี{\wbr}การ{\wbr}ประกาศใช้{\wbr}งาน{\wbr}วัตถุ{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}นั้น ๆ  ฟังก์ชัน{\wbr}นี้{\wbr}จะ{\wbr}ทำ{\wbr}หน้าที่{\wbr}เหมือน{\wbr}กับ{\wbr}ฟังก์ชัน {\ct init}  แต่{\wbr}เรา{\wbr}จะ{\wbr}สามารถ{\wbr}รับประกัน{\wbr}ได้{\wbr}ว่า{\wbr}เมื่อ{\wbr}เรา{\wbr}นิยาม{\wbr}วัตถุ{\wbr}แล้ว วัตถุ{\wbr}นั้น{\wbr}จะ{\wbr}อยู่{\wbr}ใน{\wbr}สภาพ{\wbr}ที่ ``พร้อม{\wbr}ใช้{\wbr}งาน'' ทันที{\wbr}
+
+ฟังก์ชัน{\wbr}ดังกล่าว เรียก{\wbr}ว่า{\em ตัว{\wbr}สร้าง} ({\em constructor})
+โดย{\wbr}เรา{\wbr}สามารถ{\wbr}ระบุ{\wbr}ฟังก์ชัน{\wbr}ดังกล่าว{\wbr}โดย{\wbr}ตั้ง{\wbr}ชื่อ{\wbr}ให้{\wbr}เหมือน{\wbr}กับ{\wbr}ชื่อ{\wbr}ค{\wbr}ลา{\wbr}ส
+ตัวอย่าง{\wbr}ของ{\wbr}การ{\wbr}ประกาศ{\wbr}ตัว{\wbr}สร้าง{\wbr}
+และ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:abs-counter-cons} \ ใน{\wbr}โปรแกรม{\wbr}ดังกล่าว{\wbr}
+เมื่อ{\wbr}เรา{\wbr}ประกาศ{\wbr}วัตถุ {\ct a} และ {\ct b} ฟังก์ชัน{\wbr}สมาชิก {\ct counter::counter}
+จะ{\wbr}ถูก{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}
+
+\latintext
+\begin{codelist}{C++}{caption={\thaitext นิยาม{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส {\ct counter} ที่{\wbr}ใช้{\wbr}ตัว{\wbr}สร้าง และ{\wbr}ตัวอย่าง{\wbr}การ{\wbr}ใช้{\wbr}งาน\latintext},label=code:abs-counter-cons}
+class counter {
+  int c;
+public:
+  counter(int z=0) { c = z; }
+  void inc() { ++c; }
+  int get() { return c; }
+};
+
+  //...
+  counter a, b(10);
+  cout << a.get() << endl;    // outputs 0
+  b.inc(); a.inc();
+  cout << b.get() << endl;    // outputs 11
+  cout << a.get() << endl;    // outputs 1
+\end{codelist}
+\thaitext
+
+สังเกต{\wbr}ว่า{\wbr}ภายใน{\wbr}ตัว{\wbr}สร้าง {\ct counter::counter} จริง ๆ
+แล้ว{\wbr}สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}ทำ{\wbr}ก็{\wbr}เป็น{\wbr}การ{\wbr}สร้าง{\wbr}ตัวแปร {\ct c} นั่นเอง{\wbr}
+เรา{\wbr}สามารถ{\wbr}ระบุ{\wbr}ความ{\wbr}ตั้งใจ{\wbr}ดังกล่าว{\wbr}ให้{\wbr}ชัดเจน{\wbr}โดย{\wbr}ระบุ{\wbr}คำสั่ง{\wbr}ดังกล่าว{\wbr}ให้{\wbr}เป็น{\wbr}การ{\wbr}เรียก{\wbr}ตัว{\wbr}สร้าง{\wbr}ของ{\wbr}
+{\ct c} ดัง{\wbr}ส่วน{\wbr}ของ{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้ \ เรา{\wbr}จะ{\wbr}ได้{\wbr}เห็น{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ใน{\wbr}ลักษณะ{\wbr}นี้{\wbr}ต่อ ๆ ไป{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+  //...
+  counter(z=0) : c(z) {}
+\end{codelist}
+\thaitext
+
+\subsection{ค{\wbr}ลา{\wbr}ส {\ct list}}
+
+เรา{\wbr}สามารถ{\wbr}ปรับ{\wbr}การ{\wbr}นิยาม{\wbr}โครงสร้าง {\ct list} ให้{\wbr}ซ่อน{\wbr}สมาชิก {\ct items} และ {\ct
+  size} ได้{\wbr}ดัง{\wbr}โปรแกรม{\wbr}ที่~\ref{code:abs-class-list}
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}เปลี่ยน{\wbr}ไป{\wbr}นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส และ{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}ต่าง ๆ แบบ {\ct public}
+สังเกต{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}ตัว{\wbr}สร้าง{\wbr}เพื่อ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}ตัวแปร {\ct size}
+\ \ ส่วน{\wbr}การ{\wbr}นิยาม{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}อื่น ๆ ของ{\wbr}โครงสร้าง{\wbr}นั้น{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}เปลี่ยนแปลง{\wbr}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส {\ct list} และ{\wbr}ตัว{\wbr}สร้าง {\ct list::list}\latintext},label=code:abs-class-list}
+class list {
+  int items[max_list_size];
+  int size;
+
+public:
+  typedef int* iterator;
+
+  list() : size(0) {}
+  iterator begin();
+  iterator end();
+  iterator find(int x);
+  iterator append(int x);
+  void del(iterator p);
+  void insert_after(iterator p, int x);
+};
+\end{codelist}
+\thaitext
+\end{figure}
 
 \section{โครงสร้าง{\wbr}ข้อมูล{\wbr}สำหรับ{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}ใด{\wbr}ก็ได้: เท็ม{\wbr}เพล{\wbr}ต}
 
 \section{รายการ{\wbr}บน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เปลี่ยน{\wbr}ขนาด{\wbr}ได้}
 
+\subsection{ตัว{\wbr}ทำลาย: destructor}
 \subsection{ตัว{\wbr}สร้าง{\wbr}สำหรับ{\wbr}การ{\wbr}คัดลอก{\wbr}และ{\wbr}เครื่องหมาย{\wbr}ให้{\wbr}ค่า}
 
 \section{ข้อ{\wbr}ควร{\wbr}รู้{\wbr}เกี่ยวกับ{\wbr}การ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ด้วย C++}
