@@ -9,24 +9,14 @@ struct list {
 
   typedef int* iterator;
 
-  void init();
-  iterator begin();
-  iterator end();
+  void init() { size = 0; }
+  iterator begin() { return &items[0]; }
+  iterator end() { return &items[size]; }
   iterator find(int x);
   iterator append(int x);
   void del(iterator p);
   void insert_after(iterator p, int x);
 };
-
-void list::init()
-{
-  size = 0;
-}
-
-list::iterator list::end()
-{
-  return &items[size];
-}
 
 list::iterator list::find(int x)
 {
@@ -45,7 +35,7 @@ list::iterator list::append(int v)
   return &items[size-1];
 }
 
-main()
+int main()
 {
   list lst;
   lst.init();
@@ -54,6 +44,11 @@ main()
     cout << "found" << endl;
   else
     cout << "not found" << endl;
+
+  for(list::iterator i = lst.begin();
+      i != lst.end(); i++)
+    cout << *i << ", ";
+  cout << endl;
 
   cout << lst.find(5) << endl;
   cout << lst.find(10) << endl;
