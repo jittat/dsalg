@@ -749,9 +749,6 @@ list& list::operator=(const list& l)
   *this} แทน{\wbr}วัตถุ{\wbr}ที่{\wbr}ได้{\wbr}รับ{\wbr}ค่า{\wbr}ออก{\wbr}ไป เพื่อให้{\wbr}เรา{\wbr}สั่ง{\wbr}คำสั่ง{\wbr}เช่น {\ct
   (a=b).append(10); } ได้{\wbr}
 
-\subsection{การ{\wbr}ใช้{\wbr}วัตถุ{\wbr}แบบ value และ{\wbr}แบบ reference}
-
-TODO: เขียน{\wbr}ส่วน{\wbr}นี้{\wbr}
 
 \section{โครงสร้าง{\wbr}ข้อมูล{\wbr}สำหรับ{\wbr}ข้อมูล{\wbr}ชนิด{\wbr}ใด{\wbr}ก็ได้: แม่แบบ}
 ที่{\wbr}ผ่าน{\wbr}มา{\wbr}เรา{\wbr}ได้{\wbr}พัฒนา{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}สำหรับ{\wbr}จัดการ{\wbr}กับ{\wbr}รายการ{\wbr}ที่{\wbr}มี{\wbr}ข้อมูล{\wbr}เป็น{\wbr}จำนวนเต็ม{\wbr}
@@ -772,7 +769,11 @@ TODO: เขียน{\wbr}ส่วน{\wbr}นี้{\wbr}
 ทำงาน{\wbr}ด้วย{\wbr}ความหมาย{\wbr}ตรง{\wbr}ตาม{\wbr}ที่{\wbr}เรา{\wbr}คาด{\wbr}ไว้{\wbr}หรือ{\wbr}ไม่{\wbr}
 
 ภาษา C++ รองรับ{\wbr}การ{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ที่ทำงาน{\wbr}ได้{\wbr}กับ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ใด ๆ ก็ได้{\wbr}ผ่าน{\wbr}ทาง{\em แม่แบบ}
-({\em template}) พิจารณา{\wbr}ตัวอย่าง{\wbr}ฟังก์ชัน {\ct my\_swap} ที่{\wbr}ทำ{\wbr}หน้าที่{\wbr}สลับ{\wbr}ค่า{\wbr}ของ {\ct
+({\em template})
+\ การ{\wbr}เขียน{\wbr}โปรแกรม{\wbr}ใน{\wbr}ลักษณะ{\wbr}ดังกล่าว{\wbr}นิยม{\wbr}เรียก{\wbr}ว่า{\wbr}การ{\wbr}โปรแกรม{\wbr}เชิง{\wbr}เจ{\wbr}เน{\wbr}อริ{\wbr}ค (generic
+programming)
+
+พิจารณา{\wbr}ตัวอย่าง{\wbr}ฟังก์ชัน {\ct my\_swap} ที่{\wbr}ทำ{\wbr}หน้าที่{\wbr}สลับ{\wbr}ค่า{\wbr}ของ {\ct
   int} แสดง{\wbr}ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้\footnote{เรา{\wbr}ตั้ง{\wbr}ชื่อ{\wbr}ฟังก์ชัน{\wbr}ว่า {\ct my\_swap}
   เพื่อ{\wbr}จะ{\wbr}ได้{\wbr}ไม่{\wbr}ซ้ำ{\wbr}กับ{\wbr}ฟังก์ชัน {\ct std::swap} ใน{\wbr}ไลบ{\wbr}รา{\wbr}รี{\wbr}มาตรฐาน}
 
@@ -860,13 +861,16 @@ private:
 
 ฟังก์ชัน{\wbr}สมาชิก{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}แม่แบบ{\wbr}สามารถ{\wbr}นิยาม{\wbr}ได้{\wbr}ไม่{\wbr}ต่าง{\wbr}จาก{\wbr}ฟังก์ชัน{\wbr}แม่แบบ {\ct my\_swap}
 ที่{\wbr}เรา{\wbr}ได้{\wbr}เขียน{\wbr}มา{\wbr}แล้ว สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}จะ{\wbr}นิยาม{\wbr}ฟังก์ชัน{\wbr}ไว้{\wbr}ภายใน{\wbr}ขอบเขต{\wbr}ของ {\ct
-  template<class T>} และ{\wbr}ภายใน{\wbr}นั้น{\wbr}ก็{\wbr}จะ{\wbr}ใช้ {\ct T} ได้{\wbr}เหมือน{\wbr}เป็น{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ทั่วไป  
+  template<class T>} และ{\wbr}ภายใน{\wbr}นั้น{\wbr}ก็{\wbr}จะ{\wbr}ใช้ {\ct T} ได้{\wbr}เหมือน{\wbr}เป็น{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ทั่วไป{\wbr}
+นิยาม{\wbr}ของ{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}บาง{\wbr}ฟังก์ชัน{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:abs-list-template-def}
 
-มี{\wbr}ราย{\wbr}ระ{\wbr}เอียด{\wbr}เชิง{\wbr}เทคนิค{\wbr}เกี่ยวกับ ชนิด{\wbr}ข้อมูล {\ct iterator} ที่{\wbr}เรา{\wbr}นิยาม{\wbr}ขึ้น{\wbr}ภายใน{\wbr}แม่แบบ{\wbr}
-{\ct list} ใน{\wbr}การ{\wbr}อ้าง{\wbr}ถึง {\ct list<T>::iterator} นั้น เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ระบุ{\wbr}คีย์{\wbr}เวิร์ด
-{\ct typename} นำหน้า{\wbr}เพื่อ{\wbr}บอก{\wbr}กับ{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}ว่า{\wbr}สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง{\wbr}นั้น{\wbr}คือ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}
-ดัง{\wbr}แสดง{\wbr}ใน{\wbr}ฟังก์ชัน{\wbr}สมาชิก {\ct append} ของ{\wbr}แม่แบบ {\ct list}
-ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:abs-list-template-def}
+ใน{\wbr}การ{\wbr}เขียน{\wbr}ดังกล่าว มี{\wbr}รายละเอียด{\wbr}เชิง{\wbr}เทคนิค{\wbr}เกี่ยวกับ การ{\wbr}ใช้{\wbr}งาน{\wbr}ชนิด{\wbr}ข้อมูล {\ct
+  iterator} ที่{\wbr}เรา{\wbr}นิยาม{\wbr}ขึ้น{\wbr}ภายใน{\wbr}แม่แบบ {\ct list} \ ใน{\wbr}การ{\wbr}อ้าง{\wbr}ถึง {\ct
+  list<T>::iterator} นั้น เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ระบุ{\wbr}คีย์{\wbr}เวิร์ด {\ct typename}
+นำหน้า{\wbr}เพื่อ{\wbr}บอก{\wbr}กับ{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}ว่า{\wbr}สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง{\wbr}นั้น{\wbr}คือ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล ดัง{\wbr}แสดง{\wbr}ใน{\wbr}ฟังก์ชัน{\wbr}สมาชิก{\wbr}
+{\ct append} ของ{\wbr}แม่แบบ {\ct list}
+\ ผู้{\wbr}ที่{\wbr}สนใจ{\wbr}สามารถ{\wbr}อ่าน{\wbr}รายละเอียด{\wbr}เพิ่มเติม{\wbr}ได้{\wbr}ใน{\wbr}ส่วน{\wbr}ที่~\ref{section:abs-typename}
+
 
 \begin{figure}
 \latintext
@@ -899,6 +903,8 @@ typename list<T>::iterator list<T>::append(T v)
 
 \section{รายละเอียด{\wbr}เพิ่มเติม{\wbr}เกี่ยวกับ{\wbr}ภาษา C++}
 
+ภาษา C++ มี{\wbr}รายละเอียด{\wbr}ปลีกย่อย{\wbr}เชิง{\wbr}เทคนิค{\wbr}มาก{\wbr}พอสมควร ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}สรุป{\wbr}บาง{\wbr}ประเด็น{\wbr}ที่{\wbr}สำคัญ{\wbr}ไว้{\wbr}
+
 \subsection{สรุป{\wbr}ฟังก์ชัน{\wbr}สมาชิกพิเศษ}
 
 ค{\wbr}ลา{\wbr}ส{\wbr}ใน{\wbr}ภาษา C++ มี{\wbr}ฟังก์ชัน{\wbr}สมาชิกพิเศษ{\wbr}หลาย{\wbr}ฟังก์ชัน{\wbr}ที่ทำงาน{\wbr}พิเศษ ใน{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}ได้{\wbr}พิจารณา{\wbr}ฟังก์ชัน{\wbr}ดัง{\wbr}รายการ{\wbr}ต่อไปนี้ (เรา{\wbr}จะ{\wbr}เขียน{\wbr}ชื่อ{\wbr}ฟังก์ชัน{\wbr}โดย{\wbr}สมมติ{\wbr}ว่า{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ชื่อ {\ct myclass})
@@ -922,10 +928,12 @@ typename list<T>::iterator list<T>::append(T v)
 
 อย่างไรก็ตาม ถ้า{\wbr}โดยมาก{\wbr}เรา{\wbr}ใช้{\wbr}งาน{\wbr}วัตถุ{\wbr}โดย{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}คัดลอก{\wbr}
 และ{\wbr}เมื่อ{\wbr}มี{\wbr}การ{\wbr}ส่ง{\wbr}ค่า{\wbr}ไป{\wbr}ยัง{\wbr}ฟังก์ชัน{\wbr}จะ{\wbr}ใช้{\wbr}การ{\wbr}ส่ง{\wbr}ค่า{\wbr}แบบ{\wbr}อ้างอิง{\wbr}หรือ{\wbr}ส่ง{\wbr}ด้วย{\wbr}พอยน์เตอร์{\wbr}เท่านั้น เช่น{\wbr}
-ใน{\wbr}กรณี{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ที่{\wbr}ใช้{\wbr}งาน{\wbr}แบบ{\wbr}อ้างอิง{\wbr}เท่านั้น เรา{\wbr}ก็{\wbr}ไม่{\wbr}จำเป็น{\wbr}ต้อง{\wbr}เขียน{\wbr}ตัว{\wbr}สร้าง{\wbr}สำหรับ{\wbr}คัดลอก{\wbr}
-และ{\wbr}โอ{\wbr}เปอเรเตอร์{\wbr}กำหนด{\wbr}ค่า \ อย่างไรก็ตาม เพื่อ{\wbr}ป้องกัน{\wbr}การ{\wbr}คัดลอก{\wbr}โดย{\wbr}ไม่{\wbr}ได้{\wbr}ตั้งใจ{\wbr}
-เรา{\wbr}อาจ{\wbr}จะ{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}ทั้ง{\wbr}สอง{\wbr}เป็น{\wbr}สมาชิก{\wbr}ส่วนตัว โดย{\wbr}ไม่{\wbr}ต้อง{\wbr}นิยาม{\wbr}ฟังก์ชัน{\wbr}
-เพื่อให้{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}ตรวจสอบ{\wbr}ว่า{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}คัดลอก{\wbr}วัตถุ{\wbr}เกิด{\wbr}ขึ้น{\wbr}ได้  ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}ดัง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้{\wbr}
+ใน{\wbr}กรณี{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ที่{\wbr}ใช้{\wbr}งาน{\wbr}แบบ{\wbr}อ้างอิง{\wbr}เท่านั้น{\wbr}
+(ดู{\wbr}ส่วน~\ref{section:abs-value-ref-semantics})
+เรา{\wbr}ก็{\wbr}ไม่{\wbr}จำเป็น{\wbr}ต้อง{\wbr}เขียน{\wbr}ตัว{\wbr}สร้าง{\wbr}สำหรับ{\wbr}คัดลอก และ{\wbr}โอ{\wbr}เปอเรเตอร์{\wbr}กำหนด{\wbr}ค่า \ อย่างไรก็ตาม{\wbr}
+เพื่อ{\wbr}ป้องกัน{\wbr}การ{\wbr}คัดลอก{\wbr}โดย{\wbr}ไม่{\wbr}ได้{\wbr}ตั้งใจ เรา{\wbr}อาจ{\wbr}จะ{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}ทั้ง{\wbr}สอง{\wbr}เป็น{\wbr}สมาชิก{\wbr}ส่วนตัว{\wbr}
+โดย{\wbr}ไม่{\wbr}ต้อง{\wbr}นิยาม{\wbr}ฟังก์ชัน เพื่อให้{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}ตรวจสอบ{\wbr}ว่า{\wbr}ไม่{\wbr}มี{\wbr}การ{\wbr}คัดลอก{\wbr}วัตถุ{\wbr}เกิด{\wbr}ขึ้น{\wbr}ได้{\wbr}
+ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}ดัง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}นี้{\wbr}
 
 \latintext
 \begin{codelist}{C++}{}
@@ -938,9 +946,15 @@ private:
 \end{codelist}
 \thaitext
 
+\subsection{การ{\wbr}ใช้{\wbr}วัตถุ{\wbr}แบบ value และ{\wbr}แบบ reference}
+\label{section:abs-value-ref-semantics}
+
 \subsection{การ{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}หลาย{\wbr}ฟังก์ชัน{\wbr}โดย{\wbr}ใช้{\wbr}ชื่อ{\wbr}เดียวกัน: การ{\wbr}โอ{\wbr}เวอร์{\wbr}โหลด}
 
+\subsection{ค{\wbr}ลา{\wbr}ส{\wbr}สืบต่อ}
+
 \subsection{ความจำ{\wbr}เป็น{\wbr}ที่{\wbr}ต้อง{\wbr}ระบุ {\ct typename} เมื่อ{\wbr}ใช้{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ที่{\wbr}ขึ้น{\wbr}กับ{\wbr}ตัวแปร{\wbr}แม่แบบ}
+\label{section:abs-typename}
 
 ส่วน{\wbr}นี้{\wbr}อธิบาย{\wbr}และ{\wbr}ยก{\wbr}ตัวอย่าง{\wbr}แสดง{\wbr}ความจำ{\wbr}เป็น{\wbr}ต้อง{\wbr}ระบุ{\wbr}คีย์{\wbr}เวิร์ด {\ct typename}
 แต่{\wbr}ไม่{\wbr}จำเป็น{\wbr}มาก{\wbr}ต่อ{\wbr}เนื้อหา{\wbr}หลัก{\wbr}
