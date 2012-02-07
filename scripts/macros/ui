@@ -61,5 +61,5 @@ def process_lines(lines,level)
   end
 end
 
-lines = readlines
+lines = $stdin.readlines
 process_lines(lines,1)
