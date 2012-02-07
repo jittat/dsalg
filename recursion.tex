@@ -230,6 +230,7 @@ int arraymax(int ar[], int n)
 \end{quiz}
 
 \begin{quiz}{เปลี่ยน{\wbr}ทิศทาง}
+\label{quiz:rec-array-max-alt}
 แทน{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}นิยาม{\wbr}ให้ $A'$ เป็น{\wbr}อาร์เรย์ $A$ ที่{\wbr}ลบ{\wbr}ข้อมูล{\wbr}ตัว{\wbr}สุดท้าย{\wbr}ออก{\wbr}ไป เรา{\wbr}อาจ{\wbr}จะ{\wbr}นิยาม{\wbr}
 \[
 A'=[A_1,A_2,\ldots,A_{n-1}]
@@ -286,6 +287,7 @@ TODO: อธิบาย{\wbr}เพิ่มเติม{\wbr}
 
 
 \section{การ{\wbr}จัดเรียง{\wbr}ข้อมูล}
+\label{sect:rec-sorting}
 
 ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}พิจารณา{\wbr}ตัวอย่าง{\wbr}การ{\wbr}ออกแบบ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}โดย{\wbr}การ{\wbr}คิด{\wbr}แบบ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}
 ปัญหา{\wbr}ที่{\wbr}เรา{\wbr}สนใจ{\wbr}คือ{\wbr}ปัญหา{\wbr}การ{\wbr}จัดเรียง{\wbr}ข้อมูล ซึ่ง{\wbr}เป็น{\wbr}ปัญหา{\wbr}เกี่ยวกับ{\wbr}การ{\wbr}ประมวลผล{\wbr}ข้อมูล{\wbr}ที่{\wbr}สำคัญ{\wbr}มาก{\wbr}
@@ -354,14 +356,55 @@ $n-1$ หรือ{\wbr}ให้ $m < n$
 เรา{\wbr}อาจ{\wbr}จะ{\wbr}มอง{\wbr}กลับ{\wbr}กัน คือ{\wbr}เริ่ม{\wbr}ที่{\wbr}ตำแหน่ง{\wbr}บาง{\wbr}ตำแหน่ง แล้ว{\wbr}หา{\wbr}ข้อมูล{\wbr}ที่{\wbr}ควร{\wbr}จะ{\wbr}อยู่{\wbr}ใน{\wbr}ตำแหน่ง{\wbr}ดังกล่าว{\wbr}
 
 \begin{quiz}{ข้อมูล{\wbr}ถูกต้อง}
+\label{quiz:rec-sort-from}
 (1) เรา{\wbr}จะ{\wbr}หา{\wbr}ข้อมูล{\wbr}ที่{\wbr}ควร{\wbr}จะ{\wbr}มี{\wbr}ดัชนี{\wbr}เท่า{\wbr}กับ $0$ ใน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เรียง{\wbr}แล้ว{\wbr}ได้{\wbr}อย่างไร?  (2)
 เรา{\wbr}จะ{\wbr}หา{\wbr}ข้อมูล{\wbr}ที่{\wbr}ควร{\wbr}จะ{\wbr}มี{\wbr}ดัชนี{\wbr}เท่า{\wbr}กับ $n-1$ ใน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เรียง{\wbr}แล้ว{\wbr}ได้{\wbr}อย่างไร?
 \end{quiz}
 
+อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ใน{\wbr}การ{\wbr}เรียง{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}พัฒนา{\wbr}ขึ้น{\wbr}นั้น ขึ้น{\wbr}กับ{\wbr}ว่า{\wbr}เรา{\wbr}อยาก{\wbr}จะ{\wbr}ตอบ{\wbr}คำถาม (1) หรือ{\wbr}
+(2) ใน{\wbr}คำถาม{\wbr}ที่~\ref{quiz:rec-sort-from} ข้างต้น{\wbr}มาก{\wbr}กว่า{\wbr}กัน{\wbr}
+เพื่อ{\wbr}ความ{\wbr}ง่าย{\wbr}ใน{\wbr}การ{\wbr}ส่ง{\wbr}ค่า{\wbr}พารามิเตอร์ เรา{\wbr}จะ{\wbr}เลือก{\wbr}แนวทาง{\wbr}จาก{\wbr}คำถาม (2)
+(ดู{\wbr}คำถาม{\wbr}ที่~\ref{quiz:rec-array-max-alt} ประกอบ)
+แผนการ{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}เรา{\wbr}จะ{\wbr}เป็น{\wbr}ดัง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\begin{algt}
+\label{algo:rec-sorting}
+\noindent {\bf เรียง{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์ $x$ ที่{\wbr}มี{\wbr}ข้อมูล $n$ ตัว}\\
+\hspace*{0.2in} ย้าย{\wbr}ข้อมูล{\wbr}ที่{\wbr}มี{\wbr}ค่า{\wbr}มาก{\wbr}ที่สุด{\wbr}ไป{\wbr}ยัง{\wbr}ตำแหน่ง $n-1$ โดย{\wbr}ใช้{\wbr}การ{\wbr}สลับ{\wbr}กับ{\wbr}ข้อมูล{\wbr}อื่น ๆ\\
+\hspace*{0.2in} เรียง{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์ $x'$ ที่{\wbr}มี{\wbr}ข้อมูล $n-1$ ตัว โดย{\wbr}ที่ $x'=[x_0,x_1,\ldots,x_{n-2}]$
+\end{algt}
+
+เมื่อ{\wbr}ได้{\wbr}แผนการ{\wbr}แล้ว การ{\wbr}พัฒนา{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}สมบูรณ์{\wbr}และ{\wbr}โปรแกรม{\wbr}ก็{\wbr}ไม่{\wbr}ใช่{\wbr}เรื่อง{\wbr}ยาก{\wbr}แต่อย่างใด{\wbr}
+โปรแกรม{\wbr}ที่~\ref{code:rec-selection-sort} แสดง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}จัดเรียง{\wbr}ดังกล่าว{\wbr}
+โดย{\wbr}ละ{\wbr}ฟังก์ชัน {\ct find\_max\_index} ที่{\wbr}หา{\wbr}ดัชนี{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}มาก{\wbr}ที่สุด และ{\wbr}ฟังก์ชัน {\ct
+  swap} ไว้{\wbr}
+
+อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}นี้{\wbr}ถ้า{\wbr}ไม่{\wbr}เขียน{\wbr}โดย{\wbr}การ{\wbr}เรียก{\wbr}ตัวเอง นิยม{\wbr}เรียก{\wbr}ว่า{\wbr}การ{\wbr}จัดเรียง{\wbr}แบบ{\wbr}เลือก (selection
+sort)
+
+\latintext
+\begin{codelist}{C++}{caption={\thaitext การ{\wbr}จัดเรียง{\wbr}ข้อมูล{\wbr}ด้วย{\wbr}การ{\wbr}จัดเรียง{\wbr}แบบ{\wbr}เลือก\latintext},label=code:rec-selection-sort}
+int find_max_index(int x[], int n) { // ... }
+
+void sort(int x[], int n)
+{
+  if(n<=1)
+    return;
+  int maxi = find_max_index(x, n);
+  swap(x[n-1], x[maxi]);
+  sort(x, n-1);
+}
+\end{codelist}
+\thaitext
+
+การ{\wbr}ออกแบบ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}โดย{\wbr}คิด{\wbr}เชิง{\wbr}เรียก{\wbr}ตัวเอง{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}มอง{\wbr}ปัญหา{\wbr}แบบ{\wbr}เฉพาะเจาะจง{\wbr}มาก{\wbr}ขึ้น{\wbr}
+อย่างไรก็ตาม{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}ออกแบบ{\wbr}ได้{\wbr}มัก{\wbr}ดู{\wbr}เสมือน{\wbr}ว่า{\wbr}ทำงาน{\wbr}ไม่{\wbr}ครบถ้วน{\wbr}สมบูรณ์{\wbr}
+เรา{\wbr}จะ{\wbr}ทราบ{\wbr}ได้{\wbr}อย่างไร{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ของ{\wbr}เรา{\wbr}ทำงาน{\wbr}ได้{\wbr}ถูกต้อง{\wbr}แล้ว?
+
 \section{การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์}
 
 ใน{\wbr}การ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ใด ๆ สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}ต้อง{\wbr}สนใจ{\wbr}ก่อน{\wbr}ที่{\wbr}จะ{\wbr}พิจารณา{\wbr}ถึง{\wbr}ประสิทธิภาพ{\wbr}ของ{\wbr}โปรแกรม{\wbr}
-ก็{\wbr}คือ{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}โปรแกรม{\wbr}นั้น ๆ อย่างไรก็ตาม{\wbr}
+ก็{\wbr}คือ{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}โปรแกรม{\wbr}นั้น ๆ \ \ อย่างไรก็ตาม{\wbr}
 การ{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}โปรแกรมย่อย{\wbr}แบบ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}นั้น{\wbr}มี{\wbr}ความ{\wbr}ซับซ้อน{\wbr}เป็นพิเศษ{\wbr}
 ขั้นตอน{\wbr}การ{\wbr}ทำงาน{\wbr}ทั้งหมด{\wbr}มัก{\wbr}ไม่{\wbr}ได้{\wbr}ถูก{\wbr}ระบุ{\wbr}ออก{\wbr}มา{\wbr}อย่าง{\wbr}ชัดเจน{\wbr}ภายใน{\wbr}โปรแกรมย่อย{\wbr}นั้น{\wbr}
 แต่{\wbr}จะ{\wbr}เป็น{\wbr}การ{\wbr}โยน{\wbr}ภาระ{\wbr}การ{\wbr}ทำงาน{\wbr}ให้{\wbr}กับ{\wbr}โปรแกรมย่อย{\wbr}นั้น{\wbr}เอง{\wbr}
@@ -436,11 +479,13 @@ $ n\geq 1 $.
 
 การ{\wbr}อ้าง{\wbr}ความจริง{\wbr}สอง{\wbr}ข้อ{\wbr}เพื่อ{\wbr}สรุป{\wbr}ใน{\wbr}ย่อหน้า{\wbr}ก่อน{\wbr}นั้น{\wbr}ค่อนข้าง{\wbr}จะ{\wbr}เป็น{\wbr}การ{\wbr}สรุป{\wbr}ที่{\wbr}ไม่{\wbr}เป็น{\wbr}รูปแบบ{\wbr}ทางการ{\wbr}นัก ก่อน{\wbr}ที่{\wbr}จะ{\wbr}เขียน{\wbr}อย่าง{\wbr}เป็นทางการ เรา{\wbr}จะ{\wbr}แนะนำ{\wbr}หลักการ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}
 
-    หลักการ{\wbr}อุปนัย{\wbr}ทาง{\wbr}คณิตศาสตร์{\wbr}
-    สำหรับ{\wbr}เพรดิเคต $ P(n) $ ที่{\wbr}ขึ้น{\wbr}กับ{\wbr}จำนวนนับ $ n $ ถ้า{\wbr}เรา{\wbr}สามารถ{\wbr}พิสูจน์{\wbr}ได้{\wbr}ว่า{\wbr}
-    1. $ P(1) $ จริง และ{\wbr}
-    2. สำหรับ{\wbr}จำนวนนับ $ i\geq 1 $ ใด ๆ $ P(i)\Rightarrow P(i+1) $
-    แล้ว $ P(n) $ เป็นจริง{\wbr}สำหรับ{\wbr}ทุก ๆ จำนวนนับ $ n $
+\framed\noindent
+{\bf หลักการ{\wbr}อุปนัย{\wbr}ทาง{\wbr}คณิตศาสตร์}\\
+สำหรับ{\wbr}เพรดิเคต $P(n)$ ที่{\wbr}ขึ้น{\wbr}กับ{\wbr}จำนวนนับ $n$ ถ้า{\wbr}เรา{\wbr}สามารถ{\wbr}พิสูจน์{\wbr}ได้{\wbr}ว่า\\
+1. $P(1)$ จริง และ\\
+2. สำหรับ{\wbr}จำนวนนับ $i\geq 1$ ใด ๆ $P(i)\Rightarrow P(i+1)$\\
+แล้ว $P(n)$ เป็นจริง{\wbr}สำหรับ{\wbr}ทุก ๆ จำนวนนับ $n$
+\endframed
 
 เรา{\wbr}เรียก{\wbr}ขั้น{\wbr}ที่ 1 ว่า{\em ขั้น{\wbr}ฐาน} (basis) และ{\wbr}เรียก{\wbr}ส่วน{\wbr}ที่{\wbr}สอง{\wbr}ว่า{\em ขั้น{\wbr}อุปนัย}
 (inductive step) ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}ขั้น{\wbr}อุปนัย เรา{\wbr}เริ่ม{\wbr}โดย{\wbr}การ{\wbr}สมมติ{\wbr}ว่า $ P(i) $
@@ -457,13 +502,76 @@ $ n\geq 1 $.
 ดังนั้น{\wbr}จาก{\wbr}หลักการ{\wbr}อุปนัย{\wbr}ทาง{\wbr}คณิตศาสตร์ เรา{\wbr}สามารถ{\wbr}สรุป{\wbr}ได้{\wbr}ว่า $ P(n) $ จริง{\wbr}สำหรับ{\wbr}ทุก ๆ
 จำนวนนับ $ n $
 
-ใน{\wbr}ส่วนต่อ{\wbr}ไป{\wbr}ของ{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}ดู{\wbr}ตัวอย่าง{\wbr}การ{\wbr}พิสูจน์{\wbr}ด้วย{\wbr}การ{\wbr}อุปนัย{\wbr}ทาง{\wbr}คณิตศาสตร์{\wbr}อีก{\wbr}หลาย ๆ ตัวอย่าง{\wbr}
+ใน{\wbr}ส่วนต่อ{\wbr}ไป{\wbr}ของ{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}ดู{\wbr}ตัวอย่าง{\wbr}การ{\wbr}พิสูจน์{\wbr}ด้วย{\wbr}การ{\wbr}อุปนัย{\wbr}ทาง{\wbr}คณิตศาสตร์{\wbr}อีก{\wbr}หลาย ๆ
+ตัวอย่าง{\wbr}
 
-\subsection{ตัวอย่าง{\wbr}การ{\wbr}พิสูจน์{\wbr}พื้นฐาน}
+TODO: เพิ่ม{\wbr}ตัวอย่าง{\wbr}
 
-\subsection{การ{\wbr}อุปนัย{\wbr}แบบ{\wbr}แข็งแกร่ง}
+\subsection{ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}โปรแกรม}
 
-\subsection{การ{\wbr}พิสูจน์{\wbr}ขั้นตอนวิธี}
+ใน{\wbr}การ{\wbr}แสดง{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}ถูกต้อง{\wbr}นั้น{\wbr}
+เรา{\wbr}จำเป็น{\wbr}ต้อง{\wbr}ระบุ{\wbr}สิ่ง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}จาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ให้{\wbr}ชัดเจน วิธีการ{\wbr}หนึ่ง{\wbr}ที่{\wbr}นิยม{\wbr}ใช้{\wbr}ก็{\wbr}คือ{\wbr}การ{\wbr}ระบุ เงื่อนไข{\wbr}ก่อนหน้า (precondition) และ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง (postcondition) กล่าวคือ{\wbr}
+
+\begin{itemize}
+\item {\bf เงื่อนไข{\wbr}ก่อนหน้า (precondition)}
+  จะ{\wbr}ระบุ{\wbr}เงื่อนไข{\wbr}ของ{\wbr}ข้อมูล{\wbr}ป้อน{\wbr}เข้า{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}
+  ใน{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}สำหรับ{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค{\wbr}ใน{\wbr}ส่วน{\wbr}ที่~\ref{sect:analysis-binary-search}
+  เงื่อนไข{\wbr}ก่อนหน้า{\wbr}คือ{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์{\wbr}จะ{\wbr}ต้อง{\wbr}เรียงลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}หา{\wbr}มาก{\wbr}
+  ส่วน{\wbr}ใน{\wbr}กรณี{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}เรียงลำดับ{\wbr}ที่{\wbr}เรา{\wbr}พิจารณา{\wbr}ใน{\wbr}ส่วน{\wbr}ที่~\ref{sect:rec-sorting}
+  นั้น{\wbr}ไม่{\wbr}ได้{\wbr}มี{\wbr}การ{\wbr}กำหนด{\wbr}เงื่อนไข{\wbr}เริ่มต้น{\wbr}พิเศษ{\wbr}แต่อย่างใด แค่{\wbr}เงื่อนไข{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}ข้อมูล เช่น{\wbr}
+  อาร์เรย์มี{\wbr}ข้อมูล $n$ ตัว เป็นต้น{\wbr}
+\item {\bf เงื่อนไข{\wbr}ตาม{\wbr}หลัง (postcondition)}
+  จะ{\wbr}เป็น{\wbr}เงื่อนไข{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}ได้{\wbr}รับ{\wbr}จาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
+  ยก{\wbr}ตัวอย่าง{\wbr}เช่น{\wbr}ใน{\wbr}กรณี{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค{\wbr}เรา{\wbr}ต้องการ{\wbr}เงื่อนไข{\wbr}ว่า{\wbr}
+  ถ้า{\wbr}ข้อมูล{\wbr}ที่{\wbr}ต้องการ{\wbr}ค้น{\wbr}อยู่{\wbr}ใน{\wbr}อาร์เรย์ อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}คืน{\wbr}ดัชนี{\wbr}ของ{\wbr}ข้อมูล{\wbr}นั้น{\wbr}
+  และ{\wbr}ถ้า{\wbr}ข้อมูล{\wbr}ไม่{\wbr}อยู่{\wbr}ใน{\wbr}อาร์เรย์อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}ต้อง{\wbr}คืน{\wbr}ค่า $-1$
+  \ ส่วน{\wbr}กรณี{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จัดเรียง{\wbr}ข้อมูล{\wbr}
+  เรา{\wbr}ต้องการ{\wbr}เงื่อนไข{\wbr}ว่า{\wbr}อาร์เรย์{\wbr}ผลลัพธ์{\wbr}มี{\wbr}ข้อมูล{\wbr}ของ{\wbr}อาร์เรย์{\wbr}เดิม{\wbr}ทั้งหมด{\wbr}
+  และ{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์{\wbr}นั้น{\wbr}เรียง{\wbr}ตาม{\wbr}ลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}มาก{\wbr}
+\end{itemize}
+
+การ{\wbr}แสดง{\wbr}ความ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}ถูกต้อง{\wbr}ก็{\wbr}คือ{\wbr}การ{\wbr}พิสูจน์{\wbr}ว่า{\wbr}
+ถ้า{\wbr}ข้อมูล{\wbr}ป้อน{\wbr}เข้า{\wbr}สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า หลังจาก{\wbr}ที่{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}เสร็จ{\wbr}แล้ว{\wbr}
+ผลลัพธ์{\wbr}และ{\wbr}ข้อมูล{\wbr}ต่าง ๆ สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}
+\ \ หนังสือ{\wbr}เล่ม{\wbr}นี้{\wbr}จะ{\wbr}ไม่{\wbr}ลง{\wbr}รายละเอียด{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}ดังกล่าว{\wbr}เต็ม{\wbr}รูปแบบ แต่{\wbr}จะ{\wbr}ใช้{\wbr}แนว{\wbr}คิด{\wbr}หลัก ๆ
+นี้{\wbr}ใน{\wbr}การ{\wbr}แสดง{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}ถูกต้อง \ \ นอกจากนี้ ใน{\wbr}การ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ใน{\wbr}ชีวิต{\wbr}จริง{\wbr}
+แม้ว่า{\wbr}เรา{\wbr}จะ{\wbr}ไม่{\wbr}ได้{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}โปรแกรม{\wbr}ตลอดเวลา{\wbr}
+แต่{\wbr}การ{\wbr}ใส่ใจ{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}และ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}อย่าง{\wbr}สม่ำเสมอ{\wbr}
+จะ{\wbr}ช่วย{\wbr}ลด{\wbr}ความผิด{\wbr}พลาด{\wbr}ใน{\wbr}โปรแกรม หรือ{\wbr}ช่วย{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}พบ{\wbr}ข้อผิดพลาด{\wbr}ได้{\wbr}รวดเร็ว{\wbr}ขึ้น{\wbr}
+
+ใน{\wbr}ส่วน{\wbr}นี้ ต่อไป{\wbr}เรา{\wbr}จะ{\wbr}ใช้{\wbr}การ{\wbr}อุปนัย{\wbr}ทาง{\wbr}คณิตศาสตร์{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
+โดย{\wbr}การ{\wbr}แสดง{\wbr}ว่า{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}เป็นจริง เมื่อ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}เสร็จสิ้น{\wbr}
+
+\subsubsection{อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}เรียง{\wbr}ข้อมูล{\wbr}แบบ{\wbr}การ{\wbr}เลือก}
+
+แม้ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:rec-sorting} จะ{\wbr}ทำงาน{\wbr}บน{\wbr}อาร์เรย์{\wbr}ป้อน{\wbr}เข้า{\wbr}โดย{\wbr}ตรง{\wbr}
+เพื่อ{\wbr}ความ{\wbr}สะดวก{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์ เรา{\wbr}จะ{\wbr}แยก{\wbr}อาร์เรย์{\wbr}ป้อน{\wbr}เข้า{\wbr}และ{\wbr}อาร์เรย{\wbr}ผลลัพธ์{\wbr}ออก{\wbr}จาก{\wbr}กัน{\wbr}
+โดย{\wbr}เรา{\wbr}จะ{\wbr}เรียก{\wbr}อาร์เรย์{\wbr}ป้อน{\wbr}เข้าว่า{\wbr}อาร์เรย์ $A$ และ อาร์เรย์ผลลัพธ์{\wbr}ว่า{\wbr}อาร์เรย์ $B$
+
+\begin{quiz}{เงื่อนไข{\wbr}ความ{\wbr}ถูกต้อง}
+ก่อน{\wbr}จะ{\wbr}อ่าน{\wbr}ต่อไป ให้{\wbr}ลอง{\wbr}ระบุ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}จาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}จัดเรียง{\wbr}ข้อมูล{\wbr}
+\end{quiz}
+
+เงื่อนไข{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}การ{\wbr}จัดเรียง{\wbr}มี{\wbr}ดังนี้{\wbr}
+\begin{itemize}
+\item เงื่อนไข{\wbr}ก่อนหน้า: ไม่{\wbr}มี{\wbr}
+\item เงื่อนไข{\wbr}ตาม{\wbr}หลัง: อาร์เรย์ $B$ เป็น{\wbr}การ{\wbr}เรียง{\wbr}สับเปลี่ยน (permutation) ของ{\wbr}อาร์เรย์ $A$ และ{\wbr}สำหรับ{\wbr}ทุก ๆ ดัชนี $i$ ที่ $0\leq i<n-1$ เรา{\wbr}จะ{\wbr}ได้{\wbr}ว่า $B[i]\leq B[i+1]$
+\end{itemize}
+
+สังเกต{\wbr}ว่า{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}ประกอบ{\wbr}ด้วย{\wbr}เงื่อนไข{\wbr}ย่อย{\wbr}สอง{\wbr}เงื่อนไข{\wbr}ที่{\wbr}ไม่{\wbr}เกี่ยวข้อง{\wbr}กัน{\wbr}มาก{\wbr}นัก คือ{\wbr}
+($P1$) อาร์เรย์ $B$ เป็น{\wbr}การ{\wbr}เรียง{\wbr}สับเปลี่ยน (permutation) ของ{\wbr}อาร์เรย์ $A$
+เพื่อ{\wbr}รับประกัน{\wbr}ว่า{\wbr}ข้อมูล{\wbr}ป้อน{\wbr}เข้า{\wbr}จะ{\wbr}อยู่{\wbr}ครบ และ ($P2$) สำหรับ{\wbr}ทุก ๆ ดัชนี $i$ ที่ $0\leq
+i<n-1$ เรา{\wbr}จะ{\wbr}ได้{\wbr}ว่า $B[i]\leq B[i+1]$ เพื่อ{\wbr}รับประกัน{\wbr}การ{\wbr}เรียงลำดับ{\wbr}ของ{\wbr}ข้อมูล{\wbr}
+
+ดังนั้น{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์ เรา{\wbr}สามารถ{\wbr}ที่{\wbr}จะ{\wbr}พิสูจน์{\wbr}เงื่อนไข{\wbr}ทั้ง{\wbr}สอง{\wbr}นี้{\wbr}แยกกัน{\wbr}ก็ได้ \ จาก{\wbr}โปรแกรม{\wbr}
+สังเกต{\wbr}ว่า{\wbr}สิ่ง{\wbr}เดียว{\wbr}ที่{\wbr}โปรแกรม{\wbr}เปลี่ยนแปลง{\wbr}อาร์เรย์ $A$ เพื่อให้{\wbr}ได้{\wbr}อาร์เรย์ $B$
+คือ{\wbr}การ{\wbr}สลับ{\wbr}ค่า{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์{\wbr}ด้วย{\wbr}ฟังก์ชัน {\ct swap}
+เพราะฉะนั้น{\wbr}เรา{\wbr}สามารถ{\wbr}สรุป{\wbr}ได้{\wbr}ว่า{\wbr}อาร์เรย์ $B$ เป็น{\wbr}การ{\wbr}เรียง{\wbr}สับเปลี่ยน{\wbr}ของ{\wbr}อาร์เรย์ $A$
+\ นั่น{\wbr}คือ{\wbr}เงื่อนไข ($P1$) เป็นจริง{\wbr}
+
+เรา{\wbr}จะ{\wbr}แสดง{\wbr}เงื่อนไข ($P2$) ด้วย{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}
+
+\subsubsection{อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค}
 
 \section{ตัวหารร่วมมาก}
 
