@@ -44,7 +44,7 @@
 \begin{algt}
 \label{algo:rec-int-add}
 \noindent {\bf บวก{\wbr}จำนวน{\wbr}ธรรมชาติ $A$ กับ $B$}\\
-\hspace*{0.2in} IF $B=0$ THEN RETURN $A$\\
+\hspace*{0.2in} IF $B=0$ THEN RETURN $A$ and EXIT\\
 \hspace*{0.2in} ELSE\\
 \hspace*{0.2in}\hspace*{0.2in} LET $C\leftarrow B-1$\\
 \hspace*{0.2in}\hspace*{0.2in} ให้ $D$ เท่า{\wbr}กับ{\wbr}ผลบวก{\wbr}ของ $A$ กับ $C$\\
@@ -148,7 +148,7 @@ int add(int a, int b)
 
 \begin{algt}
 \noindent {\bf การ{\wbr}คำ{\wbr}น{\wbr}วน{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}อาร์เรย์ $A$ ที่{\wbr}มี{\wbr}สมาชิก $n$ ตัว (ขั้น{\wbr}ฐาน)}\\
-\hspace*{0.2in} IF $n=1$ THEN RETURN $A[0]$\\
+\hspace*{0.2in} IF $n=1$ THEN RETURN $A[0]$ and EXIT\\
 \hspace*{0.2in} ELSE\\
 \hspace*{0.2in}\hspace*{0.2in} {\em จะ{\wbr}ต้อง{\wbr}ออกแบบ{\wbr}ต่อไป}
 \end{algt}
@@ -186,7 +186,7 @@ $A= [A_0,A_1,\ldots,A_{n-1}]$
 \begin{algt}
 \label{}
 \noindent {\bf การ{\wbr}คำ{\wbr}น{\wbr}วน{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}อาร์เรย์ $A$ ที่{\wbr}มี{\wbr}สมาชิก $n$ ตัว}\\
-1.\settowidth{\algbackindent}{1.}\hspace*{-\algbackindent}\hspace*{0.2in} IF $n=1$ THEN RETURN $A[0]$\\
+1.\settowidth{\algbackindent}{1.}\hspace*{-\algbackindent}\hspace*{0.2in} IF $n=1$ THEN RETURN $A[0]$ and EXIT\\
 2.\settowidth{\algbackindent}{2.}\hspace*{-\algbackindent}\hspace*{0.2in} ELSE\\
 3.\settowidth{\algbackindent}{3.}\hspace*{-\algbackindent}\hspace*{0.2in}\hspace*{0.2in} ให้ $M$ คือ{\wbr}ค่าสูงสุด{\wbr}ของ{\wbr}อาร์เรย์ $A'$ ที่{\wbr}มี{\wbr}สมาชิก $n-1$ ตัว เมื่อ $A' = [A_0,A_1,\ldots,A_{n-2}]$\\
 4.\settowidth{\algbackindent}{4.}\hspace*{-\algbackindent}\hspace*{0.2in}\hspace*{0.2in} IF $A_{n-1} > M$ THEN \\
@@ -403,6 +403,47 @@ void sort(int x[], int n)
 ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}พิจารณา{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค{\wbr}ใน{\wbr}ส่วน{\wbr}ที่~\ref{sect:analysis-binary-search}
 ซ้ำ{\wbr}อีก{\wbr}ครั้ง{\wbr}หนึ่ง โดย{\wbr}เรา{\wbr}จะ{\wbr}เขียน{\wbr}ฟังก์ชัน{\wbr}การ{\wbr}ค้นหา{\wbr}ใหม่{\wbr}ใน{\wbr}รูปแบบ{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}แบบ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}
 
+สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}แต่ละ{\wbr}ครั้ง{\wbr}ที่{\wbr}เรา{\wbr}เปรียบเทียบ{\wbr}ค่า{\wbr}ที่{\wbr}ต้องการ{\wbr}ค้นหา{\wbr}กับ{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์
+เรา{\wbr}จะ{\wbr}สามารถ{\wbr}ปรับ{\wbr}ขอบเขต{\wbr}ของ{\wbr}ดัชนี{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้ จากนั้น{\wbr}เรา{\wbr}ก็{\wbr}จะ{\wbr}พยายาม{\wbr}แก้{\wbr}ปัญหา{\wbr}เดิม คือ{\wbr}
+ค้นหา{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์{\wbr}ภายใต้{\wbr}ของ{\wbr}เขต{\wbr}ที่{\wbr}เปลี่ยน{\wbr}ไป{\wbr}
+
+ดังนั้น{\wbr}ถ้า{\wbr}เรา{\wbr}พิจารณา{\wbr}ให้{\wbr}ดี ปัญหา{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}จะ{\wbr}แก้{\wbr}คือ:
+\begin{quote}
+ค้นหา{\wbr}ข้อมูล $q$ จาก{\wbr}อาร์เรย์ $A$ ขนาด $n$ ที่{\wbr}ข้อมูล{\wbr}เรียงลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}มาก{\wbr}
+โดย{\wbr}ที่{\wbr}ดัชนี{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}มี{\wbr}ค่า{\wbr}ระหว่าง $s$ ถึง $t$
+\end{quote}
+โดย{\wbr}ใน{\wbr}การ{\wbr}ค้น{\wbr}ครั้ง{\wbr}แรก เรา{\wbr}จะ{\wbr}ให้ $s=0$ และ $t=n-1$ นั่นเอง{\wbr}
+
+เรา{\wbr}ปรับ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:analysis-bin-search}
+ใหม่{\wbr}ให้{\wbr}เป็น{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}แบบ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}ได้{\wbr}ดัง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:rec-bin-search}
+ใน{\wbr}การ{\wbr}เรียก{\wbr}ใช้{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ดังกล่าว{\wbr}
+เรา{\wbr}จะ{\wbr}เรียก{\wbr}ผ่าน{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:rec-bin-search-main}
+
+\begin{figure}
+\begin{algt}
+\label{algo:rec-bin-search}
+\noindent {\bf BinarySearch($q$, $A$, $s$, $t$)}\\
+1.\settowidth{\algbackindent}{1.}\hspace*{-\algbackindent}\hspace*{0.2in} IF $s > t$ THEN RETURN $-1$ and EXIT\\
+2.\settowidth{\algbackindent}{2.}\hspace*{-\algbackindent}\hspace*{0.2in} $m\leftarrow \lfloor (s+t)/2\rfloor$\\
+3.\settowidth{\algbackindent}{3.}\hspace*{-\algbackindent}\hspace*{0.2in} IF $A[m] = q$ THEN\\
+4.\settowidth{\algbackindent}{4.}\hspace*{-\algbackindent}\hspace*{0.2in}\hspace*{0.2in} RETURN $m$ and EXIT\\
+5.\settowidth{\algbackindent}{5.}\hspace*{-\algbackindent}\hspace*{0.2in} IF $A[m] < q$ THEN\\
+6.\settowidth{\algbackindent}{6.}\hspace*{-\algbackindent}\hspace*{0.2in}\hspace*{0.2in} RETURN BinarySearch($q$, $A$, $m+1$, $t$)\\
+7.\settowidth{\algbackindent}{7.}\hspace*{-\algbackindent}\hspace*{0.2in} ELSE\\
+8.\settowidth{\algbackindent}{8.}\hspace*{-\algbackindent}\hspace*{0.2in}\hspace*{0.2in} RETURN BinarySearch($q$, $A$, $t$, $m-1$)
+\end{algt}
+
+\begin{algt}
+\label{algo:rec-bin-search-main}
+\noindent {\bf Find($q$, $A$, $n$)}\\
+1.\settowidth{\algbackindent}{1.}\hspace*{-\algbackindent}\hspace*{0.2in} RETURN BinarySearch($q$, $A$, $0$, $n-1$)
+\end{algt}
+\end{figure}
+
+\begin{quiz}{}
+อิม{\wbr}พลี{\wbr}เมนท์อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:rec-bin-search} และ{\wbr}ทดสอบ{\wbr}
+\end{quiz}
+
 การ{\wbr}ออกแบบ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}โดย{\wbr}คิด{\wbr}เชิง{\wbr}เรียก{\wbr}ตัวเอง{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}มอง{\wbr}ปัญหา{\wbr}แบบ{\wbr}เฉพาะเจาะจง{\wbr}มาก{\wbr}ขึ้น{\wbr}
 อย่างไรก็ตาม{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}ออกแบบ{\wbr}ได้{\wbr}มัก{\wbr}ดู{\wbr}เสมือน{\wbr}ว่า{\wbr}ทำงาน{\wbr}ไม่{\wbr}ครบถ้วน{\wbr}สมบูรณ์{\wbr}
 เรา{\wbr}จะ{\wbr}ทราบ{\wbr}ได้{\wbr}อย่างไร{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ของ{\wbr}เรา{\wbr}ทำงาน{\wbr}ได้{\wbr}ถูกต้อง{\wbr}แล้ว?
@@ -496,7 +537,9 @@ $ n\geq 1 $.
 เรา{\wbr}เรียก{\wbr}ขั้น{\wbr}ที่ 1 ว่า{\em ขั้น{\wbr}ฐาน} (basis) และ{\wbr}เรียก{\wbr}ส่วน{\wbr}ที่{\wbr}สอง{\wbr}ว่า{\em ขั้น{\wbr}อุปนัย}
 (inductive step) ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}ขั้น{\wbr}อุปนัย เรา{\wbr}เริ่ม{\wbr}โดย{\wbr}การ{\wbr}สมมติ{\wbr}ว่า $ P(i) $
 เป็นจริง{\wbr}สำหรับ{\wbr}จำนวนเต็ม $i$ ใด ๆ ข้อสมมติ{\wbr}ดังกล่าว{\wbr}เรียก{\wbr}ว่า{\em สมมติฐาน{\wbr}การ{\wbr}อุปนัย}
-(induction hypothesis)
+(induction hypothesis) \ \ เนื่องจาก{\wbr}ใน{\wbr}ประโยค $P(n)$ เรา{\wbr}ใช้ $n$
+เป็น{\wbr}ตัวแปร{\wbr}ของ{\wbr}การ{\wbr}อุปนัย เรา{\wbr}จะ{\wbr}กล่าว{\wbr}ว่า การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}ดังกล่าว เป็น{\em
+  การ{\wbr}อุปนัย{\wbr}บน{\wbr}ตัวแปร $n$}
 
 สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}ตัวอย่าง{\wbr}ที่{\wbr}ยัง{\wbr}ไม่{\wbr}สมบูรณ์{\wbr}ของ{\wbr}เรา{\wbr}นั้น เรา{\wbr}ได้{\wbr}พิสูจน์{\wbr}ขั้น{\wbr}ที่ 1 และ{\wbr}ขั้น{\wbr}ที่ 2 ไป{\wbr}แล้ว{\wbr}
 โดย{\wbr}เพรดิเคต{\wbr}ที่{\wbr}เรา{\wbr}พิสูจน์ $ P(n) $ คือ{\wbr}
@@ -539,9 +582,14 @@ TODO: เพิ่ม{\wbr}ตัวอย่าง{\wbr}
 การ{\wbr}แสดง{\wbr}ความ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}ถูกต้อง{\wbr}ก็{\wbr}คือ{\wbr}การ{\wbr}พิสูจน์{\wbr}ว่า{\wbr}
 ถ้า{\wbr}ข้อมูล{\wbr}ป้อน{\wbr}เข้า{\wbr}สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า หลังจาก{\wbr}ที่{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}เสร็จ{\wbr}แล้ว{\wbr}
 ผลลัพธ์{\wbr}และ{\wbr}ข้อมูล{\wbr}ต่าง ๆ สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}
-\ \ หนังสือ{\wbr}เล่ม{\wbr}นี้{\wbr}จะ{\wbr}ไม่{\wbr}ลง{\wbr}รายละเอียด{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}ดังกล่าว{\wbr}เต็ม{\wbr}รูปแบบ แต่{\wbr}จะ{\wbr}ใช้{\wbr}แนว{\wbr}คิด{\wbr}หลัก ๆ
-นี้{\wbr}ใน{\wbr}การ{\wbr}แสดง{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}ถูกต้อง \ \ นอกจากนี้ ใน{\wbr}การ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ใน{\wbr}ชีวิต{\wbr}จริง{\wbr}
-แม้ว่า{\wbr}เรา{\wbr}จะ{\wbr}ไม่{\wbr}ได้{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}โปรแกรม{\wbr}ตลอดเวลา{\wbr}
+
+เนื่องจาก{\wbr}เงื่อนไข{\wbr}ทั้ง{\wbr}สอง{\wbr}ถูก{\wbr}ระบุ{\wbr}ขึ้น{\wbr}เพื่อ{\wbr}ใช้{\wbr}ใน{\wbr}การ{\wbr}แสดง{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}ถูกต้อง{\wbr}หรือ{\wbr}ไม่{\wbr}
+ดังนั้น{\wbr}เงื่อนไข{\wbr}ทั้ง{\wbr}สอง{\wbr}นี้{\wbr}จะ{\wbr}ถูก{\wbr}ระบุ{\wbr}ขึ้น{\wbr}โดย{\wbr}พิจารณา{\wbr}จาก{\wbr}ผลลัพธ์{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}จาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}เป็น{\wbr}หลัก{\wbr}
+ไม่{\wbr}ใช่{\wbr}จาก{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}เอง{\wbr}
+
+หนังสือ{\wbr}เล่ม{\wbr}นี้{\wbr}จะ{\wbr}ไม่{\wbr}ลง{\wbr}รายละเอียด{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}อย่าง{\wbr}เต็ม{\wbr}รูปแบบ{\wbr}
+แต่{\wbr}จะ{\wbr}ใช้{\wbr}แนว{\wbr}คิด{\wbr}หลัก~ๆ นี้{\wbr}ใน{\wbr}การ{\wbr}แสดง{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทำงาน{\wbr}ถูกต้อง \ \ นอกจากนี้{\wbr}
+ใน{\wbr}การ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}ใน{\wbr}ชีวิต{\wbr}จริง แม้ว่า{\wbr}เรา{\wbr}จะ{\wbr}ไม่{\wbr}ได้{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}โปรแกรม{\wbr}ตลอดเวลา{\wbr}
 แต่{\wbr}การ{\wbr}ใส่ใจ{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}และ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}อย่าง{\wbr}สม่ำเสมอ{\wbr}
 จะ{\wbr}ช่วย{\wbr}ลด{\wbr}ความผิด{\wbr}พลาด{\wbr}ใน{\wbr}โปรแกรม หรือ{\wbr}ช่วย{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}พบ{\wbr}ข้อผิดพลาด{\wbr}ได้{\wbr}รวดเร็ว{\wbr}ขึ้น{\wbr}
 
@@ -641,30 +689,165 @@ $P(n)$ เป็น{\wbr}ตัวแปร{\wbr}ท้องถิ่น (local
 
 \subsubsection{อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค}
 
-\section{ตัวหารร่วมมาก}
+เช่นเดียวกับ{\wbr}การ{\wbr}วิเคราะห์{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}จัดเรียง{\wbr}
+เรา{\wbr}จะ{\wbr}วิเคราะห์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค{\wbr}
+(อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม~\ref{algo:rec-bin-search} และ~\ref{algo:rec-bin-search-main})
+โดย{\wbr}เริ่ม{\wbr}จาก{\wbr}การ{\wbr}ระบุ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}และ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}
 
-ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}พัฒนา{\wbr}โปรแกรม{\wbr}เพื่อ{\wbr}คำนวณ{\wbr}ค่าตัว{\wbr}หารร่วมมาก ซึ่ง{\wbr}มี{\wbr}นิยาม{\wbr}ดังต่อไปนี้{\wbr}
-
-สำหรับ{\wbr}จำนวนเต็ม{\wbr}สอง{\wbr}จำนวน $a$ และ $b$ เรา{\wbr}จะ{\wbr}กล่าว{\wbr}ว่า{\wbr}จำนวนเต็ม $c$ เป็น {\em
-ตัวหาร{\wbr}ร่วม{\wbr}ของ $a$ และ $b$} ถ้า $c$ หาร $a$ ลงตัว และ $c$ หาร $b$ ลงตัว{\wbr}
-
-สำหรับ{\wbr}จำนวนเต็ม{\wbr}สอง{\wbr}จำนวน $a$ และ $b$ {\em ตัวหารร่วมมาก} (เขียน{\wbr}ย่อ{\wbr}ว่า ห.{\wbr}ร.{\wbr}ม
-ใน{\wbr}ภาษาอังกฤษ{\wbr}คือ Greatest common divisor หรือ{\wbr}ย่อ{\wbr}ว่า GCD)  คือ{\wbr}
-ตัวหาร{\wbr}ร่วม{\wbr}ที่{\wbr}มี{\wbr}ค่า{\wbr}มาก{\wbr}ที่สุด{\wbr}
-
-\begin{quiz}{ทบทวน{\wbr}ความ{\wbr}รู้}
-ตัวหารร่วมมาก{\wbr}ของ 100 และ 60 คือ{\wbr}อะไร? \\
-ตัวหารร่วมมาก{\wbr}ของ 100 และ 10 คือ{\wbr}อะไร?
+\begin{quiz}{}
+ระบุ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}และ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง (อย่าง{\wbr}เป็นทางการ{\wbr}มาก{\wbr}ขึ้น)
+ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}เพื่อ{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
 \end{quiz}
 
-เรา{\wbr}จะ{\wbr}หา{\wbr}ห.{\wbr}ร.{\wbr}ม ของ{\wbr}จำนวนเต็ม{\wbr}ไม่{\wbr}เป็น{\wbr}ลบ $a$ และ $b$ เพื่อ{\wbr}ความ{\wbr}ง่าย{\wbr}เรา{\wbr}จะ{\wbr}สมมติ{\wbr}ให้ $b$
-มี{\wbr}ค่า{\wbr}น้อย{\wbr}กว่า{\wbr}หรือ{\wbr}เท่า{\wbr}กับ $a$
+เรา{\wbr}ต้องการ{\wbr}ค้นหา{\wbr}ข้อมูล $q$ จาก{\wbr}อาร์เรย์ $A$ ที่{\wbr}มี{\wbr}ข้อมูล $n$ ตัว{\wbr}เรียงลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}หา{\wbr}มาก{\wbr}
+เงื่อนไข{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}ค้นหา Find (\ref{algo:rec-bin-search-main})
+มี{\wbr}ดังนี้{\wbr}
+\begin{itemize}
+\item เงื่อนไข{\wbr}ก่อนหน้า: อาร์เรย์ $A$ ต้อง{\wbr}เรียงลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}หา{\wbr}มาก{\wbr}
+\item เงื่อนไข{\wbr}ตาม{\wbr}หลัง: ถ้า{\wbr}มี{\wbr}ข้อมูล $q$ ใน{\wbr}อาร์เรย์ $A$
+  จะ{\wbr}ต้อง{\wbr}คืน{\wbr}ผลลัพธ์{\wbr}เป็น{\wbr}ดัชนี{\wbr}ของ{\wbr}ข้อมูล{\wbr}นั้น ถ้า{\wbr}ไม่{\wbr}มี{\wbr}จะ{\wbr}ต้อง{\wbr}คืน{\wbr}ค่า -1
+\end{itemize}
 
-\begin{quiz}{กรณี{\wbr}ง่าย}
-มี{\wbr}กรณี{\wbr}ใด{\wbr}บ้าง{\wbr}ที่{\wbr}เรา{\wbr}สามารถ{\wbr}คำนวณ{\wbr}ค่า{\wbr}ห.{\wbr}ร.{\wbr}ม ของ $a$ และ $b$ ได้{\wbr}ง่าย{\wbr}มาก{\wbr}
+อย่างไรก็ตาม ใน{\wbr}กรณี{\wbr}นี้{\wbr}เรา{\wbr}มี{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}สอง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}ต้อง{\wbr}พิจารณา คือ อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม Find
+(\ref{algo:rec-bin-search-main}) และ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch
+(\ref{algo:rec-bin-search}) \ หน้าที่{\wbr}หลัก{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม Find
+คือ{\wbr}การ{\wbr}กำหนด{\wbr}ค่า{\wbr}เริ่มต้น{\wbr}ให้{\wbr}กับ{\wbr}พารามิเตอร์ $s$ และ $t$ \ ส่วน{\wbr}การ{\wbr}ทำงาน{\wbr}หลัก{\wbr}จะ{\wbr}อยู่{\wbr}ที่{\wbr}ฟังก์ชัน{\wbr}
+BinarySearch
+
+ดังนั้น{\wbr}การ{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}แสดง{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม Find ทำงาน{\wbr}ได้{\wbr}ถูกต้อง{\wbr}ได้{\wbr}นั้น{\wbr}
+เรา{\wbr}จำเป็น{\wbr}จะ{\wbr}ต้อง{\wbr}แสดง{\wbr}ว่า{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch ทำงาน{\wbr}ถูกต้อง{\wbr}ด้วย{\wbr}
+\ เรา{\wbr}จะ{\wbr}วิเคราะห์{\wbr}หา{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}รับประกัน{\wbr}ให้{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
+และ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}จาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ดังกล่าว{\wbr}
+
+สังเกต{\wbr}ว่า ถ้า{\wbr}พารามิเตอร์ $s$ และ $t$ มี{\wbr}ค่า{\wbr}ไม่{\wbr}ถูกต้อง อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch
+ก็{\wbr}จะ{\wbr}ไม่{\wbr}สามารถ{\wbr}คืน{\wbr}ดัชนี{\wbr}ของ{\wbr}ข้อมูล{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}ออก{\wbr}มา{\wbr}ได้{\wbr}
+\ ข้อสังเกต{\wbr}นี้{\wbr}ทำ{\wbr}ให้{\wbr}เรา{\wbr}คาดเดา{\wbr}ได้{\wbr}ว่า{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}จะ{\wbr}ต้อง{\wbr}เกี่ยวข้อง{\wbr}กับ $s$ และ $t$ ด้วย{\wbr}
+
+\begin{quiz}{}
+ทดลอง{\wbr}ระบุ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า และ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ จาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch
+(\ref{algo:rec-bin-search})
 \end{quiz}
 
+เรา{\wbr}สามารถ{\wbr}ระบุ{\wbr}เงื่อนไข{\wbr}สำหรับ{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch ได้{\wbr}ดังนี้{\wbr}
+\begin{itemize}
+\item เงื่อนไข{\wbr}ก่อนหน้า: อาร์เรย์ $A$ ต้อง{\wbr}เรียงลำดับ{\wbr}จาก{\wbr}น้อย{\wbr}ไป{\wbr}หา{\wbr}มาก และ{\wbr}ถ้า $q$ อยู่{\wbr}ใน{\wbr}อาร์เรย์ $A$ จะ{\wbr}มี{\wbr}ดัชนี $i$ ที่ $s\leq i\leq t$ และ $A[i]=q$
+\item เงื่อนไข{\wbr}ตาม{\wbr}หลัง: ถ้า{\wbr}มี{\wbr}ข้อมูล $q$ ใน{\wbr}อาร์เรย์ $A$
+  อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}ต้อง{\wbr}คืน{\wbr}ผลลัพธ์{\wbr}เป็น{\wbr}ดัชนี{\wbr}ของ{\wbr}ข้อมูล{\wbr}นั้น ถ้า{\wbr}ไม่{\wbr}มี{\wbr}จะ{\wbr}ต้อง{\wbr}คืน{\wbr}ค่า -1
+\end{itemize}
 
+เรา{\wbr}จะ{\wbr}พิสูจน์{\wbr}ว่า{\wbr}ถ้า{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}เป็นจริง แล้ว{\wbr}ภายหลัง{\wbr}การ{\wbr}ทำงาน{\wbr}ของ BinarySearch
+ผลลัพธ์{\wbr}ที่{\wbr}ได้{\wbr}จะ{\wbr}เป็น{\wbr}ไป{\wbr}ตาม{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}
+เนื่องจาก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ดังกล่าว{\wbr}เป็น{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}แบบ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}
+เทคนิค{\wbr}แรก{\wbr}ที่{\wbr}เรา{\wbr}เลือก{\wbr}ใช้{\wbr}พิสูจน์{\wbr}ก็{\wbr}คือ{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์ 
 
+อย่างไรก็ตาม สำหรับ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ใช้{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}แบบ{\wbr}เข้ม (strong
+induction)
+ซึ่ง{\wbr}มี{\wbr}รูปแบบ{\wbr}แตกต่าง{\wbr}จาก{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}ที่{\wbr}เรา{\wbr}ได้{\wbr}กล่าว{\wbr}ถึง{\wbr}ใน{\wbr}ตอน{\wbr}ต้น{\wbr}เล็กน้อย{\wbr}
 
+\framed\noindent
+{\bf หลักการ{\wbr}อุปนัย{\wbr}ทาง{\wbr}คณิตศาสตร์{\wbr}แบบ{\wbr}เข้ม}\\
+สำหรับ{\wbr}เพรดิเคต $P(n)$ ที่{\wbr}ขึ้น{\wbr}กับ{\wbr}จำนวนนับ $n$ ถ้า{\wbr}เรา{\wbr}สามารถ{\wbr}พิสูจน์{\wbr}ได้{\wbr}ว่า\\
+1. $P(1)$ จริง และ\\
+2. สำหรับ{\wbr}จำนวนนับ $k\geq 1$ ใด ๆ $P(1)\wedge P(2)\cdots\wedge P(k)\Rightarrow P(k+1)$\\
+แล้ว $P(n)$ เป็นจริง{\wbr}สำหรับ{\wbr}ทุก ๆ จำนวนนับ $n$
+\endframed
+
+สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}ขั้น{\wbr}อุปนัย เรา{\wbr}มี{\wbr}เงื่อนไข{\wbr}ที่{\wbr}มาก{\wbr}ขึ้น แทน{\wbr}ที่{\wbr}จะ{\wbr}มี{\wbr}แค่ $P(k)$ แต่{\wbr}เรา{\wbr}สามารถ{\wbr}อ้าง{\wbr}ได้{\wbr}ตั้งแต่{\wbr}
+$P(1), P(2)$ จนถึง $P(k)$ \ \ อย่างไรก็ตาม{\wbr}
+การ{\wbr}ใช้{\wbr}การ{\wbr}อุปนัย{\wbr}แบบ{\wbr}เข้ม{\wbr}มี{\wbr}ประโยชน์{\wbr}แค่{\wbr}ความ{\wbr}สะดวก{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}เท่านั้น{\wbr}
+เนื่องจาก{\wbr}การ{\wbr}อุปนัย{\wbr}แบบ{\wbr}ที่{\wbr}เรา{\wbr}แนะนำ{\wbr}ใน{\wbr}ตอน{\wbr}ต้น (หรือ{\wbr}ที่{\wbr}นิยม{\wbr}เรียก{\wbr}ว่า{\wbr}การ{\wbr}อุปนัย{\wbr}แบบ{\wbr}อ่อน หรือ week
+induction) กับ{\wbr}การ{\wbr}อุปนัย{\wbr}แบบ{\wbr}เข้ม{\wbr}นั้น{\wbr}สม{\wbr}มูล{\wbr}กัน{\wbr}
+
+ก่อน{\wbr}จะ{\wbr}ใช้{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}ได้{\wbr}
+เรา{\wbr}จะ{\wbr}ต้อง{\wbr}ระบุ{\wbr}ประโยค{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}พิสูจน์{\wbr}รวม{\wbr}ถึง{\wbr}ค่า{\wbr}พารามิเตอร์{\wbr}ของ{\wbr}ประโยค{\wbr}ดังกล่าว{\wbr}ให้{\wbr}ได้{\wbr}เสียก่อน{\wbr}
+\ \ หลักการ{\wbr}สำคัญ{\wbr}ใน{\wbr}การ{\wbr}วิเคราะห์{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}เรียก{\wbr}ตัวเอง{\wbr}
+ก็{\wbr}ไม่{\wbr}ต่าง{\wbr}จาก{\wbr}การ{\wbr}วิเคราะห์{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ทั่วไป นั่น{\wbr}คือ เรา{\wbr}จำเป็น{\wbr}จะ{\wbr}ต้อง{\wbr}นิยาม ``ความ{\wbr}ก้าวหน้า''
+ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ให้{\wbr}ชัดเจน \ ข้อสังเกต{\wbr}ที่{\wbr}น่า{\wbr}สนใจ{\wbr}ก็{\wbr}คือ{\wbr}
+นิยาม{\wbr}ของ{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}ที่{\wbr}เรา{\wbr}ใช้{\wbr}จะ{\wbr}ต้อง{\wbr}สอดคล้อง{\wbr}กับ{\wbr}บาง{\wbr}ขั้นตอน{\wbr}ที่{\wbr}เรา{\wbr}ใช้{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}โดย{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}
+
+\begin{quiz}{}
+ลอง{\wbr}พิจารณา{\wbr}การ{\wbr}พิสูจน์{\wbr}ความ{\wbr}ถูกต้อง{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}เรียง{\wbr}ข้อมูล{\wbr}
+นิยาม{\wbr}ของ{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}คือ{\wbr}อะไร?
+จากนั้น{\wbr}ให้{\wbr}พิจารณา{\wbr}บทพิสูจน์{\wbr}และ{\wbr}อธิบาย{\wbr}ว่า{\wbr}ที่{\wbr}จุด{\wbr}ใด{\wbr}ที่{\wbr}เรา{\wbr}อ้าง{\wbr}ถึง{\wbr}และ{\wbr}ใช้{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}ดังกล่าว{\wbr}ใน{\wbr}การ{\wbr}พิสูจน์{\wbr}
+\end{quiz}
+
+\begin{quiz}{ความ{\wbr}ก้าวหน้า{\wbr}ของ{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค}
+นิยาม{\wbr}ของ{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}การ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค{\wbr}คือ{\wbr}อะไร?
+(เรา{\wbr}เคย{\wbr}พิจารณา{\wbr}เรื่อง{\wbr}นี้{\wbr}ไป{\wbr}ใน{\wbr}ส่วน~\ref{sect:analysis-binary-search})
+\end{quiz}
+
+เนื่องจาก{\wbr}เรา{\wbr}ใช้{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ที่{\wbr}เหลือ{\wbr}ใน{\wbr}การ{\wbr}แสดง{\wbr}ความ{\wbr}ก้าวหน้า{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
+เรา{\wbr}จะ{\wbr}ทำ{\wbr}การ{\wbr}อุปนัย{\wbr}บน{\wbr}จำนวน{\wbr}นั้น กล่าวคือ{\wbr}เรา{\wbr}จะ{\wbr}พิสูจน์{\wbr}ว่า{\wbr}ประโยค{\wbr}
+\begin{quote}
+$Q(k)$: ``อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch เมื่อ{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}โดย{\wbr}ที่{\wbr}มี{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้ $t-s+1 = k$ จำนวน{\wbr}และ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}เป็นจริง จะ{\wbr}ให้{\wbr}ผลลัพธ์{\wbr}ที่{\wbr}สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง''
+\end{quote}
+เป็นจริง{\wbr}สำหรับ{\wbr}ทุก ๆ จำนวนเต็ม $k$ ที่ $k\geq 0$
+
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}การ{\wbr}อุปนัย{\wbr}ที่ $k=0$
+ซึ่ง{\wbr}ไม่{\wbr}ตรง{\wbr}กับ{\wbr}นิยาม{\wbr}ของ{\wbr}หลักการ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}เสียที{\wbr}เดียว{\wbr}
+อย่างไรก็ตาม{\wbr}เรา{\wbr}จะ{\wbr}ดำเนินการ{\wbr}พิสูจน์{\wbr}ใน{\wbr}ลักษณะ{\wbr}นี้{\wbr}ไป{\wbr}ก่อน{\wbr}และ{\wbr}พิจารณา{\wbr}ประเด็น{\wbr}นี้{\wbr}ใน{\wbr}ภายหลัง{\wbr}
+
+{\bf ขั้น{\wbr}ฐาน:} เมื่อ $k=0$ และ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}เป็นจริง เรา{\wbr}สามารถ{\wbr}สรุป{\wbr}ได้{\wbr}ว่า{\wbr}ข้อมูล $q$
+ไม่{\wbr}อยู่{\wbr}ใน{\wbr}อาร์เรย์ (ดู{\wbr}คำถาม~\ref{quiz:rec-bin-basis}) นอกจากนี้{\wbr}เรา{\wbr}ทราบ{\wbr}ว่า{\wbr}
+$t-s+1=0$ หรือ $s=t+1$ ทำ{\wbr}ให้{\wbr}เข้า{\wbr}เงื่อนไข{\wbr}ของ{\wbr}คำสั่ง IF ใน{\wbr}บรรทัด{\wbr}ที่ 1 และ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}
+BinarySearch จะ{\wbr}คืน{\wbr}ค่า $-1$ ซึ่ง{\wbr}สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}
+
+\begin{quiz}{}
+\label{quiz:rec-bin-basis}
+พิสูจน์{\wbr}ว่า ถ้า $k=0$ และ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}เป็นจริง ข้อมูล $q$ จะ{\wbr}ไม่{\wbr}อยู่{\wbr}ใน{\wbr}อาร์เรย์
+\end{quiz}
+
+{\bf ขั้น{\wbr}อุปนัย:} พิจารณา{\wbr}กรณี{\wbr}ที่ $k>0$ เรา{\wbr}จะ{\wbr}สมมติ{\wbr}ว่า{\wbr}สำหรับ{\wbr}ทุก ๆ $k'<k$ ประโยค{\wbr}
+$Q(k')$ เป็นจริง นั่น{\wbr}คือ ถ้า{\wbr}มี{\wbr}การ{\wbr}เรียก{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch
+ที่{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}คือ $k'$ และ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}เป็นจริง{\wbr}
+ผลลัพธ์{\wbr}ที่{\wbr}ได้{\wbr}จะ{\wbr}สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}
+
+เรา{\wbr}มี{\wbr}กรณี{\wbr}ที่{\wbr}ต้อง{\wbr}พิจารณา 3 กรณี แยก{\wbr}ตาม{\wbr}การ{\wbr}ทำงาน{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch
+
+{\em กรณี{\wbr}ที่ 1:} เมื่อ $A[m]=q$. ใน{\wbr}กรณี{\wbr}นี้{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}ตอบ $m$
+ซึ่ง{\wbr}ทำ{\wbr}ให้{\wbr}ผลลัพธ์{\wbr}สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}
+
+{\em กรณี{\wbr}ที่ 2:} เมื่อ $A[m]<q$. เนื่องจาก{\wbr}ข้อมูล{\wbr}ใน{\wbr}อาร์เรย์{\wbr}เรียงลำดับ{\wbr}กัน{\wbr}
+(จาก{\wbr}เงื่อนไข{\wbr}ก่อนหน้า) เรา{\wbr}จะ{\wbr}ทราบ{\wbr}ว่า{\wbr}สำหรับ{\wbr}ทุก~ๆ ดัชนี $i$ ที่ $0\leq i\leq m$,
+$A[i]<q$ \ \ เมื่อ{\wbr}เรา{\wbr}นำ{\wbr}ความจริง{\wbr}นี้{\wbr}มา{\wbr}ประกอบ{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า นั่น{\wbr}คือ ถ้า{\wbr}มี{\wbr}ข้อมูล $q$
+ใน $A$ จะ{\wbr}มี{\wbr}ดัชนี $i$ ที่ $s\leq i\leq t$ ที่ $A[i]=q$ เรา{\wbr}จะ{\wbr}สามารถ{\wbr}สรุป{\wbr}ได้{\wbr}ว่า{\wbr}
+ถ้า{\wbr}มี{\wbr}ข้อมูล $q$ ใน $A$ จะ{\wbr}ต้อง{\wbr}มี{\wbr}ดัชนี $i$ ที่ $m+1\leq i\leq t$ ที่ $A[i]=q$
+
+จากนั้น{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}เพื่อ{\wbr}ค้นหา{\wbr}แบบ{\wbr}ทวิภาค{\wbr}ใน{\wbr}อาร์เรย์{\wbr}โดย{\wbr}ส่ง{\wbr}ค่า{\wbr}ดัชนี{\wbr}เริ่มต้น{\wbr}เป็น $m+1$
+และ{\wbr}ดัชนี{\wbr}สุดท้าย{\wbr}เป็น $t$ \ \ สังเกต{\wbr}ว่า{\wbr}ใน{\wbr}กรณี{\wbr}นี้{\wbr}
+ข้อสรุป{\wbr}ข้างต้น{\wbr}แสดง{\wbr}ว่า{\wbr}เงื่อนไข{\wbr}เริ่มต้น{\wbr}ของ{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม BinarySearch ที่{\wbr}เรียก{\wbr}ตัวเอง{\wbr}เป็นจริง{\wbr}
+นอกจากนี้{\wbr}จำนวน{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}ใน{\wbr}การ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}คือ $k' = t -
+\lfloor\frac{s+t}{2}\rfloor - 1 < t - s + 1<k$ ดังนั้น{\wbr}
+โดย{\wbr}สมมติฐาน{\wbr}การ{\wbr}อุปนัย{\wbr}เรา{\wbr}จะ{\wbr}ได้{\wbr}ว่า ผลลัพธ์{\wbr}ที่{\wbr}คืน{\wbr}จาก{\wbr}การ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}ถูกต้อง นั่น{\wbr}คือ ถ้า $q$
+อยู่{\wbr}ใน{\wbr}อาร์เรย์ $A$ โดย{\wbr}มี{\wbr}ดัชนี{\wbr}ตั้งแต่ $m+1$ จนถึง $t$ อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}คืน{\wbr}ค่า{\wbr}ดัชนี $i$ ที่{\wbr}
+$A[i]=q$ และ{\wbr}ถ้า $q$ ไม่{\wbr}อยู่{\wbr}ใน{\wbr}อาร์เรย์{\wbr}ใน{\wbr}ดัชนี{\wbr}ตั้งแต่ $m+1$ ถึง $t$ อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}จะ{\wbr}คืน{\wbr}ค่า -1
+
+ดังนั้น จาก{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}ที่{\wbr}ได้{\wbr}หลัง{\wbr}การ{\wbr}เรียก{\wbr}ตัวเอง{\wbr}และ{\wbr}เงื่อนไข{\wbr}ก่อนหน้า{\wbr}ที่{\wbr}เรา{\wbr}รับประกัน{\wbr}
+เรา{\wbr}สามารถ{\wbr}สรุป{\wbr}ได้{\wbr}ว่า{\wbr}ผลลัพธ์{\wbr}ของ BinarySearch เมื่อ{\wbr}จำนวน{\wbr}ข้อมูล{\wbr}ที่{\wbr}เป็น{\wbr}ไป{\wbr}ได้{\wbr}คือ $k$
+สอดคล้อง{\wbr}กับ{\wbr}เงื่อนไข{\wbr}ตาม{\wbr}หลัง{\wbr}ใน{\wbr}กรณี{\wbr}ที่ 2 นี้{\wbr}
+
+{\em กรณี{\wbr}ที่ 3:} เมื่อ $A[m]>q$. สำหรับ{\wbr}กรณี{\wbr}นี้{\wbr}
+เรา{\wbr}จะ{\wbr}ละ{\wbr}ไว้{\wbr}เป็น{\wbr}คำถาม{\wbr}ที่~\ref{quiz:rec-bin-induction-case3}
+
+เมื่อ{\wbr}เรา{\wbr}ได้{\wbr}พิจารณา{\wbr}ทุก{\wbr}กรณี{\wbr}แล้ว เรา{\wbr}สามารถ{\wbr}สรุป{\wbr}ได้{\wbr}ว่า ถ้า{\wbr}เรา{\wbr}สมมติ{\wbr}ให้{\wbr}
+$Q(0),Q(1),\ldots,Q(k-1)$ เป็นจริง แล้ว $Q(k)$ จะ{\wbr}เป็นจริง{\wbr}ด้วย{\wbr}
+\ \ นั่น{\wbr}คือ{\wbr}เรา{\wbr}แสดง{\wbr}ขั้น{\wbr}อุปนัย{\wbr}ได้{\wbr}แล้ว{\wbr}
+
+ดังนั้น จาก{\wbr}หลักการ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}แบบ{\wbr}เข้ม เรา{\wbr}สามารถ{\wbr}สรุป{\wbr}ได้{\wbr}ว่า $Q(k)$
+เป็นจริง{\wbr}สำหรับ{\wbr}ทุก ๆ ค่า $k$ ที่ $k\geq 0$
+
+\begin{quiz}{กรณี{\wbr}ที่ 3}
+\label{quiz:rec-bin-induction-case3} พิสูจน์{\wbr}ขั้น{\wbr}อุปนัย{\wbr}ใน{\wbr}กรณี{\wbr}ที่ 3
+\end{quiz}
+
+{\bf หมายเหตุ.}  สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}ปรับ{\wbr}รูปแบบ{\wbr}การ{\wbr}พิสูจน์{\wbr}แบบ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}เล็กน้อย นั่น{\wbr}คือ{\wbr}
+เรา{\wbr}ไม่{\wbr}ได้{\wbr}เริ่ม{\wbr}ค่า{\wbr}พารามิเตอร์{\wbr}ที่ 1 และ{\wbr}แทน{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}สมมติ $Q(0)\wedge
+Q(1)\wedge\cdots\wedge Q(k)$ แล้ว{\wbr}พิสูจน์ $Q(k+1)$ เรา{\wbr}กลับ{\wbr}สมมติ $Q(0)\wedge
+Q(1)\wedge\cdots\wedge Q(k-1)$ และ{\wbr}พยายาม{\wbr}พิสูจน์ $Q(k)$
+\ \ ทั้งหมด{\wbr}นี้{\wbr}เป็น{\wbr}แค่{\wbr}การ{\wbr}ปรับ{\wbr}รูปแบบ{\wbr}
+แต่{\wbr}ไม่{\wbr}ได้{\wbr}ทำ{\wbr}ข้อสรุป{\wbr}ของ{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}เปลี่ยน{\wbr}ไป{\wbr}แต่อย่างใด{\wbr}
+เพราะ{\wbr}เรา{\wbr}สามารถ{\wbr}นิยาม{\wbr}ประโยค $Q'(i)$ ให้{\wbr}เป็น{\wbr}ประโยค $Q(i-1)$ และ{\wbr}พิสูจน์{\wbr}ประโยค{\wbr}
+$Q'(i)$ สำหรับ $i=1,2,\ldots$ ได้{\wbr}ด้วย{\wbr}การ{\wbr}อุปนัย{\wbr}เชิง{\wbr}คณิตศาสตร์{\wbr}ใน{\wbr}รูปแบบมาตรฐาน{\wbr}
+จากนั้น{\wbr}ข้อสรุป{\wbr}ว่า $Q'(i)$ เป็นจริง{\wbr}สำหรับ $i=1,2,\ldots$ ก็{\wbr}จะ{\wbr}สม{\wbr}มูล{\wbr}กับ{\wbr}ข้อสรุป{\wbr}ว่า{\wbr}
+$Q(k)$ เป็นจริง{\wbr}เมื่อ $k=0,1,2,\ldots$ นั่นเอง{\wbr}
 
