@@ -2,8 +2,6 @@
 
 using namespace std;
 
-const int default_max_list_size = 1000;
-
 template<class T>
 class list {
 public:
@@ -25,6 +23,8 @@ public:
   void insert_after(iterator p, T x);
 
 private:
+  enum { default_max_list_size = 1000 };
+
   T* items_;
   int size_;
   int max_size_;

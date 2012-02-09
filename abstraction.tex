@@ -458,6 +458,8 @@ private:
 \begin{figure}
 \latintext
 \begin{codelist}{C++}{caption={\thaitext นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส {\ct list}\latintext},label=code:abs-class-list}
+const int max_list_size = 1000;
+
 class list {
 public:
   typedef int* iterator;
@@ -481,6 +483,68 @@ private:
 \thaitext
 \end{figure}
 
+\subsection{ค่าคงที่{\wbr}ภายใน{\wbr}ค{\wbr}ลา{\wbr}ส}
+
+ใน{\wbr}การ{\wbr}ประกาศ{\wbr}ค{\wbr}ลา{\wbr}ส {\ct list} เรา{\wbr}ใช้{\wbr}ค่าคงที่ {\ct max\_list\_size}
+ที่{\wbr}ประกาศ{\wbr}ไว้{\wbr}ก่อน{\wbr}การ{\wbr}นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส
+
+\begin{quiz}{}
+\label{quiz:abs-const-member-error}
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}กำหนด{\wbr}ค่าคงที่ {\ct max\_list\_size} ไว้{\wbr}ก่อน{\wbr}การ{\wbr}นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส
+ถ้า{\wbr}เรา{\wbr}ประกาศ{\wbr}ค่าคงที่{\wbr}ดังกล่าว{\wbr}ไว้{\wbr}ภายใน{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}จะ{\wbr}เป็น{\wbr}อย่างไร?
+ทดลอง{\wbr}ปรับ{\wbr}โปรแกรม{\wbr}และ{\wbr}พิจารณา{\wbr}ข้อผิดพลาด{\wbr}ที่{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}แจ้ง ทำไม{\wbr}จึง{\wbr}เกิด{\wbr}ปัญหา{\wbr}นั้น?
+\end{quiz}
+
+การ{\wbr}ประกาศ{\wbr}ค่าคงที่ {\ct max\_list\_size } อย่าง{\wbr}ที่{\wbr}เรา{\wbr}ทำ จะ{\wbr}ทำ{\wbr}ให้{\wbr}มี{\wbr}ชื่อ {\ct
+  max\_list\_size } ป{\wbr}รา{\wbr}กฎ{\wbr}ขึ้น{\wbr}ใน{\wbr}รายการ{\wbr}ของ{\wbr}ชื่อ{\wbr}ทั้งหมด{\wbr}ใน{\wbr}โปรแกรม{\wbr}
+\ ผล{\wbr}ก็{\wbr}คือ{\wbr}โปรแกรม{\wbr}ใน{\wbr}ส่วน{\wbr}อื่น ๆ ไม่{\wbr}สามารถ{\wbr}ตั้ง{\wbr}ชื่อ{\wbr}ตัวแปร{\wbr}หรือ{\wbr}ค่าคงที่{\wbr}ด้วย{\wbr}ชื่อ{\wbr}นี้{\wbr}ได้{\wbr}
+\ \ อย่างไรก็ตาม เนื่องจาก{\wbr}ค่าคงที่{\wbr}ดังกล่าว{\wbr}เป็น{\wbr}ค่า{\wbr}ที่{\wbr}ใช้{\wbr}กับ{\wbr}ค{\wbr}ลา{\wbr}ส {\ct list} เท่านั้น{\wbr}
+เรา{\wbr}จึง{\wbr}ควร{\wbr}กำหนด{\wbr}ค่าคงที่{\wbr}ดังกล่าว{\wbr}ให้{\wbr}อยู่{\wbr}ใน{\wbr}ขอบเขต{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส {\ct list}
+
+ใน{\wbr}การ{\wbr}กำหนด{\wbr}ค่าคงที่{\wbr}ดังกล่าว เรา{\wbr}ไม่{\wbr}สามารถ{\wbr}ประกาศ{\wbr}เป็น{\wbr}ตัวแปร{\wbr}สมาชิก{\wbr}ใน{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ได้{\wbr}
+(ดังที่{\wbr}ได้{\wbr}ทดลอง{\wbr}ตาม{\wbr}คำถาม~\ref{quiz:abs-const-member-error})
+เพราะว่า{\wbr}ตัวแปร{\wbr}ดังกล่าว{\wbr}จะ{\wbr}ต้อง{\wbr}มี{\wbr}การ{\wbr}กำหนด{\wbr}ค่า{\wbr}ก่อน{\wbr}
+แต่{\wbr}การ{\wbr}ใช้{\wbr}ค่าคงที่{\wbr}เพื่อ{\wbr}กำหนด{\wbr}ขนาด{\wbr}ตัวแปร{\wbr}นั้น{\wbr}จำเป็น{\wbr}ต้อง{\wbr}ทราบ{\wbr}ขนาด{\wbr}เมื่อ{\wbr}เริ่ม{\wbr}สร้าง{\wbr}วัตถุ{\wbr}
+ซึ่ง{\wbr}ใน{\wbr}ขณะนั้น{\wbr}ตัวแปร{\wbr}ค่าคงที่{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}ใช้{\wbr}ยัง{\wbr}ไม่{\wbr}เรียบร้อย{\wbr}
+
+มี{\wbr}วิธีการ{\wbr}กำหนด{\wbr}ค่าคงที่{\wbr}ใน{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}หลาย{\wbr}รูปแบบ{\wbr}
+เรา{\wbr}จะ{\wbr}เลือก{\wbr}วิธี{\wbr}ที่{\wbr}สะดวก{\wbr}ที่สุด{\wbr}คือ{\wbr}การ{\wbr}นิยาม{\wbr}ค่าคงที่{\wbr}ภายใน{\wbr}การ{\wbr}ประกาศ{\wbr}ชนิด{\wbr}ข้อมูล {\ct enum}
+ที่{\wbr}ไม่{\wbr}กำหนด{\wbr}ชื่อ ดัง{\wbr}แสดง{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}ประกาศ{\wbr}ค่าคงที่{\wbr}ดังกล่าว{\wbr}ใน{\wbr}ส่วน{\wbr}ประกาศ{\wbr}สมาชิก{\wbr}ส่วนตัว{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส
+
+\latintext
+\begin{codelist}{C++}{caption={\thaitext นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส {\ct list}\latintext},label=code:abs-class-list}
+class list {
+public:
+  // ...
+
+private:
+  enum { max_list_size = 1000 };
+
+  int items_[max_list_size];
+  int size_;
+};
+\end{codelist}
+\thaitext
+
+สำหรับ{\wbr}ค่าคงที่{\wbr}ที่{\wbr}เรา{\wbr}ต้องการ{\wbr}ให้{\wbr}อ้าง{\wbr}ถึง{\wbr}ได้{\wbr}จาก{\wbr}ภายนอก{\wbr}ค{\wbr}ลา{\wbr}ส
+เรา{\wbr}สามารถ{\wbr}ประกาศ{\wbr}ใน{\wbr}ส่วน{\wbr}สาธารณะ{\wbr}ได้ เช่น{\wbr}ตัวอย่าง{\wbr}โปรแกรม{\wbr}ด้าน{\wbr}ล่าง{\wbr}
+
+\latintext
+\begin{codelist}{C++}{}
+class demo {
+public:
+  enum { my_constant = 12345 };
+};
+
+  //...
+  cout << demo::my_constant << endl;   // accessing the constant
+\end{codelist}
+\thaitext
+
+นอกจาก{\wbr}วิธี{\wbr}นี้ ยัง{\wbr}อีก{\wbr}วิธี{\wbr}หนึ่ง{\wbr}คือ{\wbr}การ{\wbr}กำหนด{\wbr}ค่าคงที่{\wbr}แบบ{\wbr}สถิตย์
+ซึ่ง{\wbr}จะ{\wbr}กล่าว{\wbr}ใน{\wbr}ส่วน~\ref{section:abs-static-member}
+
 \section{รายการ{\wbr}บน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}เปลี่ยน{\wbr}ขนาด{\wbr}ได้}
 ค{\wbr}ลา{\wbr}ส {\ct list} ที่{\wbr}เรา{\wbr}พัฒนา{\wbr}ขึ้น{\wbr}เก็บ{\wbr}ข้อมูล{\wbr}บน{\wbr}อาร์เรย์{\wbr}ที่{\wbr}มี{\wbr}ขนาด{\wbr}เท่า{\wbr}กับ{\wbr}ค่าคงที่ {\ct
   max\_list\_size} ใน{\wbr}ส่วน{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}ปรับปรุง{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ดังกล่าว{\wbr}
@@ -501,13 +565,13 @@ private:
 \begin{figure}
 \latintext
 \begin{codelist}{C++}{caption={\thaitext นิยาม{\wbr}สมาชิก{\wbr}ส่วนตัว และ{\wbr}ตัว{\wbr}สร้าง{\wbr}ของ{\wbr}รายการ{\wbr}ที่{\wbr}เลือก{\wbr}ขนาด{\wbr}อาร์เรย์{\wbr}ได้\latintext},label=code:abs-list-adj-array}
-const int default_max_list_size = 1000;
-
 class list {
 public:
   list(int max_size=default_max_list_size);
   // ... 
 private:
+  enum { default_max_list_size = 1000 };
+
   int* items_;
   int size_;
   int max_size_;
@@ -521,12 +585,6 @@ list::~list(int max_size)
 \end{codelist}
 \thaitext
 \end{figure}
-
-\begin{quiz}{}
-สังเกต{\wbr}ว่า{\wbr}เรา{\wbr}กำหนด{\wbr}ค่าคงที่ {\ct default\_max\_list\_size} ไว้{\wbr}ก่อน{\wbr}การ{\wbr}นิยาม{\wbr}ค{\wbr}ลา{\wbr}ส
-ถ้า{\wbr}เรา{\wbr}ประกาศ{\wbr}ค่าคงที่{\wbr}ดังกล่าว{\wbr}ไว้{\wbr}ภายใน{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}จะ{\wbr}เป็น{\wbr}อย่างไร?
-ทดลอง{\wbr}ปรับ{\wbr}โปรแกรม{\wbr}และ{\wbr}พิจารณา{\wbr}ข้อผิดพลาด{\wbr}ที่{\wbr}คอม{\wbr}ไพ{\wbr}เลอร์{\wbr}แจ้ง ทำไม{\wbr}จึง{\wbr}เกิด{\wbr}ปัญหา{\wbr}นั้น?
-\end{quiz}
 
 ใน{\wbr}โปรแกรม{\wbr}ที่{\wbr}เรา{\wbr}เขียน{\wbr}ขึ้น เมื่อ{\wbr}เรา{\wbr}ประกาศ{\wbr}วัตถุ{\wbr}ของ{\wbr}ค{\wbr}ลา{\wbr}ส {\ct list}
 ตัว{\wbr}สร้าง{\wbr}จะ{\wbr}จอง{\wbr}เนื้อที่{\wbr}หน่วยความจำ{\wbr}เป็น{\wbr}เนื้อที่{\wbr}อาร์เรย์{\wbr}และ{\wbr}กำหนด{\wbr}ให้{\wbr}พอยน์เตอร์ {\ct items\_}
@@ -826,8 +884,6 @@ void my_swap(T& a, T& b)
 \begin{figure}
 \latintext
 \begin{codelist}{C++}{caption={\thaitext ค{\wbr}ลา{\wbr}ส{\wbr}แม่แบบ {\ct list}\latintext},label=code:abs-list-template-decl}
-const int default_max_list_size = 1000;
-
 template<class T>
 class list {
 public:
@@ -849,6 +905,8 @@ public:
   void insert_after(iterator p, T x);
 
 private:
+  enum { default_max_list_size = 1000 };
+
   T* items_;
   int size_;
   int max_size_;
@@ -946,12 +1004,22 @@ private:
 \end{codelist}
 \thaitext
 
+\subsection{สมาชิก{\wbr}สถิตย์}
+\label{section:abs-static-member}
+
+\subsection{การ{\wbr}แยก{\wbr}แฟ้ม{\wbr}โปรแกรม}
+
+ใน{\wbr}ภาษา C++ เรา{\wbr}สามารถ{\wbr}แบ่ง{\wbr}โปรแกรม{\wbr}เป็น{\wbr}ส่วน~ๆ
+เพื่อ{\wbr}ความ{\wbr}สะดวก{\wbr}ใน{\wbr}การ{\wbr}จัดการ{\wbr}พัฒนา{\wbr}และ{\wbr}แก้ไข{\wbr}
+รวม{\wbr}ถึง{\wbr}ช่วย{\wbr}ลด{\wbr}เวลา{\wbr}ใน{\wbr}การ{\wbr}คอมไพล์{\wbr}โปรแกรม{\wbr}ขนาด{\wbr}ใหญ่{\wbr}
+เมื่อ{\wbr}มี{\wbr}โปรแกรม{\wbr}แค่{\wbr}เพียง{\wbr}บาง{\wbr}ส่วน{\wbr}ที่{\wbr}มี{\wbr}การ{\wbr}เปลี่ยนแปลง{\wbr}
+
 \subsection{การ{\wbr}ใช้{\wbr}วัตถุ{\wbr}แบบ value และ{\wbr}แบบ reference}
 \label{section:abs-value-ref-semantics}
 
 \subsection{การ{\wbr}ประกาศ{\wbr}ฟังก์ชัน{\wbr}หลาย{\wbr}ฟังก์ชัน{\wbr}โดย{\wbr}ใช้{\wbr}ชื่อ{\wbr}เดียวกัน: การ{\wbr}โอ{\wbr}เวอร์{\wbr}โหลด}
 
-\subsection{ค{\wbr}ลา{\wbr}ส{\wbr}สืบต่อ}
+\subsection{ค{\wbr}ลา{\wbr}ส{\wbr}สืบทอด}
 
 \subsection{ความจำ{\wbr}เป็น{\wbr}ที่{\wbr}ต้อง{\wbr}ระบุ {\ct typename} เมื่อ{\wbr}ใช้{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}ที่{\wbr}ขึ้น{\wbr}กับ{\wbr}ตัวแปร{\wbr}แม่แบบ}
 \label{section:abs-typename}

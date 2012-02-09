@@ -57,7 +57,8 @@
 
 %\include{arrays-pointers}
 %\include{asymptotic-analysis}
-%\include{abstraction}
-\include{recursion}
+\include{abstraction}
+%\include{recursion}
+\include{queues-stacks}
 
 \end{document}

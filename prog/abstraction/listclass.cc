@@ -2,8 +2,6 @@
 
 using namespace std;
 
-const int default_max_list_size = 1000;
-
 class list {
 public:
   typedef int* iterator;
@@ -24,6 +22,8 @@ public:
   void insert_after(iterator p, int x);
 
 private:
+  enum { default_max_list_size = 1000 };
+
   int* items_;
   int size_;
   int max_size_;
@@ -94,6 +94,8 @@ int main()
   m(b);
   list a;
   a = b;
+
+  cout << list::default_max_list_size << endl;
   /*
   for(int i=0; i<2000; ++i) {
     a.append(i);

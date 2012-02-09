@@ -1,0 +1,57 @@
+\chapter{คิว{\wbr}และ{\wbr}สแต็ก}
+
+ใน{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}กล่าว{\wbr}ถึง{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}ที่{\wbr}มี{\wbr}ลักษณะ{\wbr}เป็น{\wbr}รายการ{\wbr}
+ที่{\wbr}มี{\wbr}รูปแบบ{\wbr}ใน{\wbr}การ{\wbr}เข้าถึง{\wbr}ข้อมูล{\wbr}แบบ{\wbr}เฉพาะเจาะจง{\wbr}สอง{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}คือ{\wbr}คิว (queue) และ{\wbr}สแด็ก
+(stack) \ \
+เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}จาก{\wbr}การ{\wbr}พิจารณา{\wbr}ปัญหา{\wbr}ที่{\wbr}เกี่ยวข้อง{\wbr}และ{\wbr}การ{\wbr}ประยุกต์{\wbr}ใช้{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}ทั้ง{\wbr}สอง{\wbr}
+จากนั้น{\wbr}จะ{\wbr}พิจารณา{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์ ใน{\wbr}บท{\wbr}ที่~\ref{chapter:lists}
+เรา{\wbr}จะ{\wbr}ได้{\wbr}ศึกษา{\wbr}วิธีการ{\wbr}อิม{\wbr}พลี{\wbr}เมนต์{\wbr}ด้วย{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}แบบ{\wbr}ลิงก์ลิสต์{\wbr}ต่อไป{\wbr}
+
+\section{ปัญหา{\wbr}และ{\wbr}สถานการณ์}
+
+ปัญหา{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}พิจารณา{\wbr}ใน{\wbr}ตอน{\wbr}ต้น{\wbr}อาจ{\wbr}จะ{\wbr}ไม่{\wbr}ใช่{\wbr}ปัญหา{\wbr}เชิง{\wbr}อัล{\wbr}กอ{\wbr}ริ{\wbr}ทึม{\wbr}ที่{\wbr}ชัดเจน แต่{\wbr}จะ{\wbr}เป็น{\wbr}ภาพ{\wbr}ของ{\wbr}สถานการณ์{\wbr}ที่{\wbr}จำเป็น{\wbr}ต้อง{\wbr}มี{\wbr}การ{\wbr}ประมวลผล{\wbr}กับ{\wbr}ข้อมูล{\wbr}ใน{\wbr}รูปแบบ{\wbr}ต่าง ๆ 
+
+\subsection{การ{\wbr}กระจาย{\wbr}งาน}
+
+ปัญหา{\wbr}แรก{\wbr}เป็น{\wbr}สถานการณ์{\wbr}ที่{\wbr}เกิด{\wbr}ขึ้น{\wbr}ทั่วไป{\wbr}ใน{\wbr}ระบบ{\wbr}คอมพิวเตอร์{\wbr}ขนาด{\wbr}ใหญ่{\wbr}
+
+\framed\noindent
+ระบบ{\wbr}คอมพิวเตอร์{\wbr}สำหรับ{\wbr}ให้{\wbr}บริการ{\wbr}มี{\wbr}เครื่อง{\wbr}สำหรับ{\wbr}ประมวลผล $N$ เครื่อง{\wbr}
+และ{\wbr}มี{\wbr}เครื่อง{\wbr}คอมพิวเตอร์{\wbr}หลัก{\wbr}สำหรับ{\wbr}รับ{\wbr}งาน{\wbr}จาก{\wbr}ผู้ใช้{\wbr}
+งาน{\wbr}ดังกล่าว{\wbr}จะ{\wbr}ถูก{\wbr}ส่ง{\wbr}ให้{\wbr}กับ{\wbr}เครื่อง{\wbr}ประมวลผล{\wbr}ที่{\wbr}ว่าง{\wbr}อยู่{\wbr}
+ตาม{\wbr}ลำดับ{\wbr}ของ{\wbr}งาน{\wbr}ที่{\wbr}ส่ง{\wbr}ให้{\wbr}กับ{\wbr}เครื่อง{\wbr}คอมพิวเตอร์{\wbr}หลัก{\wbr}
+\ เรา{\wbr}จะ{\wbr}จัดการ{\wbr}กับ{\wbr}ข้อมูล{\wbr}ของ{\wbr}งาน{\wbr}ที่{\wbr}เข้า{\wbr}มา{\wbr}ที่{\wbr}เครื่อง{\wbr}คอมพิวเตอร์{\wbr}หลัก{\wbr}ได้{\wbr}อย่างไร?
+\endframed
+
+
+\section{การ{\wbr}ประยุกต์{\wbr}ใช้{\wbr}คิว{\wbr}และ{\wbr}สแต็ก}
+
+ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}คิว{\wbr}และ{\wbr}สแต็ก{\wbr}จัดการ{\wbr}กับ{\wbr}ข้อมูล{\wbr}ที่{\wbr}เป็น{\wbr}รายการ{\wbr}
+โดย{\wbr}การ{\wbr}เข้าถึง{\wbr}ข้อมูล{\wbr}ใน{\wbr}รายการ{\wbr}จะ{\wbr}กระทำ{\wbr}ได้{\wbr}กับ{\wbr}เฉพาะ{\wbr}ข้อมูล{\wbr}ที่{\wbr}ปลาย{\wbr}รายการ{\wbr}เท่านั้น \
+เรา{\wbr}สามารถ{\wbr}นิยาม{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}นามธรรม{\wbr}ทั้ง{\wbr}สอง{\wbr}ได้{\wbr}โดย{\wbr}ใช้{\wbr}ลำดับ{\wbr}ของ{\wbr}การ{\wbr}ใส่{\wbr}เข้า{\wbr}และ{\wbr}นำ{\wbr}ข้อมูล{\wbr}ออก ดังนี้{\wbr}
+\begin{itemize}
+\item คิว --- การ{\wbr}จัดการ{\wbr}ข้อมูล{\wbr}จะ{\wbr}เป็น{\wbr}แบบ{\wbr}เข้า{\wbr}ก่อน-ออก{\wbr}ก่อน (First-In First-Out หรือ{\wbr}
+  FIFO) ข้อมูล{\wbr}ที่{\wbr}ถูก{\wbr}เพิ่ม{\wbr}เข้า{\wbr}ไป{\wbr}ใน{\wbr}รายการ{\wbr}จะ{\wbr}ต่อ{\wbr}แถว{\wbr}กัน{\wbr}ตาม{\wbr}ลำดับ{\wbr}
+  และ{\wbr}เมื่อ{\wbr}ข้อมูล{\wbr}ถูก{\wbr}นำ{\wbr}ออก{\wbr}จาก{\wbr}รายการ ก็{\wbr}จะ{\wbr}ถูก{\wbr}นำ{\wbr}ออก{\wbr}ไป{\wbr}ตาม{\wbr}ลำดับ{\wbr}เดียวกับ{\wbr}ที่{\wbr}ข้อมูล{\wbr}เข้า{\wbr}มา{\wbr}
+\item สแต็ก --- การ{\wbr}จัดการ{\wbr}ข้อมูล{\wbr}จะ{\wbr}เป็น{\wbr}แบบ{\wbr}เข้าที่{\wbr}หลัง-ออก{\wbr}ก่อน (Last-In First-Out
+  หรือ LIFO) ข้อมูล{\wbr}ที่{\wbr}ถูก{\wbr}เพิ่ม{\wbr}เข้า{\wbr}ไป{\wbr}ใน{\wbr}รายการ{\wbr}จะ{\wbr}ถูก{\wbr}วาง{\wbr}ต่อท้าย แต่{\wbr}เมื่อ{\wbr}นำ{\wbr}ข้อมูล{\wbr}ออก{\wbr}
+  ข้อมูล{\wbr}ที่อยู่{\wbr}ท้าย{\wbr}สุด{\wbr}จะ{\wbr}ถูก{\wbr}นำ{\wbr}ออก{\wbr}ไป{\wbr}ก่อน{\wbr}
+  ลักษณะ{\wbr}ของ{\wbr}การ{\wbr}ใช้{\wbr}งาน{\wbr}จะ{\wbr}เหมือน{\wbr}กับ{\wbr}จาน{\wbr}ที่{\wbr}วาง{\wbr}เป็น{\wbr}กอง{\wbr}ซ้อน{\wbr}กัน{\wbr}
+\end{itemize}
+
+
+\section{สแต็ก{\wbr}และ{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์}
+
+ใน{\wbr}ส่วน{\wbr}ของ{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์{\wbr}นั้น เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}ด้วย{\wbr}สแต็ก{\wbr}ก่อน{\wbr}
+เพราะว่า{\wbr}มี{\wbr}โครงสร้าง{\wbr}ที่{\wbr}ง่าย{\wbr}กว่า \ ใน{\wbr}บท{\wbr}นี้{\wbr}เรา{\wbr}จะ{\wbr}พัฒนา{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}แม่แบบ{\wbr}เลย{\wbr}เพื่อ{\wbr}ความ{\wbr}กระ{\wbr}ทัด{\wbr}รัด{\wbr}
+อย่างไรก็ตาม{\wbr}หลาย{\wbr}ครั้ง{\wbr}ใน{\wbr}การ{\wbr}พัฒนา{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}สำหรับ{\wbr}โครงสร้าง{\wbr}ข้อมูล{\wbr}จริง~ๆ
+เรา{\wbr}มัก{\wbr}นิยม{\wbr}ที่{\wbr}จะ{\wbr}ทดลอง{\wbr}สร้าง{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}ที่{\wbr}จัด{\wbr}เก็บ{\wbr}แบบ{\wbr}ชนิด{\wbr}ข้อมูล{\wbr}จริง{\wbr}ก่อน{\wbr}ที่{\wbr}จะ{\wbr}ปรับ{\wbr}เปลี่ยน{\wbr}ให้{\wbr}เป็น{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}แม่แบบ{\wbr}
+
+\begin{quiz}{อิน{\wbr}เทอร์เฟส{\wbr}ของ{\wbr}สแต็ก}
+ก่อน{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}เขียน ให้{\wbr}ลอง{\wbr}พิจารณา{\wbr}ก่อน{\wbr}ว่า{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}แม่แบบ {\ct stack} จะ{\wbr}ต้อง{\wbr}มี{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}อะไร{\wbr}บ้าง{\wbr}
+\end{quiz}
+
+
+
+\section{คิว{\wbr}และ{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์}
+
