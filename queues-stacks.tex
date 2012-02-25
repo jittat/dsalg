@@ -51,7 +51,47 @@
 ก่อน{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}เริ่ม{\wbr}เขียน ให้{\wbr}ลอง{\wbr}พิจารณา{\wbr}ก่อน{\wbr}ว่า{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}แม่แบบ {\ct stack} จะ{\wbr}ต้อง{\wbr}มี{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}อะไร{\wbr}บ้าง{\wbr}
 \end{quiz}
 
+เรา{\wbr}จะ{\wbr}แสดง{\wbr}อิน{\wbr}เทอร์เฟส{\wbr}ของ{\wbr}สแต็ก{\wbr}ที่{\wbr}เรา{\wbr}จะ{\wbr}พัฒนา{\wbr}ด้วย{\wbr}โปรแกรมหลัก{\wbr}ดัง{\wbr}แสดง{\wbr}ใน{\wbr}โปรแกรม{\wbr}ที่~\ref{code:qs-stack-main}
+ใน{\wbr}โปรแกรมหลัก เรา{\wbr}ได้{\wbr}ใช้{\wbr}การ{\wbr}สั่ง {\ct assert} เพื่อ{\wbr}ทดสอบ{\wbr}ผลลัพธ์{\wbr}ที่{\wbr}เรา{\wbr}คาด{\wbr}ว่า{\wbr}น่าจะ{\wbr}เป็น โดย{\wbr}สั่ง{\wbr}
+\begin{center}
+{\ct assert(}เงื่อนไข{\ct );}
+\end{center}
+ถ้า{\wbr}แม่แบบ {\ct stack} ทำงาน{\wbr}ผิดพลาด{\wbr}
+กล่าวคือ{\wbr}ให้{\wbr}ผลลัพธ์{\wbr}ไม่{\wbr}ตรง{\wbr}ตาม{\wbr}เงื่อนไข{\wbr}เมื่อ{\wbr}โปรแกรม{\wbr}ทำงาน จะ{\wbr}มี{\wbr}การ{\wbr}พิมพ์{\wbr}ข้อความ{\wbr}เช่น{\wbr}ด้าน{\wbr}ล่าง{\wbr}ออก{\wbr}มา{\wbr}
 
+{\latintext
+\begin{verbatim}
+a.out: stack.cc:13: int main(): Assertion `s.size()==3' failed.
+mainAborted
+\end{verbatim}
+}
+
+\begin{figure}
+\latintext
+\begin{codelist}{C++}{caption={\thaitext ตัวอย่าง{\wbr}โปรแกรมหลัก{\wbr}ที่{\wbr}เรียก{\wbr}ใช้{\wbr}งาน{\wbr}ค{\wbr}ลา{\wbr}ส{\wbr}แม่แบบ {\ct stack}\latintext},label=code:qs-stack-main}
+#include <cassert>
+
+#include "stack.h"
+
+int main()
+{
+  stack<int> s;
+  
+  s.push(10);  s.push(20);  s.push(100);
+  assert(s.size()==3);
+  assert(s.pop()==100);
+  assert(s.size()==2);
+  assert(s.top()==20);
+  assert(s.pop()==20);
+  s.push(1000);
+  assert(s.pop()==1000);
+  assert(s.empty()==false);
+  assert(s.pop()==10);
+  assert(s.empty()==true);
+}
+\end{codelist}
+\thaitext
+\end{figure}
 
 \section{คิว{\wbr}และ{\wbr}การ{\wbr}อิม{\wbr}พลี{\wbr}เมนท์{\wbr}ด้วย{\wbr}อาร์เรย์}
 

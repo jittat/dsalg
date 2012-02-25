@@ -1,9 +1,7 @@
 #include <iostream>
 #include <cassert>
 
-#include "stack"
-
-void test_dd();
+#include "stack.h"
 
 int main()
 {
@@ -11,7 +9,7 @@ int main()
 
   stack<int> s;
   
-  s.push(10);  s.push(20);  s.push(100);
+  s.push(10);  s.push(20);  //s.push(100);
   assert(s.size()==3);
   assert(s.pop()==100);
   assert(s.size()==2);
@@ -22,8 +20,4 @@ int main()
   assert(s.empty()==false);
   assert(s.pop()==10);
   assert(s.empty()==true);
-
-  std::cout << "test";
-
-  test_dd();
 }

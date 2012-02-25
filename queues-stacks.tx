@@ -51,7 +51,45 @@
 ก่อนที่เราจะเริ่มเขียน ให้ลองพิจารณาก่อนว่าคลาสแม่แบบ {\ct stack} จะต้องมีอินเทอร์เฟสอะไรบ้าง
 ---
 
+เราจะแสดงอินเทอร์เฟสของสแต็กที่เราจะพัฒนาด้วยโปรแกรมหลักดังแสดงในโปรแกรมที่~\ref{code:qs-stack-main}
+ในโปรแกรมหลัก เราได้ใช้การสั่ง {\ct assert} เพื่อทดสอบผลลัพธ์ที่เราคาดว่าน่าจะเป็น โดยสั่ง
+\begin{center}
+{\ct assert(}เงื่อนไข{\ct );}
+\end{center}
+ถ้าแม่แบบ {\ct stack} ทำงานผิดพลาด
+กล่าวคือให้ผลลัพธ์ไม่ตรงตามเงื่อนไขเมื่อโปรแกรมทำงาน จะมีการพิมพ์ข้อความเช่นด้านล่างออกมา
 
+{\latintext
+\begin{verbatim}
+a.out: stack.cc:13: int main(): Assertion `s.size()==3' failed.
+mainAborted
+\end{verbatim}
+}
+
+\begin{figure}
+---src[cpp,ตัวอย่างโปรแกรมหลักที่เรียกใช้งานคลาสแม่แบบ {\ct stack},code:qs-stack-main]
+#include <cassert>
+
+#include "stack.h"
+
+int main()
+{
+  stack<int> s;
+  
+  s.push(10);  s.push(20);  s.push(100);
+  assert(s.size()==3);
+  assert(s.pop()==100);
+  assert(s.size()==2);
+  assert(s.top()==20);
+  assert(s.pop()==20);
+  s.push(1000);
+  assert(s.pop()==1000);
+  assert(s.empty()==false);
+  assert(s.pop()==10);
+  assert(s.empty()==true);
+}
+---
+\end{figure}
 
 \section{คิวและการอิมพลีเมนท์ด้วยอาร์เรย์}
 
