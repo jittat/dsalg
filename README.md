@@ -17,6 +17,7 @@
 ----------
 
     make
+    make again
     make pdf
 
 
